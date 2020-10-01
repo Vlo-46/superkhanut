@@ -1,115 +1,57 @@
-// import axios from 'axios'
+import axios from 'axios'
+import keys from "../../keys";
 
 export default {
     state: {
-        product_item: [
-            {
-                id: 1,
-                company_name: 'Amazon',
-                title: 'Beef',
-                price: '850',
-                description: 'lorem aaalorem lorem',
-                tag: 'beef'
-            },
-            {
-                id: 2,
-                company_name: 'Google',
-                title: 'Eggs',
-                price: '1000',
-                description: 'lorem aaalorem lorem',
-                tag: 'egg'
-            },
-            {
-                id: 3,
-                company_name: 'AliExpress',
-                title: 'Milk',
-                price: '400',
-                description: 'lorem lorem lorem',
-                tag: 'milk'
-            },
-            {
-                id: 4,
-                company_name: 'Facebook',
-                title: 'Table',
-                price: '5000',
-                description: 'lorem lorem lorem',
-                tag: 'table'
-            },
-            {
-                id: 5,
-                company_name: 'Instagram',
-                title: 'Chair',
-                price: '3500',
-                description: 'lorem lorem lorem',
-                tag: 'chair'
-            },
-            {
-                id: 6,
-                company_name: 'Fifa',
-                title: 'Ball',
-                price: '500',
-                description: 'lorem lorem loremaaa',
-                tag: 'ball'
-            },
-            {
-                id: 7,
-                company_name: 'Mozila',
-                title: 'Bag',
-                price: '8500',
-                description: 'lorem lorem loremaaa',
-                tag: 'bag'
-            },
-            {
-                id: 8,
-                company_name: 'Yandex',
-                title: 'Coffee',
-                price: '150',
-                description: 'lorem lorem lorem',
-                tag: 'coffe'
-            },
-            {
-                id: 9,
-                company_name: 'ArmCoding',
-                title: 'Computer',
-                price: '36000',
-                description: 'lorem lorem lorem',
-                tag: 'computer'
-            },
-        ],
+        products: [],
+        filtered_products: [],
+        filtered: false
     },
     mutations: {
-        UPDATE_FILTER_BY_PRICE(state, filtred_products) {
-            state.product_item = filtred_products
+        ALL_PRODUCTS_IN_COMPANIES(state, products) {
+            state.products = products
         },
+        UPDATE_FILTER_BY_PRICE(state, filtered_products) {
+            state.filtered = true;
+            state.filtered_products = filtered_products
+        },
+        UPDATE_FILTER_BY_CATEGORY(state, category) {
+            const x = state.products.filter(i => {
+                return i.category === category
+            });
+            state.filtered = true;
+            state.filtered_products = x;
+        }
     },
     actions: {
-        FILTER_BY_PRICE(ctx, price) {
+        async GET_ALL_PRODUCTS_IN_COMPANIES(ctx) {
+            await axios.get(`${keys.baseURI}/api/product`)
+                .then(res => {
+                    // console.log(res.data)
+                    ctx.commit('ALL_PRODUCTS_IN_COMPANIES', res.data)
+                })
+                .catch(e => console.log(e))
+        },
+        WRAPPER_FILTER_BY_PRICE(ctx, price) {
             let min = Number(price.min);
             let max = Number(price.max);
 
-            let products = this.state.products.product_item;
+            let products = this.state.products.products;
 
-            let filtred_products = [];
+            let filtered_products = [];
 
             products.forEach(i => {
                 if (Number(i.price) >= min && Number(i.price) <= max) {
-                    filtred_products.push(i)
+                    filtered_products.push(i)
                 }
             });
 
-            // let min_price = Math.max.apply(null, filtred_products);
-            // let max_price = Math.min.apply(null, filtred_products);
+            ctx.commit('UPDATE_FILTER_BY_PRICE', filtered_products)
+        },
+        WRAPPER_FILTER_BY_CATEGORY(ctx, category) {
+            ctx.commit('UPDATE_FILTER_BY_CATEGORY', category)
+        }
 
-            ctx.commit('UPDATE_FILTER_BY_PRICE', filtred_products)
-        },
-        ADD_TO_CART(ctx, {product}) {
-            if (localStorage.getItem(product.id)) {
-                alert('The product is already in the cart')
-            } else {
-                localStorage.setItem(product.id, JSON.stringify(product))
-            }
-        },
     },
-    getters: {
-    }
+    getters: {}
 }

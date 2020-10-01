@@ -19,27 +19,29 @@
                 <div class="col s12 m8 l9">
                     <div id="companies" class="col s12 m12 l12">
                         <div class="row company-content">
-                            <companies2 v-for="company in companies.company_item"
-                                        :key="company.id"
-                                        :company_name="company.company_name"
-                                        :rate="company.rate"
-                                        :views="company.views"
-                                        :sales="company.sales"
-                                        :id="company.id"
-                            />
+                            <div class="col s12 m6 l4" v-for="company in companies" :key="company.id">
+                                <companies2 :company_name="company.name"
+                                            :sales="company.item_count"
+                                            :id="company.id"
+                                            :uri="company.store_uri"
+                                            :encoded_name="company.url_encoded_name"
+                                            :logo="company.logo_uri"
+                                />
+                            </div>
                         </div>
                     </div>
                     <div id="products" class="col s12 m12 l12">
                         <div class="row">
-                            <products v-for="product in products.product_item"
-                                      :key="product.id"
-                                      :title="product.title"
-                                      :company_name="product.company_name"
-                                      :price="product.price"
-                                      :id="product.id"
-                                      :description="product.description"
-                                      :tag="product.tag"
-                            />
+                            <div class="col s12 m6 l4" v-for="product in products" :key="product.id">
+                                <products :product_name="product.product_name"
+                                          :img="product.file"
+                                          :company_name="product['store'].name"
+                                          :price="product.price"
+                                          :id="product.id"
+                                          :encoded_name="product['store'].url_encoded_name"
+                                />
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -67,7 +69,7 @@
 
     import {mapState} from 'vuex'
 
-    const asyncComponent = ()=> ({
+    const asyncComponent = () => ({
         component: import('./Companies'),
         loading: SkeletonCard,
         delay: 200,
@@ -75,6 +77,7 @@
     });
 
     export default {
+        props: ['companies', 'products'],
         components: {
             // companies2,
             products,
@@ -83,7 +86,7 @@
             'companies2': asyncComponent
         },
         computed: {
-            ...mapState(['companies', 'products', 'topCompany']),
+            ...mapState(['topCompany']),
         },
     }
 </script>

@@ -1,27 +1,30 @@
 <template>
-    <div class="col s12 m6 l4">
-        <div class="company-item">
-            <div class="imgBox">
-                <a href="" style="width: 100%;"><img src="../../assets/no-img.jpg" alt=""></a>
-                <a onclick="M.toast({html: 'Company added to the favorites list'})" class="favorite"
-                   style="display: none"><i class="material-icons">favorite</i></a>
-            </div>
-            <div class="company-body row">
-                <div class="col s12 m6 l6" style="align-self: flex-end;">
-                    <div><p><a href="" class="comp_name">{{company_name}}</a></p></div>
-                    <div><span class="sales"><i
-                            class="material-icons">shopping_basket</i><small>Sales {{sales}}</small></span></div>
-                    <div><span class="sales"><i
-                            class="material-icons">visibility</i><small>Views {{views}}</small></span>
-                    </div>
-                </div>
-                <div class="col s12 m6 l6 previewBox">
-                    <button class="preview">Preview</button>
-                </div>
-            </div>
-            <!--                    rate component-->
-            <rate :length="5" :value="0" :showcount="false" />
+    <div class="company-item">
+        <div class="imgBox">
+            <a :href="`/${encoded_name}/home`" style="width: 100%;"><img src="../../assets/no-img.jpg" alt=""></a>
+            <a onclick="M.toast({html: 'Company added to the favorites list'})" class="favorite"
+               style="display: none"><i class="material-icons">favorite</i></a>
         </div>
+        <div class="company-body row">
+            <div class="col s12 m6 l6" style="align-self: flex-end;">
+                <div><p><a :href="`/${encoded_name}/home`" class="comp_name">{{company_name}}</a></p></div>
+                <div>
+                    <span class="sales">
+                        <i class="material-icons">shopping_basket</i><small>Sales {{sales}}</small>
+                    </span>
+                </div>
+                <div>
+                    <span class="sales">
+                        <i class="material-icons">visibility</i><small>Views 100</small>
+                    </span>
+                </div>
+            </div>
+            <div class="col s12 m6 l6 previewBox">
+                <router-link :to="`/${encoded_name}/home`" class="preview">Preview</router-link>
+            </div>
+        </div>
+        <!--                    rate component-->
+        <rate :length="5" :value="0" :showcount="false" />
     </div>
 </template>
 
@@ -33,7 +36,7 @@
     Vue.use(rate);
 
     export default {
-        props: ['rate', 'company_name', 'views', 'sales', 'id'],
+        props: ['company_name', 'sales', 'id', 'uri', 'encoded_name', 'logo'],
         components: {
         },
     }

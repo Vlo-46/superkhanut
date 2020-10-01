@@ -38,6 +38,10 @@ import company_admin from '../views/Created-shop/admin/Admin'
 import company_admin_products from '../components/company-admin/Products'
 import company_add_product from '../components/company-admin/Add-product'
 import company_settings from '../components/company-admin/Settings'
+import company_admin_orders from '../components/company-admin/Orders'
+
+
+import example from '../views/example'
 
 Vue.use(VueRouter);
 
@@ -203,7 +207,16 @@ const routes = [
         path: '/*/admin/settings',
         component: company_settings
     },
+    {
+        path: '/*/admin/orders',
+        component: company_admin_orders
+    },
 
+
+    {
+        path: '/example',
+        component: example
+    }
 ];
 
 const router = new VueRouter({

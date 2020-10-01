@@ -1,6 +1,6 @@
 export default {
     state: {
-        categories: ['category-1'],
+        categories: ['category-1', 'category-2'],
         category: []
     },
     mutations: {

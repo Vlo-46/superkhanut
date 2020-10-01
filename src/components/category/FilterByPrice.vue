@@ -4,9 +4,9 @@
             <div class="collapsible-header">Filter by price <i class="material-icons">arrow_drop_down</i></div>
             <div class="collapsible-body">
                 <div>
-                    <input type="range" min="100" max="10000" step="1"
-                           class="custom-range">
-                    <span class="filtered_price">100&nbsp;Դ&nbsp;-&nbsp;10000&nbsp;Դ</span>
+                    <input type="range" :min="min" :max="max" step="1"
+                           class="custom-range" v-model="price" @change="WRAPPER_FILTER_BY_PRICE({min: price, max})">
+                    <span class="filtered_price">{{price}}&nbsp;Դ&nbsp;-&nbsp;{{max}}&nbsp;Դ</span>
                 </div>
             </div>
         </li>
@@ -17,13 +17,13 @@
     import {mapActions} from 'vuex'
 
     export default {
+        props: ['min', 'max'],
         data() {
             return {
-                min_price: '',
-                max_price: ''
+                price: 0
             }
         },
-        methods: {...mapActions(['FILTER_BY_PRICE'])},
+        methods: {...mapActions(['WRAPPER_FILTER_BY_PRICE'])},
     }
 </script>
 

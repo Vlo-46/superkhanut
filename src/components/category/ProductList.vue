@@ -1,32 +1,30 @@
 <template>
-    <div class="col s12">
-        <div class="pruduct-item">
-            <div class="row" style="display: flex; margin: 0">
-                <div class="col s4">
-                    <div class="imgBox">
-                        <a href=""><img src="../../assets/no-img.jpg" alt=""></a>
-                    </div>
+    <div class="pruduct-item">
+        <div class="row" style="display: flex; margin: 0">
+            <div class="col s4">
+                <div class="imgBox">
+                    <a href=""><img :src="img" alt=""></a>
                 </div>
-                <div class="col s5 infoBox">
-                    <div><p><a href="" class="product_title">{{title}}</a></p></div>
-                    <div><a href="" class="by_company"><em>By {{company_name}}</em></a></div>
+            </div>
+            <div class="col s5 infoBox">
+                <div><p><a href="" class="product_title">{{product_name}}</a></p></div>
+                <div><a href="" class="by_company"><em>By {{company_name}}</em></a></div>
+                <div>
+                    <ul class="descriptionBox">
+                        <li><span><i><small>{{description}}</small> </i></span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col s3">
+                <a onclick="M.toast({html: 'Product added to the favorites list'})" class="favorite"><i
+                        class="material-icons">favorite</i></a>
+                <div class="previewBox">
+                    <div><span class="product-price">{{price}} &nbsp; AMD</span></div>
                     <div>
-                        <ul class="descriptionBox">
-                            <li><span><i><small>{{description}}</small> </i></span></li>
-                        </ul>
+                        <button class="buy_btn">Add to cart</button>
                     </div>
-                </div>
-                <div class="col s3">
-                    <a onclick="M.toast({html: 'Product added to the favorites list'})" class="favorite"><i
-                            class="material-icons">favorite</i></a>
-                    <div class="previewBox">
-                        <div><span class="product-price">{{price}} &nbsp; AMD</span></div>
-                        <div>
-                            <button class="buy_btn">Add to cart</button>
-                        </div>
-                        <div>
-                            <button class="preview">Preview</button>
-                        </div>
+                    <div>
+                        <router-link :to="{path: `/${encoded_name}/detail/${id}`, params: {id}}" class="preview">Preview</router-link>
                     </div>
                 </div>
             </div>
@@ -36,7 +34,7 @@
 
 <script>
     export default {
-        props: ['company_name', 'title', 'price', 'description']
+        props: ['product_name', 'img', 'company_name', 'price', 'id', 'encoded_name', 'description'],
     }
 </script>
 

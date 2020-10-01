@@ -54,21 +54,20 @@
                     <ul>
                         <h5>FILTER BY PRICE</h5>
                         <div>
-                            <input type="range" v-model="price" :min="min_price" :max="max_price" step="1"
+                            <input type="range" min="100" max="100000" step="1"
                                    class="custom-range">
-                            <span class="filtered_price">{{price}}&nbsp;Դ&nbsp;-&nbsp;{{max_price}}&nbsp;Դ</span>
+                            <span class="filtered_price">100&nbsp;Դ&nbsp;-&nbsp;100000&nbsp;Դ</span>
                         </div>
                     </ul>
                 </div>
                 <div class="col s9">
                     <h5>Amount of products</h5>
                     <div class="row">
-                        <div class="col s3" v-for="p in filtered_price" :key="p.id">
+                        <div class="col s3" v-for="p in products" :key="p.id">
                             <Product_item :id="p.id"
                                           :img="p.img"
                                           :price="p.price"
                                           :discount="p.discount"
-                                          :quantity="p.quantity"
                                           :product_name="p.product_name"
                             />
                         </div>
@@ -84,8 +83,6 @@
     import Navbar from '../../components/company-example-2/Navbar'
     import Header from '../../components/company-example-2/Header'
     import Product_item from '../../components/company-example-2/Product-item'
-
-    import {mapGetters} from 'vuex'
 
 
     export default {
@@ -103,7 +100,6 @@
                         product_name: 'Product name',
                         price: '1000',
                         discount: '1200',
-                        quantity: 1,
                         img: require('@/assets/about.jpg'),
                         category: 'category'
                     },
@@ -112,7 +108,6 @@
                         product_name: 'Product name',
                         price: '1500',
                         discount: '1600',
-                        quantity: 1,
                         img: require('@/assets/about.jpg'),
                         category: 'category'
                     },
@@ -121,7 +116,6 @@
                         product_name: 'Product name',
                         price: '2550',
                         discount: '2700',
-                        quantity: 1,
                         img: require('@/assets/about.jpg'),
                         category: 'category'
                     },
@@ -130,7 +124,6 @@
                         product_name: 'Product name',
                         price: '3400',
                         discount: '3600',
-                        quantity: 1,
                         img: require('@/assets/about.jpg'),
                         category: 'category'
                     },
@@ -139,7 +132,6 @@
                         product_name: 'Product name',
                         price: '6560',
                         discount: '8000',
-                        quantity: 1,
                         img: require('@/assets/about.jpg'),
                         category: 'category'
                     },
@@ -148,29 +140,12 @@
                         product_name: 'Product name',
                         price: '780',
                         discount: '1000',
-                        quantity: 1,
                         img: require('@/assets/about.jpg'),
                         category: 'category'
                     },
                 ],
-                max_price: 0,
-                min_price: 0,
-                price: 0
             }
         },
-        beforeMount() {
-            let array_price = []
-            this.products.forEach(i => {
-                array_price.push(Number(i.price))
-            })
-            this.max_price = Math.max.apply(null, array_price)
-        },
-        computed: {
-            ...mapGetters(['GET_ALL_PRODUCTS', 'FILTER_BY_PRICE']),
-            filtered_price: function () {
-                return this.FILTER_BY_PRICE({min: this.min_price, max: this.max_price, price: this.price})
-            }
-        }
     }
 </script>
 

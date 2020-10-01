@@ -1,6 +1,6 @@
 export default {
     state: {
-        price_filters: ['price-filter-1'],
+        price_filters: ['price-filter-1', 'price-filter-2', 'price-filter-3', 'price-filter-4'],
         price_filter: []
     },
     mutations: {

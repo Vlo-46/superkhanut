@@ -1,6 +1,6 @@
 export default {
     state: {
-        tag_filters: ['tag-filter-1'],
+        tag_filters: ['tag-filter-1', 'tag-filter-2', 'tag-filter-3'],
         tag_filter: []
     },
     mutations: {

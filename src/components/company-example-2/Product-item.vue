@@ -9,17 +9,8 @@
                 <p class="product_price">{{price}}&nbsp;Դ</p>
                 <span class="discount" v-if="discount != null">{{discount}}&nbsp;Դ</span>
             </div>
-            <div class="quantity_box row">
-                <div class="quantity col s3" @click="SUB_QUANTITY(id)">-</div>
-                <div class="col s6">
-                    <input class="quantity-things" type="number" min="1" max="-2" step="1"
-                           v-model="quantity"
-                           readonly="">
-                </div>
-                <div class="quantity col s3 disabled" @click="ADD_QUANTITY(id)">+</div>
-            </div>
             <div>
-                <button class="btn">Buy</button>
+                <button class="btn">View</button>
             </div>
         </div>
     </div>
@@ -29,7 +20,7 @@
     import {mapActions} from 'vuex'
 
     export default {
-        props: ['product_name', 'price', 'discount', 'quantity', 'img', 'id'],
+        props: ['product_name', 'price', 'discount', 'img', 'id'],
         methods: {
             ...mapActions(['ADD_QUANTITY', 'SUB_QUANTITY'])
         }
@@ -62,29 +53,6 @@
     .product_price {
         color: #0a662e;
         font-weight: bold;
-    }
-
-    .quantity {
-        font-size: 1.3rem;
-        width: 33px;
-        height: 33px;
-        text-align: center;
-        background: #d4dce4;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-
-    .quantity_box {
-        display: flex;
-        align-items: center;
-    }
-
-    .quantity_box col {
-        height: 100%;
-    }
-
-    .quantity-things {
-        text-align: center;
     }
 
     .product-body {

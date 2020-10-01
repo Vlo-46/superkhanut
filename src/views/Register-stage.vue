@@ -84,17 +84,35 @@
                     <li>
                         <button class="panel-button" @click="CATEGORY_FILTER('category-1')">CATEGORY 1</button>
                     </li>
+                    <li>
+                        <button class="panel-button" @click="CATEGORY_FILTER('category-2')">CATEGORY 2</button>
+                    </li>
                 </ul>
                 <ul v-else-if="price_filter_components.price_filter === 'price_filter_components'">
                     <h6>Price filter components</h6>
                     <li>
                         <button class="panel-button" @click="$PRICE_FILTER('price-filter-1')">PRICE FILTER 1</button>
                     </li>
+                    <li>
+                        <button class="panel-button" @click="$PRICE_FILTER('price-filter-2')">PRICE FILTER 2</button>
+                    </li>
+                    <li>
+                        <button class="panel-button" @click="$PRICE_FILTER('price-filter-3')">PRICE FILTER 3</button>
+                    </li>
+                    <li>
+                        <button class="panel-button" @click="$PRICE_FILTER('price-filter-4')">PRICE FILTER 4</button>
+                    </li>
                 </ul>
                 <ul v-else-if="tag_filter_components.tag_filter === 'tag_filter_components'">
                     <h6>Tag filter components</h6>
                     <li>
                         <button class="panel-button" @click="$TAG_FILTER('tag-filter-1')">TAG FILTER 1</button>
+                    </li>
+                    <li>
+                        <button class="panel-button" @click="$TAG_FILTER('tag-filter-2')">TAG FILTER 2</button>
+                    </li>
+                    <li>
+                        <button class="panel-button" @click="$TAG_FILTER('tag-filter-3')">TAG FILTER 3</button>
                     </li>
                 </ul>
             </div>

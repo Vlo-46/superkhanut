@@ -1,60 +1,36 @@
 <template>
-    <div class="col s12 m6 l4">
-        <div class="pruduct-item">
-            <div class="imgBox">
-                <a href=""><img src="../../assets/no-img.jpg" alt=""></a>
-                <a href="" class="favorite"
-                   style="display: none" @click.prevent="ADD_TO_FAVORITE_LIST({product})"><i
-                        onclick="M.toast({html: 'Product added to the favorites list'})"
-                        class="material-icons">favorite</i></a>
+    <div class="pruduct-item">
+        <div class="imgBox">
+            <a href=""><img :src="img" alt=""></a>
+            <a href="" class="favorite" style="display: none">
+                <i onclick="M.toast({html: 'Product added to the favorites list'})"
+                   class="material-icons">favorite</i>
+            </a>
+        </div>
+        <div class="product-body row">
+            <div class="col s6" style="align-self: flex-end;">
+                <div><p><a :href="`/${encoded_name}/detail/${id}`" class="product_title">{{product_name}}</a></p></div>
+                <div><span class="product-price">{{price}}&nbsp;AMD</span></div>
+                <div><a :href="`/${encoded_name}/home`" class="by_company"><em>By &nbsp; {{company_name}}</em></a></div>
             </div>
-            <div class="product-body row">
-                <div class="col s6" style="align-self: flex-end;">
-                    <div><p><a href="" class="product_title">{{title}}</a></p></div>
-                    <div><span class="product-price">{{price}}&nbsp;AMD</span></div>
-                    <div><a href="" class="by_company"><em>By &nbsp; {{company_name}}</em></a></div>
-                </div>
-                <div class="col s6 previewBox">
-                    <button class="preview">Preview</button>
-<!--                    <div>-->
-<!--                        <button class="buy_btn" type="submit" @click.prevent="ADD_TO_CART({product})">-->
-<!--                            <i class="material-icons"-->
-<!--                               onclick="M.toast({html: 'Product in the basket'})">shopping_cart</i>-->
-<!--                        </button>-->
-<!--                    </div>-->
-                </div>
+            <div class="col s6 previewBox">
+                <router-link :to="{path: `/${encoded_name}/detail/${id}`, params: {id}}" class="preview">Preview</router-link>
+                <!--                    <div>-->
+                <!--                        <button class="buy_btn" type="submit" @click.prevent="ADD_TO_CART({product})">-->
+                <!--                            <i class="material-icons"-->
+                <!--                               onclick="M.toast({html: 'Product in the basket'})">shopping_cart</i>-->
+                <!--                        </button>-->
+                <!--                    </div>-->
             </div>
         </div>
     </div>
 </template>
 
 <script>
-    import {mapActions} from 'vuex'
+
 
     export default {
-        data() {
-            return {
-                product: {
-                    title: this.title,
-                    company_name: this.company_name,
-                    price: this.price,
-                    id: this.id,
-                    description: this.description,
-                    tag: this.tag
-                }
-            }
-        },
-        props: ['title', 'company_name', 'price', 'id', 'description', 'tag'],
-        methods: {
-            ...mapActions(['ADD_TO_CART']),
-            ADD_TO_FAVORITE_LIST({product}) {
-                if (sessionStorage.getItem(product.id)) {
-                    alert('The product is already in the favorite list')
-                } else {
-                    sessionStorage.setItem(product.id, JSON.stringify(product))
-                }
-            }
-        }
+        props: ['product_name', 'img', 'company_name', 'price', 'id', 'encoded_name'],
     }
 </script>
 
@@ -126,7 +102,6 @@
         background-color: #ccc;
         color: #fff;
     }
-
 
 
     .product-body {

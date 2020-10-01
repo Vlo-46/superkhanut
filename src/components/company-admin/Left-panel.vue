@@ -15,7 +15,7 @@
                 </router-link>
             </li>
             <li>
-                <router-link to="">
+                <router-link :to="`/${company_name}/admin/orders`">
                     <i class="material-icons">add_shopping_cart</i>&nbsp;<span>Պատվերներ</span>
                 </router-link>
             </li>

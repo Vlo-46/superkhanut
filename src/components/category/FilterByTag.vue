@@ -4,28 +4,10 @@
             <div class="collapsible-header">Filter by tag <i class="material-icons">arrow_drop_down</i></div>
             <div class="collapsible-body">
                 <ul>
-                    <li>
+                    <li v-for="tag in tags" :key="tag">
                         <label>
                             <input type="checkbox">
-                            <span>Tag</span>
-                        </label>
-                    </li>
-                    <li>
-                        <label>
-                            <input type="checkbox">
-                            <span>Tag</span>
-                        </label>
-                    </li>
-                    <li>
-                        <label>
-                            <input type="checkbox">
-                            <span>Tag</span>
-                        </label>
-                    </li>
-                    <li>
-                        <label>
-                            <input type="checkbox">
-                            <span>Tag</span>
+                            <span>{{tag}}</span>
                         </label>
                     </li>
                 </ul>
@@ -33,6 +15,12 @@
         </li>
     </ul>
 </template>
+
+<script>
+    export default {
+        props: ['tags']
+    }
+</script>
 
 <style scoped>
     .collapsible-body ul li {

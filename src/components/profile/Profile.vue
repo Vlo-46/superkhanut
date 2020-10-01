@@ -7,7 +7,7 @@
             <div>
                 <p class="username">Username</p>
                 <p class="info">Country, Created at</p>
-                <p v-if="type === 'COMPANY'"><router-link :to="`${company_name}/admin`">Admin page</router-link></p>
+                <p v-if="type === 'COMPANY'"><router-link :to="`/${company_name}/admin`">Admin page</router-link></p>
                 <p v-if="type === 'COMPANY'"><router-link :to="`/${company_name}/home`">Website</router-link></p>
             </div>
         </div>
