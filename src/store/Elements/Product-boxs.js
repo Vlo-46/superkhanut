@@ -1,6 +1,6 @@
 export default {
     state: {
-        product_boxs: ['product-box-1', 'product-box-2', 'product-box-3', 'product-box-4', 'product-box-5'],
+        product_boxs: ['product-box-1', 'product-box-2', 'product-box-3', 'product-box-4', 'product-box-5', 'product-box-6', 'product-box-7', 'product-box-8', 'product-box-9', 'product-box-10'],
         product_box: []
     },
     mutations: {

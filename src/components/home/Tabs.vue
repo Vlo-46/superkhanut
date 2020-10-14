@@ -60,30 +60,29 @@
 </template>
 
 <script>
-    // import companies2 from './Companies'
+    import companies2 from './Companies'
     import products from './Products'
     import topCompanies from './TopCompanies'
     import search from './Search'
 
-    import SkeletonCard from 'vue-ultimate-skeleton-cards/Components/SkeletonCard'
-
     import {mapState} from 'vuex'
 
-    const asyncComponent = () => ({
-        component: import('./Companies'),
-        loading: SkeletonCard,
-        delay: 200,
-        timeout: 3000
-    });
+    // import SkeletonCard from 'vue-ultimate-skeleton-cards/Components/SkeletonCard'
+    // const asyncComponent = () => ({
+    //     component: import('./Companies'),
+    //     loading: SkeletonCard,
+    //     delay: 200,
+    //     timeout: 3000
+    // });
 
     export default {
         props: ['companies', 'products'],
         components: {
-            // companies2,
+            companies2,
             products,
             'top-companies': topCompanies,
             search,
-            'companies2': asyncComponent
+            // 'companies2': asyncComponent
         },
         computed: {
             ...mapState(['topCompany']),

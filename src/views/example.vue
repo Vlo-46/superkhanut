@@ -1,36 +1,46 @@
 <template>
     <div class="example container">
         <div class="row">
-            <div class="col s12 m3 l3">
-                <tag_filter_2/>
-                <category/>
-                <tag_filter_3/>
-                <price_filter/>
-                <price_filter_3/>
-                <price_filter_4/>
+            <div class="col s12 m4 l3">
+                <product_6/>
             </div>
-            <div class="col s12 m9 l9"></div>
+            <div class="col s12 m4 l3">
+                <product_7/>
+            </div>
+            <div class="col s12 m4 l3">
+                <product_8/>
+            </div>
+            <div class="col s12 m4 l3">
+                <product_9/>
+            </div>
+<!--            <div class="col s12 m4 l3">-->
+<!--                <product_10/>-->
+<!--            </div>-->
         </div>
-
     </div>
 </template>
 
 <script>
-    import tag_filter_2 from '../components/reg-stage/Tag-filters/Tag-filter-2'
-    import tag_filter_3 from '../components/reg-stage/Tag-filters/Tag-filter-3'
-    import category from '../components/reg-stage/Category-filters/Category-filter-2'
-    import price_filter from '../components/reg-stage/Price-filters/Price-filter-2'
-    import price_filter_3 from '../components/reg-stage/Price-filters/Price-filter-3'
-    import price_filter_4 from '../components/reg-stage/Price-filters/Price-filter-4'
+    import product_6 from '../components/reg-stage/products-box/Product-6'
+    import product_7 from '../components/reg-stage/products-box/Product-7'
+    import product_8 from '../components/reg-stage/products-box/Product-8'
+    import product_9 from '../components/reg-stage/products-box/Product-9'
+    // import product_10 from '../components/reg-stage/products-box/Product-10'
+
 
     export default {
         components: {
-            tag_filter_2,
-            category,
-            tag_filter_3,
-            price_filter,
-            price_filter_3,
-            price_filter_4
+            product_6,
+            product_7,
+            product_8,
+            product_9,
+            // product_10
         }
     }
 </script>
+
+<style scoped>
+    .example {
+        margin-top: 50px;
+    }
+</style>

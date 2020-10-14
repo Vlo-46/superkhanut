@@ -8,6 +8,10 @@
                 <product_3 v-else-if="product_boxs.product_box === 'product-box-3'"/>
                 <product_4 v-else-if="product_boxs.product_box === 'product-box-4'"/>
                 <product_5 v-else-if="product_boxs.product_box === 'product-box-5'"/>
+                <product_6 v-else-if="product_boxs.product_box === 'product-box-6'"/>
+                <product_7 v-else-if="product_boxs.product_box === 'product-box-7'"/>
+                <product_8 v-else-if="product_boxs.product_box === 'product-box-8'"/>
+                <product_9 v-else-if="product_boxs.product_box === 'product-box-9'"/>
                 <div class="product-item" v-else>
                     <span>Product item</span>
                 </div>
@@ -18,6 +22,10 @@
                 <product_3 v-else-if="product_boxs.product_box === 'product-box-3'"/>
                 <product_4 v-else-if="product_boxs.product_box === 'product-box-4'"/>
                 <product_5 v-else-if="product_boxs.product_box === 'product-box-5'"/>
+                <product_6 v-else-if="product_boxs.product_box === 'product-box-6'"/>
+                <product_7 v-else-if="product_boxs.product_box === 'product-box-7'"/>
+                <product_8 v-else-if="product_boxs.product_box === 'product-box-8'"/>
+                <product_9 v-else-if="product_boxs.product_box === 'product-box-9'"/>
                 <div class="product-item" v-else>
                     <span>Product item</span>
                 </div>
@@ -28,6 +36,10 @@
                 <product_3 v-else-if="product_boxs.product_box === 'product-box-3'"/>
                 <product_4 v-else-if="product_boxs.product_box === 'product-box-4'"/>
                 <product_5 v-else-if="product_boxs.product_box === 'product-box-5'"/>
+                <product_6 v-else-if="product_boxs.product_box === 'product-box-6'"/>
+                <product_7 v-else-if="product_boxs.product_box === 'product-box-7'"/>
+                <product_8 v-else-if="product_boxs.product_box === 'product-box-8'"/>
+                <product_9 v-else-if="product_boxs.product_box === 'product-box-9'"/>
                 <div class="product-item" v-else>
                     <span>Product item</span>
                 </div>
@@ -38,6 +50,10 @@
                 <product_3 v-else-if="product_boxs.product_box === 'product-box-3'"/>
                 <product_4 v-else-if="product_boxs.product_box === 'product-box-4'"/>
                 <product_5 v-else-if="product_boxs.product_box === 'product-box-5'"/>
+                <product_6 v-else-if="product_boxs.product_box === 'product-box-6'"/>
+                <product_7 v-else-if="product_boxs.product_box === 'product-box-7'"/>
+                <product_8 v-else-if="product_boxs.product_box === 'product-box-8'"/>
+                <product_9 v-else-if="product_boxs.product_box === 'product-box-9'"/>
                 <div class="product-item" v-else>
                     <span>Product item</span>
                 </div>
@@ -52,6 +68,10 @@
     import product_3 from '../products-box/Product-3'
     import product_4 from '../products-box/Product-4'
     import product_5 from '../products-box/Product-5'
+    import product_6 from '../products-box/Product-6'
+    import product_7 from '../products-box/Product-7'
+    import product_8 from '../products-box/Product-8'
+    import product_9 from '../products-box/Product-9'
 
     import {mapState} from 'vuex'
 
@@ -63,6 +83,10 @@
             product_3,
             product_4,
             product_5,
+            product_6,
+            product_7,
+            product_8,
+            product_9,
         },
         computed: {
             ...mapState(['product_boxs'])

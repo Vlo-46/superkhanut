@@ -11,7 +11,7 @@
                     <FilterByPrice :max="max_price" :min="min_price"/>
                 </div>
             </div>
-            <div class="col s12 m8 m9">
+            <div class="col s12 m8 l9">
                 <div class="row" v-if="navigation.section === 'grid'">
                     <template v-if="products.filtered === false">
                         <div class="col s12 m6 l4" v-for="product in products.products" :key="product.id">

@@ -32,6 +32,10 @@
     import product_3 from '../Created-shop-elements/products-box/Product-3'
     import product_4 from '../Created-shop-elements/products-box/Product-4'
     import product_5 from '../Created-shop-elements/products-box/Product-5'
+    import product_6 from '../Created-shop-elements/products-box/Product-6'
+    import product_7 from '../Created-shop-elements/products-box/Product-7'
+    import product_8 from '../Created-shop-elements/products-box/Product-8'
+    import product_9 from '../Created-shop-elements/products-box/Product-9'
 
     import {mapActions, mapState} from 'vuex'
 
@@ -45,6 +49,10 @@
                     {name: 'product-box-3'},
                     {name: 'product-box-4'},
                     {name: 'product-box-5'},
+                    {name: 'product-box-6'},
+                    {name: 'product-box-7'},
+                    {name: 'product-box-8'},
+                    {name: 'product-box-9'},
                 ],
                 company_name: ''
             }
@@ -55,6 +63,10 @@
             'product-box-3': product_3,
             'product-box-4': product_4,
             'product-box-5': product_5,
+            'product-box-6': product_6,
+            'product-box-7': product_7,
+            'product-box-8': product_8,
+            'product-box-9': product_9,
         },
         computed: {
             ...mapState(['home_page_info', 'footer_info', 'company_products']),

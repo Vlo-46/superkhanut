@@ -51,6 +51,18 @@
                     <li>
                         <button class="panel-button" @click="PRODUCT_BOXS('product-box-5')">PRODUCT BOX 5</button>
                     </li>
+                    <li>
+                        <button class="panel-button" @click="PRODUCT_BOXS('product-box-6')">PRODUCT BOX 6</button>
+                    </li>
+                    <li>
+                        <button class="panel-button" @click="PRODUCT_BOXS('product-box-7')">PRODUCT BOX 7</button>
+                    </li>
+                    <li>
+                        <button class="panel-button" @click="PRODUCT_BOXS('product-box-8')">PRODUCT BOX 8</button>
+                    </li>
+                    <li>
+                        <button class="panel-button" @click="PRODUCT_BOXS('product-box-9')">PRODUCT BOX 9</button>
+                    </li>
                 </ul>
                 <ul v-else-if="footer_components.footers === 'footer_components'">
                     <div class="close" @click="GO_TO_BACK"><i class="material-icons">arrow_back</i></div>

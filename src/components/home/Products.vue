@@ -1,7 +1,7 @@
 <template>
     <div class="pruduct-item">
         <div class="imgBox">
-            <a href=""><img :src="img" alt=""></a>
+            <a :href="`/${encoded_name}/detail/${id}`"><img :src="img" alt=""></a>
             <a href="" class="favorite" style="display: none">
                 <i onclick="M.toast({html: 'Product added to the favorites list'})"
                    class="material-icons">favorite</i>

@@ -12,8 +12,8 @@
 </template>
 
 <script>
-    // import axios from "axios";
-    // import keys from "../../keys";
+    import axios from "axios";
+    import keys from "../../keys";
     import left_panel from './Left-panel'
 
     export default {
@@ -25,17 +25,17 @@
         components: {
             left_panel
         },
-        // created() {
-        //     const token = localStorage.getItem(keys.API_TOKEN);
-        //     axios.get(`${keys.baseURI}/api/order`, {
-        //         headers: {
-        //             'Authorization': `Bearer ${token}`
-        //         }
-        //     }).then(res => {
-        //         console.log(res.data);
-        //         this.orders = res.data
-        //     }).catch(e => console.log(e))
-        // }
+        created() {
+            const token = localStorage.getItem(keys.API_TOKEN);
+            axios.get(`${keys.baseURI}/api/order`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            }).then(res => {
+                console.log(res.data);
+                this.orders = res.data
+            }).catch(e => console.log(e))
+        }
     }
 </script>
 
