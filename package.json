@@ -25,6 +25,7 @@
     "vue-rate": "^2.4.0",
     "vue-router": "^3.2.0",
     "vue-slick": "^1.1.15",
+    "vue-slick-carousel": "^1.0.6",
     "vue-snap": "0.1.0-beta.8",
     "vue-tiny-slider": "^0.1.39",
     "vue-top-progress": "^0.7.0",

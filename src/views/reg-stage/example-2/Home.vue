@@ -2,9 +2,16 @@
     <div class="home-example-2">
         <Header @click.native="testMethod(1)"/>
         <NavBar/>
-        <Slider/>
-        <tabs @click.native="testMethod(2)"/>
-        <Carousel/>
+        <div v-dragula="sections" bag="sections" id="dragula_home_components">
+            <Slider/>
+            <tabs @click.native="testMethod(2)"/>
+            <div class="clear-both" style="clear: both"></div>
+            <Carousel @click.native="testMethod(2)"/>
+        </div>
+        <Footer/>
+        <div class="next-page">
+            <button class="btn" @click="NEXT_PAGE('shop')">NEXT</button>
+        </div>
     </div>
 </template>
 
@@ -13,22 +20,30 @@
     import Slider from '../../../components/reg-stage/example-2/Slider'
     import NavBar from '../../../components/reg-stage/example-2/NavBar'
     import Carousel from '../../../components/reg-stage/example-2/Carousel'
-
     import tabs from '../../../components/reg-stage/example-2/Tabs'
+    import Footer from '../../../components/reg-stage/example-2/Footer'
 
     import {mapActions} from 'vuex'
     // import {tns} from "../../../../node_modules/tiny-slider/src/tiny-slider"
 
     export default {
+        data() {
+          return {
+              tab_components_dragula: [],
+              slider_component: [],
+              carousel_component: []
+          }
+        },
         components: {
             Header,
             Slider,
             NavBar,
             tabs,
-            Carousel
+            Carousel,
+            Footer
         },
         methods: {
-            ...mapActions(['HEADER_COMPONENTS', 'PRODUCT_COMPONENTS']),
+            ...mapActions(['HEADER_COMPONENTS', 'PRODUCT_COMPONENTS', 'NEXT_PAGE']),
             testMethod(sectionId) {
                 switch (sectionId) {
                     case 1:
@@ -41,30 +56,17 @@
                 }
             }
         },
-        mounted() {
-            // let slider = tns({
-            //     autoplay: true,
-            //     slideBy: 1,
-            //     autoplayButtonOutput: false,
-            //     mouseDrag: true,
-            //     autoHeight: true,
-            //     "items": 3,
-            //     "controls": false,
-            //     "responsive": {
-            //         "350": {
-            //             "items": 3,
-            //             "controls": true,
-            //             "edgePadding": 30
-            //         },
-            //         "500": {
-            //             "items": 4
-            //         }
-            //     },
-            //     "container": ".best_sales_slider",
-            //     // "swipeAngle": false,
-            //     "speed": 1000
-            // });
-            // slider.play();
-        }
     }
 </script>
+
+<style scoped>
+    .next-page {
+        bottom: 30px;
+        right: 30px;
+        position: fixed;
+    }
+
+    .next-page button {
+        background-color: #6ba229;
+    }
+</style>

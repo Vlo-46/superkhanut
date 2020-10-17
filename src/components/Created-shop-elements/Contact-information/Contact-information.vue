@@ -33,7 +33,6 @@
 <style scoped>
     .contact-info-box {
         padding: 30px;
-        background-color: #f2f2f2;
     }
 
     .contact-info-box span {

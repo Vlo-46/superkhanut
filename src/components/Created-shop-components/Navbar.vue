@@ -10,9 +10,9 @@
             <li>
                 <a :href="`/${company_name}/contact`">Contact</a>
             </li>
-            <!--            <li>-->
-            <!--                <router-link :to="`/created-shop/${company_name}/about`">About</router-link>-->
-            <!--            </li>-->
+            <li>
+                <a :href="`/${company_name}/about`">About</a>
+            </li>
         </ul>
     </nav>
 </template>

@@ -2,7 +2,6 @@
     <div class="home-example-1">
         <!--        header-->
         <Header @click.native="testMethod(1)"/>
-
         <div v-dragula="sections" bag="sections" id="dragula_home_components">
             <template v-for="id in FETCH_HOME_COMPONENT_IDS">
                 <template v-if="id === 'slider-component'">
@@ -19,7 +18,6 @@
                 </template>
             </template>
         </div>
-
         <!--        footer-->
         <Footer @click.native="testMethod(5)"/>
 
@@ -35,10 +33,10 @@
     import Banner from '../../../components/reg-stage/example-1/Banner'
     import Product from '../../../components/reg-stage/example-1/Product'
     import Footer from '../../../components/reg-stage/example-1/Footer'
-    // import FIND_PAGES_BY_COVER from '../../../utils'
-
     import {mapActions, mapGetters} from 'vuex'
     import Vue from "vue";
+
+    // import FIND_PAGES_BY_COVER from '../../../utils'
 
     export default {
         data() {

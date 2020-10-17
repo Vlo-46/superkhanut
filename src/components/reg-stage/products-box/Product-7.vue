@@ -1,23 +1,37 @@
 <template>
     <div class="product" id="product-7">
         <div class="badge">Hot</div>
-        <div class="product-tumb">
+        <div class="product-tumb" @click.prevent="OPEN_RIGHT_PANEL('product')">
             <img src="../../../assets/no-img.jpg" alt="">
         </div>
         <div class="product-details">
-            <span class="product-catagory">Category</span>
-            <h4><a href="">Title</a></h4>
+            <span class="product-catagory" @click.prevent="OPEN_RIGHT_PANEL('product')" :style="right_panel.product_category">Category</span>
+            <h4><a href="" @click.prevent="OPEN_RIGHT_PANEL('product')" :style="right_panel.product.product_name">Title</a></h4>
             <div class="product-bottom-details">
                 <!--                <div class="product-price"><small>$270.00</small>$230.99</div>-->
-                <div class="product-price">20000&nbsp;AMD</div>
-                <div class="product-links">
-                    <a href=""><i class="fa fa-heart"></i></a>
-                    <a href=""><i class="fa fa-shopping-cart"></i></a>
+                <div class="product-price" @click.prevent="OPEN_RIGHT_PANEL('product')" :style="right_panel.product.product_price">20000&nbsp;AMD</div>
+                <div class="product-links" @click.prevent="OPEN_RIGHT_PANEL('icon')">
+                    <a href=""><i class="fa fa-heart" :style="right_panel.icon"></i></a>
+                    <a href=""><i class="fa fa-shopping-cart" :style="right_panel.icon"></i></a>
                 </div>
             </div>
         </div>
     </div>
 </template>
+
+<script>
+    import {mapActions, mapState} from 'vuex'
+
+
+    export default {
+        methods: {
+            ...mapActions(['OPEN_RIGHT_PANEL'])
+        },
+        computed: {
+            ...mapState(['right_panel'])
+        },
+    }
+</script>
 
 <style scoped>
     a {

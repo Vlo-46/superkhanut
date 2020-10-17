@@ -32,6 +32,7 @@ import reg_stage_example_1_shop from '../views/reg-stage/example-1/Shop'
 import crated_shop_home from '../views/Created-shop/Home'
 import created_shop_shop from '../views/Created-shop/Shop'
 import created_shop_contact from '../views/Created-shop/Contact'
+import created_shop_about from '../views/Created-shop/About'
 import Detail from '../views/Created-shop/Detail'
 import company_admin from '../views/Created-shop/admin/Admin'
 
@@ -180,6 +181,10 @@ const routes = [
     {
         path: '/*/contact',
         component: created_shop_contact,
+    },
+    {
+        path: '/*/about',
+        component: created_shop_about
     },
     {
         path: '/*/detail/:id',

@@ -1,5 +1,7 @@
 <template>
     <div class="container">
+        <h5 class="center-align">Popular products</h5>
+        <div class="border-bottom" :style="`background: ${right_panel.button['background-color']}`"></div>
         <div class="carousel-items">
             <div>
                 <product-1 v-if="product_boxs.product_box === 'product-box-1'"/>
@@ -117,7 +119,7 @@
             'product-9': product_9,
         },
         computed: {
-            ...mapState(['product_boxs']),
+            ...mapState(['product_boxs', 'right_panel']),
         },
         mounted() {
             let slider = tns({
@@ -127,6 +129,7 @@
                 mouseDrag: true,
                 autoHeight: true,
                 rewind: true,
+                gutter: 12,
                 "items": 4,
                 "controls": false,
                 "responsive": {
@@ -150,6 +153,29 @@
 
 <style scoped>
     .container {
-        margin: 80px 0;
+        margin: 80px auto;
+    }
+
+    .product-item {
+        position: relative;
+        border: dotted;
+        height: 365px;
+    }
+
+    .product-item span {
+        position: absolute;
+        display: flex;
+        height: 100%;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .border-bottom {
+        width: 100px;
+        height: 5px;
+        background-color: #6ba229;
+        margin: 10px auto;
+        border-radius: 10px;
     }
 </style>

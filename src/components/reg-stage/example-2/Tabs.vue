@@ -1,187 +1,191 @@
 <template>
     <div class="best-sales container">
-        <div>
-            <div class="tab-list">
-                <button class="btn" v-for="tab in tab_components" :key="tab" @click="change_tab(tab)">{{tab}}</button>
+        <div class="tab-list">
+            <button class="btn" v-for="tab in tab_components"
+                    :key="tab" @click="change_tab(tab)"
+                    :style="right_panel.button"
+                    @click.prevent="OPEN_RIGHT_PANEL('button')"
+            >
+                {{tab}}
+            </button>
+        </div>
+        <h5 class="center-align">{{currentTab.toUpperCase()}}</h5>
+        <div class="border-bottom" :style="`background: ${right_panel.button['background-color']}`"></div>
+        <div class="news" v-if="currentTab === 'news'">
+            <div class="col s12 m6 l3">
+                <product-1 v-if="product_boxs.product_box === 'product-box-1'"/>
+                <product-2 v-else-if="product_boxs.product_box === 'product-box-2'"/>
+                <product-3 v-else-if="product_boxs.product_box === 'product-box-3'"/>
+                <product-4 v-else-if="product_boxs.product_box === 'product-box-4'"/>
+                <product-5 v-else-if="product_boxs.product_box === 'product-box-5'"/>
+                <product-6 v-else-if="product_boxs.product_box === 'product-box-6'"/>
+                <product-7 v-else-if="product_boxs.product_box === 'product-box-7'"/>
+                <product-8 v-else-if="product_boxs.product_box === 'product-box-8'"/>
+                <product-9 v-else-if="product_boxs.product_box === 'product-box-9'"/>
+                <div class="product-item" v-else>
+                    <span>Product item</span>
+                </div>
             </div>
-            <h4 class="center-align">{{currentTab.toUpperCase()}}</h4>
-            <div>
-                <div class="news" v-if="currentTab === 'news'">
-                    <div class="col s12 m6 l3">
-                        <product-1 v-if="product_boxs.product_box === 'product-box-1'"/>
-                        <product-2 v-else-if="product_boxs.product_box === 'product-box-2'"/>
-                        <product-3 v-else-if="product_boxs.product_box === 'product-box-3'"/>
-                        <product-4 v-else-if="product_boxs.product_box === 'product-box-4'"/>
-                        <product-5 v-else-if="product_boxs.product_box === 'product-box-5'"/>
-                        <product-6 v-else-if="product_boxs.product_box === 'product-box-6'"/>
-                        <product-7 v-else-if="product_boxs.product_box === 'product-box-7'"/>
-                        <product-8 v-else-if="product_boxs.product_box === 'product-box-8'"/>
-                        <product-9 v-else-if="product_boxs.product_box === 'product-box-9'"/>
-                        <div class="product-item" v-else>
-                            <span>Product item</span>
-                        </div>
-                    </div>
-                    <div class="col s12 m6 l3">
-                        <product-1 v-if="product_boxs.product_box === 'product-box-1'"/>
-                        <product-2 v-else-if="product_boxs.product_box === 'product-box-2'"/>
-                        <product-3 v-else-if="product_boxs.product_box === 'product-box-3'"/>
-                        <product-4 v-else-if="product_boxs.product_box === 'product-box-4'"/>
-                        <product-5 v-else-if="product_boxs.product_box === 'product-box-5'"/>
-                        <product-6 v-else-if="product_boxs.product_box === 'product-box-6'"/>
-                        <product-7 v-else-if="product_boxs.product_box === 'product-box-7'"/>
-                        <product-8 v-else-if="product_boxs.product_box === 'product-box-8'"/>
-                        <product-9 v-else-if="product_boxs.product_box === 'product-box-9'"/>
-                        <div class="product-item" v-else>
-                            <span>Product item</span>
-                        </div>
-                    </div>
-                    <div class="col s12 m6 l3">
-                        <product-1 v-if="product_boxs.product_box === 'product-box-1'"/>
-                        <product-2 v-else-if="product_boxs.product_box === 'product-box-2'"/>
-                        <product-3 v-else-if="product_boxs.product_box === 'product-box-3'"/>
-                        <product-4 v-else-if="product_boxs.product_box === 'product-box-4'"/>
-                        <product-5 v-else-if="product_boxs.product_box === 'product-box-5'"/>
-                        <product-6 v-else-if="product_boxs.product_box === 'product-box-6'"/>
-                        <product-7 v-else-if="product_boxs.product_box === 'product-box-7'"/>
-                        <product-8 v-else-if="product_boxs.product_box === 'product-box-8'"/>
-                        <product-9 v-else-if="product_boxs.product_box === 'product-box-9'"/>
-                        <div class="product-item" v-else>
-                            <span>Product item</span>
-                        </div>
-                    </div>
-                    <div class="col s12 m6 l3">
-                        <product-1 v-if="product_boxs.product_box === 'product-box-1'"/>
-                        <product-2 v-else-if="product_boxs.product_box === 'product-box-2'"/>
-                        <product-3 v-else-if="product_boxs.product_box === 'product-box-3'"/>
-                        <product-4 v-else-if="product_boxs.product_box === 'product-box-4'"/>
-                        <product-5 v-else-if="product_boxs.product_box === 'product-box-5'"/>
-                        <product-6 v-else-if="product_boxs.product_box === 'product-box-6'"/>
-                        <product-7 v-else-if="product_boxs.product_box === 'product-box-7'"/>
-                        <product-8 v-else-if="product_boxs.product_box === 'product-box-8'"/>
-                        <product-9 v-else-if="product_boxs.product_box === 'product-box-9'"/>
-                        <div class="product-item" v-else>
-                            <span>Product item</span>
-                        </div>
-                    </div>
+            <div class="col s12 m6 l3">
+                <product-1 v-if="product_boxs.product_box === 'product-box-1'"/>
+                <product-2 v-else-if="product_boxs.product_box === 'product-box-2'"/>
+                <product-3 v-else-if="product_boxs.product_box === 'product-box-3'"/>
+                <product-4 v-else-if="product_boxs.product_box === 'product-box-4'"/>
+                <product-5 v-else-if="product_boxs.product_box === 'product-box-5'"/>
+                <product-6 v-else-if="product_boxs.product_box === 'product-box-6'"/>
+                <product-7 v-else-if="product_boxs.product_box === 'product-box-7'"/>
+                <product-8 v-else-if="product_boxs.product_box === 'product-box-8'"/>
+                <product-9 v-else-if="product_boxs.product_box === 'product-box-9'"/>
+                <div class="product-item" v-else>
+                    <span>Product item</span>
                 </div>
-                <div class="best" v-else-if="currentTab === 'best'">
-                    <div class="col s12 m6 l3">
-                        <product-1 v-if="product_boxs.product_box === 'product-box-1'"/>
-                        <product-2 v-else-if="product_boxs.product_box === 'product-box-2'"/>
-                        <product-3 v-else-if="product_boxs.product_box === 'product-box-3'"/>
-                        <product-4 v-else-if="product_boxs.product_box === 'product-box-4'"/>
-                        <product-5 v-else-if="product_boxs.product_box === 'product-box-5'"/>
-                        <product-6 v-else-if="product_boxs.product_box === 'product-box-6'"/>
-                        <product-7 v-else-if="product_boxs.product_box === 'product-box-7'"/>
-                        <product-8 v-else-if="product_boxs.product_box === 'product-box-8'"/>
-                        <product-9 v-else-if="product_boxs.product_box === 'product-box-9'"/>
-                        <div class="product-item" v-else>
-                            <span>Product item</span>
-                        </div>
-                    </div>
-                    <div class="col s12 m6 l3">
-                        <product-1 v-if="product_boxs.product_box === 'product-box-1'"/>
-                        <product-2 v-else-if="product_boxs.product_box === 'product-box-2'"/>
-                        <product-3 v-else-if="product_boxs.product_box === 'product-box-3'"/>
-                        <product-4 v-else-if="product_boxs.product_box === 'product-box-4'"/>
-                        <product-5 v-else-if="product_boxs.product_box === 'product-box-5'"/>
-                        <product-6 v-else-if="product_boxs.product_box === 'product-box-6'"/>
-                        <product-7 v-else-if="product_boxs.product_box === 'product-box-7'"/>
-                        <product-8 v-else-if="product_boxs.product_box === 'product-box-8'"/>
-                        <product-9 v-else-if="product_boxs.product_box === 'product-box-9'"/>
-                        <div class="product-item" v-else>
-                            <span>Product item</span>
-                        </div>
-                    </div>
-                    <div class="col s12 m6 l3">
-                        <product-1 v-if="product_boxs.product_box === 'product-box-1'"/>
-                        <product-2 v-else-if="product_boxs.product_box === 'product-box-2'"/>
-                        <product-3 v-else-if="product_boxs.product_box === 'product-box-3'"/>
-                        <product-4 v-else-if="product_boxs.product_box === 'product-box-4'"/>
-                        <product-5 v-else-if="product_boxs.product_box === 'product-box-5'"/>
-                        <product-6 v-else-if="product_boxs.product_box === 'product-box-6'"/>
-                        <product-7 v-else-if="product_boxs.product_box === 'product-box-7'"/>
-                        <product-8 v-else-if="product_boxs.product_box === 'product-box-8'"/>
-                        <product-9 v-else-if="product_boxs.product_box === 'product-box-9'"/>
-                        <div class="product-item" v-else>
-                            <span>Product item</span>
-                        </div>
-                    </div>
-                    <div class="col s12 m6 l3">
-                        <product-1 v-if="product_boxs.product_box === 'product-box-1'"/>
-                        <product-2 v-else-if="product_boxs.product_box === 'product-box-2'"/>
-                        <product-3 v-else-if="product_boxs.product_box === 'product-box-3'"/>
-                        <product-4 v-else-if="product_boxs.product_box === 'product-box-4'"/>
-                        <product-5 v-else-if="product_boxs.product_box === 'product-box-5'"/>
-                        <product-6 v-else-if="product_boxs.product_box === 'product-box-6'"/>
-                        <product-7 v-else-if="product_boxs.product_box === 'product-box-7'"/>
-                        <product-8 v-else-if="product_boxs.product_box === 'product-box-8'"/>
-                        <product-9 v-else-if="product_boxs.product_box === 'product-box-9'"/>
-                        <div class="product-item" v-else>
-                            <span>Product item</span>
-                        </div>
-                    </div>
+            </div>
+            <div class="col s12 m6 l3">
+                <product-1 v-if="product_boxs.product_box === 'product-box-1'"/>
+                <product-2 v-else-if="product_boxs.product_box === 'product-box-2'"/>
+                <product-3 v-else-if="product_boxs.product_box === 'product-box-3'"/>
+                <product-4 v-else-if="product_boxs.product_box === 'product-box-4'"/>
+                <product-5 v-else-if="product_boxs.product_box === 'product-box-5'"/>
+                <product-6 v-else-if="product_boxs.product_box === 'product-box-6'"/>
+                <product-7 v-else-if="product_boxs.product_box === 'product-box-7'"/>
+                <product-8 v-else-if="product_boxs.product_box === 'product-box-8'"/>
+                <product-9 v-else-if="product_boxs.product_box === 'product-box-9'"/>
+                <div class="product-item" v-else>
+                    <span>Product item</span>
                 </div>
-                <div class="best" v-else>
-                    <div class="col s12 m6 l3">
-                        <product-1 v-if="product_boxs.product_box === 'product-box-1'"/>
-                        <product-2 v-else-if="product_boxs.product_box === 'product-box-2'"/>
-                        <product-3 v-else-if="product_boxs.product_box === 'product-box-3'"/>
-                        <product-4 v-else-if="product_boxs.product_box === 'product-box-4'"/>
-                        <product-5 v-else-if="product_boxs.product_box === 'product-box-5'"/>
-                        <product-6 v-else-if="product_boxs.product_box === 'product-box-6'"/>
-                        <product-7 v-else-if="product_boxs.product_box === 'product-box-7'"/>
-                        <product-8 v-else-if="product_boxs.product_box === 'product-box-8'"/>
-                        <product-9 v-else-if="product_boxs.product_box === 'product-box-9'"/>
-                        <div class="product-item" v-else>
-                            <span>Product item</span>
-                        </div>
-                    </div>
-                    <div class="col s12 m6 l3">
-                        <product-1 v-if="product_boxs.product_box === 'product-box-1'"/>
-                        <product-2 v-else-if="product_boxs.product_box === 'product-box-2'"/>
-                        <product-3 v-else-if="product_boxs.product_box === 'product-box-3'"/>
-                        <product-4 v-else-if="product_boxs.product_box === 'product-box-4'"/>
-                        <product-5 v-else-if="product_boxs.product_box === 'product-box-5'"/>
-                        <product-6 v-else-if="product_boxs.product_box === 'product-box-6'"/>
-                        <product-7 v-else-if="product_boxs.product_box === 'product-box-7'"/>
-                        <product-8 v-else-if="product_boxs.product_box === 'product-box-8'"/>
-                        <product-9 v-else-if="product_boxs.product_box === 'product-box-9'"/>
-                        <div class="product-item" v-else>
-                            <span>Product item</span>
-                        </div>
-                    </div>
-                    <div class="col s12 m6 l3">
-                        <product-1 v-if="product_boxs.product_box === 'product-box-1'"/>
-                        <product-2 v-else-if="product_boxs.product_box === 'product-box-2'"/>
-                        <product-3 v-else-if="product_boxs.product_box === 'product-box-3'"/>
-                        <product-4 v-else-if="product_boxs.product_box === 'product-box-4'"/>
-                        <product-5 v-else-if="product_boxs.product_box === 'product-box-5'"/>
-                        <product-6 v-else-if="product_boxs.product_box === 'product-box-6'"/>
-                        <product-7 v-else-if="product_boxs.product_box === 'product-box-7'"/>
-                        <product-8 v-else-if="product_boxs.product_box === 'product-box-8'"/>
-                        <product-9 v-else-if="product_boxs.product_box === 'product-box-9'"/>
-                        <div class="product-item" v-else>
-                            <span>Product item</span>
-                        </div>
-                    </div>
-                    <div class="col s12 m6 l3">
-                        <product-1 v-if="product_boxs.product_box === 'product-box-1'"/>
-                        <product-2 v-else-if="product_boxs.product_box === 'product-box-2'"/>
-                        <product-3 v-else-if="product_boxs.product_box === 'product-box-3'"/>
-                        <product-4 v-else-if="product_boxs.product_box === 'product-box-4'"/>
-                        <product-5 v-else-if="product_boxs.product_box === 'product-box-5'"/>
-                        <product-6 v-else-if="product_boxs.product_box === 'product-box-6'"/>
-                        <product-7 v-else-if="product_boxs.product_box === 'product-box-7'"/>
-                        <product-8 v-else-if="product_boxs.product_box === 'product-box-8'"/>
-                        <product-9 v-else-if="product_boxs.product_box === 'product-box-9'"/>
-                        <div class="product-item" v-else>
-                            <span>Product item</span>
-                        </div>
-                    </div>
+            </div>
+            <div class="col s12 m6 l3">
+                <product-1 v-if="product_boxs.product_box === 'product-box-1'"/>
+                <product-2 v-else-if="product_boxs.product_box === 'product-box-2'"/>
+                <product-3 v-else-if="product_boxs.product_box === 'product-box-3'"/>
+                <product-4 v-else-if="product_boxs.product_box === 'product-box-4'"/>
+                <product-5 v-else-if="product_boxs.product_box === 'product-box-5'"/>
+                <product-6 v-else-if="product_boxs.product_box === 'product-box-6'"/>
+                <product-7 v-else-if="product_boxs.product_box === 'product-box-7'"/>
+                <product-8 v-else-if="product_boxs.product_box === 'product-box-8'"/>
+                <product-9 v-else-if="product_boxs.product_box === 'product-box-9'"/>
+                <div class="product-item" v-else>
+                    <span>Product item</span>
                 </div>
             </div>
         </div>
+        <div class="best" v-else-if="currentTab === 'best'">
+            <div class="col s12 m6 l3">
+                <product-1 v-if="product_boxs.product_box === 'product-box-1'"/>
+                <product-2 v-else-if="product_boxs.product_box === 'product-box-2'"/>
+                <product-3 v-else-if="product_boxs.product_box === 'product-box-3'"/>
+                <product-4 v-else-if="product_boxs.product_box === 'product-box-4'"/>
+                <product-5 v-else-if="product_boxs.product_box === 'product-box-5'"/>
+                <product-6 v-else-if="product_boxs.product_box === 'product-box-6'"/>
+                <product-7 v-else-if="product_boxs.product_box === 'product-box-7'"/>
+                <product-8 v-else-if="product_boxs.product_box === 'product-box-8'"/>
+                <product-9 v-else-if="product_boxs.product_box === 'product-box-9'"/>
+                <div class="product-item" v-else>
+                    <span>Product item</span>
+                </div>
+            </div>
+            <div class="col s12 m6 l3">
+                <product-1 v-if="product_boxs.product_box === 'product-box-1'"/>
+                <product-2 v-else-if="product_boxs.product_box === 'product-box-2'"/>
+                <product-3 v-else-if="product_boxs.product_box === 'product-box-3'"/>
+                <product-4 v-else-if="product_boxs.product_box === 'product-box-4'"/>
+                <product-5 v-else-if="product_boxs.product_box === 'product-box-5'"/>
+                <product-6 v-else-if="product_boxs.product_box === 'product-box-6'"/>
+                <product-7 v-else-if="product_boxs.product_box === 'product-box-7'"/>
+                <product-8 v-else-if="product_boxs.product_box === 'product-box-8'"/>
+                <product-9 v-else-if="product_boxs.product_box === 'product-box-9'"/>
+                <div class="product-item" v-else>
+                    <span>Product item</span>
+                </div>
+            </div>
+            <div class="col s12 m6 l3">
+                <product-1 v-if="product_boxs.product_box === 'product-box-1'"/>
+                <product-2 v-else-if="product_boxs.product_box === 'product-box-2'"/>
+                <product-3 v-else-if="product_boxs.product_box === 'product-box-3'"/>
+                <product-4 v-else-if="product_boxs.product_box === 'product-box-4'"/>
+                <product-5 v-else-if="product_boxs.product_box === 'product-box-5'"/>
+                <product-6 v-else-if="product_boxs.product_box === 'product-box-6'"/>
+                <product-7 v-else-if="product_boxs.product_box === 'product-box-7'"/>
+                <product-8 v-else-if="product_boxs.product_box === 'product-box-8'"/>
+                <product-9 v-else-if="product_boxs.product_box === 'product-box-9'"/>
+                <div class="product-item" v-else>
+                    <span>Product item</span>
+                </div>
+            </div>
+            <div class="col s12 m6 l3">
+                <product-1 v-if="product_boxs.product_box === 'product-box-1'"/>
+                <product-2 v-else-if="product_boxs.product_box === 'product-box-2'"/>
+                <product-3 v-else-if="product_boxs.product_box === 'product-box-3'"/>
+                <product-4 v-else-if="product_boxs.product_box === 'product-box-4'"/>
+                <product-5 v-else-if="product_boxs.product_box === 'product-box-5'"/>
+                <product-6 v-else-if="product_boxs.product_box === 'product-box-6'"/>
+                <product-7 v-else-if="product_boxs.product_box === 'product-box-7'"/>
+                <product-8 v-else-if="product_boxs.product_box === 'product-box-8'"/>
+                <product-9 v-else-if="product_boxs.product_box === 'product-box-9'"/>
+                <div class="product-item" v-else>
+                    <span>Product item</span>
+                </div>
+            </div>
+        </div>
+        <div class="best" v-else>
+            <div class="col s12 m6 l3">
+                <product-1 v-if="product_boxs.product_box === 'product-box-1'"/>
+                <product-2 v-else-if="product_boxs.product_box === 'product-box-2'"/>
+                <product-3 v-else-if="product_boxs.product_box === 'product-box-3'"/>
+                <product-4 v-else-if="product_boxs.product_box === 'product-box-4'"/>
+                <product-5 v-else-if="product_boxs.product_box === 'product-box-5'"/>
+                <product-6 v-else-if="product_boxs.product_box === 'product-box-6'"/>
+                <product-7 v-else-if="product_boxs.product_box === 'product-box-7'"/>
+                <product-8 v-else-if="product_boxs.product_box === 'product-box-8'"/>
+                <product-9 v-else-if="product_boxs.product_box === 'product-box-9'"/>
+                <div class="product-item" v-else>
+                    <span>Product item</span>
+                </div>
+            </div>
+            <div class="col s12 m6 l3">
+                <product-1 v-if="product_boxs.product_box === 'product-box-1'"/>
+                <product-2 v-else-if="product_boxs.product_box === 'product-box-2'"/>
+                <product-3 v-else-if="product_boxs.product_box === 'product-box-3'"/>
+                <product-4 v-else-if="product_boxs.product_box === 'product-box-4'"/>
+                <product-5 v-else-if="product_boxs.product_box === 'product-box-5'"/>
+                <product-6 v-else-if="product_boxs.product_box === 'product-box-6'"/>
+                <product-7 v-else-if="product_boxs.product_box === 'product-box-7'"/>
+                <product-8 v-else-if="product_boxs.product_box === 'product-box-8'"/>
+                <product-9 v-else-if="product_boxs.product_box === 'product-box-9'"/>
+                <div class="product-item" v-else>
+                    <span>Product item</span>
+                </div>
+            </div>
+            <div class="col s12 m6 l3">
+                <product-1 v-if="product_boxs.product_box === 'product-box-1'"/>
+                <product-2 v-else-if="product_boxs.product_box === 'product-box-2'"/>
+                <product-3 v-else-if="product_boxs.product_box === 'product-box-3'"/>
+                <product-4 v-else-if="product_boxs.product_box === 'product-box-4'"/>
+                <product-5 v-else-if="product_boxs.product_box === 'product-box-5'"/>
+                <product-6 v-else-if="product_boxs.product_box === 'product-box-6'"/>
+                <product-7 v-else-if="product_boxs.product_box === 'product-box-7'"/>
+                <product-8 v-else-if="product_boxs.product_box === 'product-box-8'"/>
+                <product-9 v-else-if="product_boxs.product_box === 'product-box-9'"/>
+                <div class="product-item" v-else>
+                    <span>Product item</span>
+                </div>
+            </div>
+            <div class="col s12 m6 l3">
+                <product-1 v-if="product_boxs.product_box === 'product-box-1'"/>
+                <product-2 v-else-if="product_boxs.product_box === 'product-box-2'"/>
+                <product-3 v-else-if="product_boxs.product_box === 'product-box-3'"/>
+                <product-4 v-else-if="product_boxs.product_box === 'product-box-4'"/>
+                <product-5 v-else-if="product_boxs.product_box === 'product-box-5'"/>
+                <product-6 v-else-if="product_boxs.product_box === 'product-box-6'"/>
+                <product-7 v-else-if="product_boxs.product_box === 'product-box-7'"/>
+                <product-8 v-else-if="product_boxs.product_box === 'product-box-8'"/>
+                <product-9 v-else-if="product_boxs.product_box === 'product-box-9'"/>
+                <div class="product-item" v-else>
+                    <span>Product item</span>
+                </div>
+            </div>
+        </div>
+
     </div>
 </template>
 
@@ -196,13 +200,13 @@
     import product_8 from '../../../components/reg-stage/products-box/Product-8'
     import product_9 from '../../../components/reg-stage/products-box/Product-9'
 
-    import {mapState} from "vuex";
+    import {mapActions, mapState} from "vuex";
 
     export default {
         data() {
             return {
                 tab_components: ['news', 'best', 'top'],
-                currentTab: 'news'
+                currentTab: 'news',
             }
         },
         components: {
@@ -217,12 +221,14 @@
             'product-9': product_9,
         },
         computed: {
-            ...mapState(['product_boxs']),
+            ...mapState(['product_boxs', 'right_panel']),
         },
         methods: {
+            ...mapActions(['OPEN_RIGHT_PANEL']),
             change_tab(tab) {
                 this.currentTab = tab
             }
+
         }
     }
 </script>
@@ -254,5 +260,17 @@
 
     .tab-list button {
         margin: 0 10px;
+    }
+
+    .border-bottom {
+        width: 100px;
+        height: 5px;
+        background-color: #6ba229;
+        margin: 10px auto;
+        border-radius: 10px;
+    }
+
+    .btn {
+        background-color: #6ba229;
     }
 </style>

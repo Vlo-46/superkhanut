@@ -10,9 +10,19 @@
                         <contact-send-msg :key="id"/>
                     </template>
                     <template v-else-if="id === 'contact-information-component'">
-                        <contact-information :key="id" :text="company_admin_settings.contact_text" :support="company_admin_settings.support_field"/>
+                        <contact-information :key="id" :text="company_admin_settings.contact_text"
+                                             :support="company_admin_settings.support_field"/>
                     </template>
                 </template>
+            </div>
+        </div>
+        <div class="map">
+            <div class="mapouter">
+                <div class="gmap_canvas">
+                    <iframe width="100%" height="400" id="gmap_canvas"
+                            src="https://maps.google.com/maps?q=armenia&t=k&z=9&ie=UTF8&iwloc=&output=embed"
+                            frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                    <a href="https://www.whatismyip-address.com/divi-discount/"></a></div>
             </div>
         </div>
         <Footer :support="company_admin_settings.support_field" :logo="company_admin_settings.company_logo"/>
@@ -65,4 +75,21 @@
         margin: 100px auto;
     }
 
+    .map {
+        margin-top: 100px;
+    }
+
+    .mapouter {
+        position: relative;
+        text-align: right;
+        height: 400px;
+        width: 100%;
+    }
+
+    .gmap_canvas {
+        overflow: hidden;
+        background: none !important;
+        height: 400px;
+        width: 100%;
+    }
 </style>

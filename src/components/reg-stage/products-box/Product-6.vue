@@ -1,20 +1,34 @@
 <template>
     <div class="product" id="product-6">
-        <div class="product-img">
+        <div class="product-img" @click.prevent="OPEN_RIGHT_PANEL('product')">
             <img src="../../../assets/no-img.jpg" height="420" width="327">
         </div>
         <div class="product-info">
-            <div class="product-text">
-                <h1>Title</h1>
-                <h2>Category</h2>
-                <p><span>20000&nbsp;</span>AMD</p>
+            <div class="product-text" @click.prevent="OPEN_RIGHT_PANEL('product')">
+                <h1 :style="right_panel.product.product_name">Title</h1>
+                <h2 :style="right_panel.product.product_category">Category</h2>
+                <p :style="right_panel.product.product_price"><span>20000&nbsp;</span>AMD</p>
             </div>
             <div class="product-price-btn">
-                <button type="button">buy now</button>
+                <button type="button" @click.prevent="OPEN_RIGHT_PANEL('button')" :style="right_panel.button">View detail</button>
             </div>
         </div>
     </div>
 </template>
+
+<script>
+    import {mapActions, mapState} from 'vuex'
+
+
+    export default {
+        methods: {
+            ...mapActions(['OPEN_RIGHT_PANEL'])
+        },
+        computed: {
+            ...mapState(['right_panel'])
+        },
+    }
+</script>
 
 <style scoped>
     .product {

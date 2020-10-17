@@ -176,7 +176,7 @@
                 }
                 this.GET_SHOP_COMPONENTS_IDS(arr)
                 // console.log(arr)
-            })
+            });
             Vue.vueDragula.eventBus.$on('drop', () => {
                 let arr = [];
                 let wrapper = document.getElementById('dragula_shop');
