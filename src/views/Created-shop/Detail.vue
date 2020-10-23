@@ -322,4 +322,8 @@
     .slider-image-field {
         height: 400px;
     }
+
+    .slider-image-field img {
+        cursor: ew-resize;
+    }
 </style>

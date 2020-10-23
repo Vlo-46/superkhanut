@@ -1,8 +1,11 @@
 <template>
     <nav id="drop_header_components wraper">
-        <div class="container row header-field" v-dragula="components" bag="components" id="dragula_components">
+        <div class="container row header-field"
+             v-dragula="home_1_header_components"
+             bag="home_1_header_components"
+             id="dragula_home_1_header_components">
             <template v-for="id in FETCH_HEADER_COMPONENT_IDS">
-                <template v-if="id == 'header-logo'">
+                <template v-if="id === 'header-logo'">
                     <div class="col s3 header-s3" :key="id" id="header-logo">
                         <ul>
                             <li class="drag_logo" id="drag-logo-1"><img src="../../../assets/logo-comp.png" alt="">
@@ -10,7 +13,7 @@
                         </ul>
                     </div>
                 </template>
-                <template v-else-if="id == 'header-input'">
+                <template v-else-if="id === 'header-input'">
                     <div class="col s6 header-s6" :key="id" id="header-input">
                         <input_1 v-if="inputs.input === 'input-1'"/>
                         <input_2 v-else-if="inputs.input === 'input-2'"/>
@@ -20,7 +23,7 @@
                         </div>
                     </div>
                 </template>
-                <template v-else-if="id == 'header-support-box'">
+                <template v-else-if="id === 'header-support-box'">
                     <div class="col s3 header-s3" :key="id" id="header-support-box">
                         <div class="support-box" id="support-1">
                             <div>
@@ -57,7 +60,7 @@
     export default {
         data() {
             return {
-                components: [],
+                home_1_header_components: [],
             }
         },
         components: {
@@ -76,7 +79,7 @@
             Vue.vueDragula.eventBus.$on('drop', () => {
                 // console.log(args);
                 let arr = [];
-                let wrapper = document.getElementById('dragula_components');
+                let wrapper = document.getElementById('dragula_home_1_header_components');
                 for (let i = 0; i < wrapper.childNodes.length; i++) {
                     let childId = wrapper.childNodes[i].id;
                     arr.push(childId);
@@ -167,7 +170,7 @@
         align-items: center;
     }
 
-    #header-support-box {
-        cursor: pointer;
+    #header-input, #header-logo, #header-support-box {
+        cursor: grab !important;
     }
 </style>

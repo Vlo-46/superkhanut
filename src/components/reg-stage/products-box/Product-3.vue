@@ -44,7 +44,6 @@
         height: 370px;
         margin: 30px 15px 15px 0;
         border: 1px solid #eee;
-
     }
 
     .product:hover {

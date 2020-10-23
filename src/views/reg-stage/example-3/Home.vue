@@ -1,9 +1,9 @@
 <template>
-    <div class="home-example-2">
+    <div class="home-example-3">
         <!--        header-->
         <Header @click.native="testMethod(1)"/>
         <NavBar/>
-        <div v-dragula="home_2_sections" bag="home_2_sections" id="dragula_home_2_components">
+        <div v-dragula="home_3_sections" bag="home_3_sections" id="dragula_home_3_components">
             <template v-for="id in FETCH_HOME_COMPONENT_IDS">
                 <template v-if="id === 'slider-component'">
                     <!--                    slider-->
@@ -11,49 +11,47 @@
                 </template>
                 <template v-else-if="id === 'product-component'">
                     <!--                    products-->
-                    <tabs @click.native="testMethod(2)" :key="id"/>
+                    <Products :key="id" @click.native="testMethod(2)"/>
                 </template>
                 <template v-else-if="id === 'banner-component'">
-                    <!--                    banner-->
-                    <Carousel @click.native="testMethod(3)" :key="id"/>
+                    <!--                    featured products-->
+                    <Carousel :key="id" @click.native="testMethod(3)"/>
                 </template>
             </template>
         </div>
         <!--        footer-->
         <Footer/>
         <div class="next-page">
-            <button class="btn" @click="NEXT_PAGE('shop-2')">NEXT</button>
+            <button class="btn" @click="NEXT_PAGE('shop-3')">NEXT</button>
         </div>
     </div>
 </template>
 
 <script>
-    import Header from '../../../components/reg-stage/example-2/Header'
-    import NavBar from '../../../components/reg-stage/example-2/NavBar'
-    import Slider from '../../../components/reg-stage/example-2/Slider'
-    import tabs from '../../../components/reg-stage/example-2/Tabs'
-    import Carousel from '../../../components/reg-stage/example-2/Carousel'
-    import Footer from '../../../components/reg-stage/example-2/Footer'
-
-    import {mapActions, mapGetters} from 'vuex'
+    import Header from '../../../components/reg-stage/example-3/Header'
+    import NavBar from '../../../components/reg-stage/example-3/NavBar'
+    import Slider from '../../../components/reg-stage/example-3/Slider'
+    import Products from '../../../components/reg-stage/example-3/Products'
+    import Carousel from '../../../components/reg-stage/example-3/Carousel'
+    import Footer from '../../../components/reg-stage/example-3/Footer'
+    import {mapActions, mapGetters} from "vuex";
     import Vue from "vue";
 
     export default {
         data() {
             return {
-                home_2_sections: [],
+                home_3_sections: []
             }
         },
         components: {
             Header,
-            Slider,
             NavBar,
-            tabs,
+            Slider,
+            Products,
             Carousel,
             Footer
         },
         methods: {
-            ...mapActions(['HEADER_COMPONENTS', 'PRODUCT_COMPONENTS', 'NEXT_PAGE', 'GET_HOME_COMPONENTS_IDS']),
             testMethod(sectionId) {
                 switch (sectionId) {
                     case 1:
@@ -62,33 +60,36 @@
                         break;
                     case 2:
                         this.HEADER_COMPONENTS('component');
-                        this.PRODUCT_COMPONENTS('product_components')
+                        this.PRODUCT_COMPONENTS('product_components');
                         break;
                     case 3:
                         this.HEADER_COMPONENTS('component');
-                        this.PRODUCT_COMPONENTS('product_components')
+                        this.PRODUCT_COMPONENTS('product_components');
                         break;
                     default:
                         break;
                 }
-            }
+            },
+            ...mapActions(['HEADER_COMPONENTS', 'PRODUCT_COMPONENTS', 'SLIDER_COMPONENTS', 'BANNER_COMPONENTS', 'FOOTER_COMPONENTS', 'NEXT_PAGE', 'GET_HOME_COMPONENTS_IDS'])
         },
         computed: {
-            ...mapGetters(['FETCH_HOME_COMPONENT_IDS']),
+            ...mapGetters(['FETCH_HOME_COMPONENT_IDS'])
         },
         created() {
             Vue.vueDragula.eventBus.$on('drop', () => {
                 // console.log(args);
                 let arr = [];
-                let wrapper = document.getElementById('dragula_home_2_components');
+                let wrapper = document.getElementById('dragula_home_3_components');
                 for (let i = 0; i < wrapper.childNodes.length; i++) {
                     let childId = wrapper.childNodes[i].id;
+                    // console.log(wrapper.childNodes[i])
                     arr.push(childId);
                 }
                 this.GET_HOME_COMPONENTS_IDS(arr)
             })
         },
     }
+
 </script>
 
 <style scoped>

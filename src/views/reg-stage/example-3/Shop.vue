@@ -1,26 +1,8 @@
 <template>
-    <div class="shop-example-1">
+    <div class="shop-example-3">
         <Header/>
         <div class="wrapper container">
             <div class="row">
-                <div class="col s12 m3 l3">
-                    <div class="row" v-dragula="shop_filters" bag="shop_filters" id="dragula_shop_category_components">
-                        <template v-for="id in FETCH_SHOP_COMPONENT_IDS">
-                            <template v-if="id === 'filter-by-price-component'">
-                                <!--                    filter by price-->
-                                <filter-by-price @click.native="testMethod(2)" :key="id"/>
-                            </template>
-                            <template v-else-if="id === 'filter-by-tag-component'">
-                                <!--                    filter by tags-->
-                                <filter-by-tag @click.native="testMethod(3)" :key="id"/>
-                            </template>
-                            <template v-else-if="id === 'category-component'">
-                                <!--                    categories-->
-                                <categories @click.native="testMethod(1)" :key="id"/>
-                            </template>
-                        </template>
-                    </div>
-                </div>
                 <div class="col s12 m9 l9" v-dragula="shop_products" bag="shop_products" id="dragula_shop">
                     <template v-for="id in FETCH_SHOP_RIGHT_COMPONENT_IDS">
                         <template v-if="id === 'shop_img_component'">
@@ -123,9 +105,26 @@
                         </template>
                     </template>
                 </div>
+                <div class="col s12 m3 l3">
+                    <div class="row" v-dragula="shop_filters" bag="shop_filters" id="dragula_shop_category_components">
+                        <template v-for="id in FETCH_SHOP_COMPONENT_IDS">
+                            <template v-if="id === 'filter-by-price-component'">
+                                <!--                    filter by price-->
+                                <filter-by-price @click.native="testMethod(2)" :key="id"/>
+                            </template>
+                            <template v-else-if="id === 'filter-by-tag-component'">
+                                <!--                    filter by tags-->
+                                <filter-by-tag @click.native="testMethod(3)" :key="id"/>
+                            </template>
+                            <template v-else-if="id === 'category-component'">
+                                <!--                    categories-->
+                                <categories @click.native="testMethod(1)" :key="id"/>
+                            </template>
+                        </template>
+                    </div>
+                </div>
             </div>
         </div>
-
         <Footer/>
         <div class="nextOrPrevPage">
             <button class="btn" @click="NEXT_PAGE('home')">Prev</button>
@@ -135,8 +134,8 @@
 </template>
 
 <script>
-    import Header from '../../../components/reg-stage/example-1/Header'
-    import Footer from '../../../components/reg-stage/example-1/Footer'
+    import Header from '../../../components/reg-stage/example-2/Header'
+    import Footer from '../../../components/reg-stage/example-2/Footer'
     import product_1 from '../../../components/reg-stage/products-box/Product-1'
     import product_2 from '../../../components/reg-stage/products-box/Product-2'
     import product_3 from '../../../components/reg-stage/products-box/Product-3'
@@ -146,12 +145,10 @@
     import product_7 from '../../../components/reg-stage/products-box/Product-7'
     import product_8 from '../../../components/reg-stage/products-box/Product-8'
     import product_9 from '../../../components/reg-stage/products-box/Product-9'
-
     import categories from '../../../components/reg-stage/example-1/Categories'
     import price_filter from '../../../components/reg-stage/example-1/Filter-by-price'
     import tag_filter from '../../../components/reg-stage/example-1/Filter-by-tag'
     import shop_img from '../../../components/reg-stage/example-1/Shop-image'
-
     import {mapActions, mapState, mapGetters} from 'vuex'
     import Vue from "vue";
 
@@ -181,7 +178,7 @@
             product_9,
         },
         methods: {
-            ...mapActions(['NEXT_PAGE', 'CATEGORY_COMPONENTS', 'PRICE_FILTER_COMPONENTS', 'TAG_FILTER_COMPONENTS', 'OPEN_RIGHT_PANEL', 'GET_SHOP_COMPONENTS_IDS', 'GET_SHOP_RIGHT_BOX_COMPONENTS_IDS', "CREATE_SHOP"]),
+            ...mapActions(['NEXT_PAGE', 'CATEGORY_COMPONENTS', 'PRICE_FILTER_COMPONENTS', 'TAG_FILTER_COMPONENTS', 'OPEN_RIGHT_PANEL', 'GET_SHOP_COMPONENTS_IDS', 'GET_SHOP_RIGHT_BOX_COMPONENTS_IDS', 'CREATE_SHOP']),
             testMethod(sectionId) {
                 switch (sectionId) {
                     case 1:
@@ -198,6 +195,11 @@
                         this.CATEGORY_COMPONENTS('component');
                         this.PRICE_FILTER_COMPONENTS('component');
                         this.TAG_FILTER_COMPONENTS('tag_filter_components');
+                        break;
+                    case 4:
+                        this.CATEGORY_COMPONENTS('component');
+                        this.PRICE_FILTER_COMPONENTS('component');
+                        this.TAG_FILTER_COMPONENTS('component');
                         break;
                     default:
                         break;
@@ -349,5 +351,13 @@
 
     .products-field {
         margin-bottom: 50px;
+    }
+
+    #shop_img_component {
+        cursor: grab;
+    }
+
+    #shop_products_component {
+        cursor: grab;
     }
 </style>

@@ -1,8 +1,50 @@
 <template>
-    <div class="container">
+    <div class="container" id="banner-component">
         <h5 class="center-align">Popular products</h5>
-        <div class="border-bottom" :style="`background: ${right_panel.button['background-color']}`"></div>
+        <div class="border-bottom" :style="`background: ${right_panel.button['color']}`"></div>
         <div class="carousel-items">
+            <div>
+                <product-1 v-if="product_boxs.product_box === 'product-box-1'"/>
+                <product-2 v-else-if="product_boxs.product_box === 'product-box-2'"/>
+                <product-3 v-else-if="product_boxs.product_box === 'product-box-3'"/>
+                <product-4 v-else-if="product_boxs.product_box === 'product-box-4'"/>
+                <product-5 v-else-if="product_boxs.product_box === 'product-box-5'"/>
+                <product-6 v-else-if="product_boxs.product_box === 'product-box-6'"/>
+                <product-7 v-else-if="product_boxs.product_box === 'product-box-7'"/>
+                <product-8 v-else-if="product_boxs.product_box === 'product-box-8'"/>
+                <product-9 v-else-if="product_boxs.product_box === 'product-box-9'"/>
+                <div class="product-item" v-else>
+                    <span>Product item</span>
+                </div>
+            </div>
+            <div>
+                <product-1 v-if="product_boxs.product_box === 'product-box-1'"/>
+                <product-2 v-else-if="product_boxs.product_box === 'product-box-2'"/>
+                <product-3 v-else-if="product_boxs.product_box === 'product-box-3'"/>
+                <product-4 v-else-if="product_boxs.product_box === 'product-box-4'"/>
+                <product-5 v-else-if="product_boxs.product_box === 'product-box-5'"/>
+                <product-6 v-else-if="product_boxs.product_box === 'product-box-6'"/>
+                <product-7 v-else-if="product_boxs.product_box === 'product-box-7'"/>
+                <product-8 v-else-if="product_boxs.product_box === 'product-box-8'"/>
+                <product-9 v-else-if="product_boxs.product_box === 'product-box-9'"/>
+                <div class="product-item" v-else>
+                    <span>Product item</span>
+                </div>
+            </div>
+            <div>
+                <product-1 v-if="product_boxs.product_box === 'product-box-1'"/>
+                <product-2 v-else-if="product_boxs.product_box === 'product-box-2'"/>
+                <product-3 v-else-if="product_boxs.product_box === 'product-box-3'"/>
+                <product-4 v-else-if="product_boxs.product_box === 'product-box-4'"/>
+                <product-5 v-else-if="product_boxs.product_box === 'product-box-5'"/>
+                <product-6 v-else-if="product_boxs.product_box === 'product-box-6'"/>
+                <product-7 v-else-if="product_boxs.product_box === 'product-box-7'"/>
+                <product-8 v-else-if="product_boxs.product_box === 'product-box-8'"/>
+                <product-9 v-else-if="product_boxs.product_box === 'product-box-9'"/>
+                <div class="product-item" v-else>
+                    <span>Product item</span>
+                </div>
+            </div>
             <div>
                 <product-1 v-if="product_boxs.product_box === 'product-box-1'"/>
                 <product-2 v-else-if="product_boxs.product_box === 'product-box-2'"/>
@@ -89,7 +131,6 @@
             </div>
         </div>
     </div>
-
 </template>
 
 <script>
@@ -152,6 +193,10 @@
 </script>
 
 <style scoped>
+    #banner-component {
+        cursor: grab;
+    }
+
     .container {
         margin: 80px auto;
     }
@@ -173,7 +218,7 @@
 
     .border-bottom {
         width: 100px;
-        height: 5px;
+        height: 2px;
         background-color: #6ba229;
         margin: 10px auto;
         border-radius: 10px;

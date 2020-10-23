@@ -67,7 +67,7 @@ import company_admin_settings from './Company-admin/Settings'
 
 import axios from 'axios';
 import keys from '../keys';
-import router from "../router";
+// import router from "../router";
 
 
 Vue.use(Vuex);
@@ -139,8 +139,7 @@ export default new Vuex.Store({
             let category = categories.state.category;
             let price_filter = price_filters.state.price_filter;
             let tag_filter = tag_filters.state.tag_filter;
-            let contact_information = contact_information_field.state.contact_information;
-            let contact_send = contact_send_msg_field.state.contact_send_msg;
+
 
             let button_style = right_panel.state.button;
             let input_style = right_panel.state.input;
@@ -158,10 +157,10 @@ export default new Vuex.Store({
             let home_components_ids = home_components.state.ids;
             let shop_filters_ids = shop_components.state.ids;
             let shop_rightBox_ids = shop_rightBox_component.state.ids;
-            let contact_ids = contact_components.state.ids;
             let footer_ids = dragula_footer_components.state.ids;
 
             let user = registerCompany.state.user;
+            console.log(user);
 
             let GLOBAL_OBJECT = {
                 schema: cover,
@@ -211,34 +210,29 @@ export default new Vuex.Store({
                         },
                         filters_ids: shop_filters_ids,
                         rightBox_ids: shop_rightBox_ids
-                    },
-                    contact: {
-                        [contact_information]: {},
-                        [contact_send]: {},
-                        ids: contact_ids
                     }
                 }
             };
-            // console.log(JSON.stringify(GLOBAL_OBJECT))
+            console.log(JSON.stringify(GLOBAL_OBJECT))
 
-            let token = localStorage.getItem(keys.API_TOKEN);
-            let url = keys.baseURI;
-
-
-            await axios.post(`${url}/api/builder/store`, {GLOBAL_OBJECT}, {
-                headers: {
-                    'Content-Type': 'application/json;charset=UTF-8',
-                    'Authorization': `Bearer ${token}`,
-                    'Accept': 'application/json'
-                },
-                timeout: 0,
-                responseType: "json",
-                maxContentLength: 10000000000
-            })
-                .then(() => {
-                    router.push(`/${user['store'].name}/home`)
-                })
-                .catch(e => console.log(e))
+            // let token = localStorage.getItem(keys.API_TOKEN);
+            // let url = keys.baseURI;
+            //
+            //
+            // await axios.post(`${url}/api/builder/store`, {GLOBAL_OBJECT}, {
+            //     headers: {
+            //         'Content-Type': 'application/json;charset=UTF-8',
+            //         'Authorization': `Bearer ${token}`,
+            //         'Accept': 'application/json'
+            //     },
+            //     timeout: 0,
+            //     responseType: "json",
+            //     maxContentLength: 10000000000
+            // })
+            //     .then(() => {
+            //         router.push(`/${user['store'].name}/home`)
+            //     })
+            //     .catch(e => console.log(e))
         },
         async GET_SHOP_INFO(ctx, company_name) {
             let url = keys.baseURI;

@@ -2,7 +2,8 @@
     <div class="home-example-1">
         <!--        header-->
         <Header @click.native="testMethod(1)"/>
-        <div v-dragula="sections" bag="sections" id="dragula_home_components">
+        <NavBar/>
+        <div v-dragula="home_1_sections" bag="home_1_sections" id="dragula_home_1_components">
             <template v-for="id in FETCH_HOME_COMPONENT_IDS">
                 <template v-if="id === 'slider-component'">
                     <!--        slider-->
@@ -20,7 +21,6 @@
         </div>
         <!--        footer-->
         <Footer @click.native="testMethod(5)"/>
-
         <div class="next-page">
             <button class="btn" @click="NEXT_PAGE('shop')">NEXT</button>
         </div>
@@ -29,6 +29,7 @@
 
 <script>
     import Header from '../../../components/reg-stage/example-1/Header'
+    import NavBar from '../../../components/reg-stage/example-1/NavBar'
     import Slider from '../../../components/reg-stage/example-1/Slider'
     import Banner from '../../../components/reg-stage/example-1/Banner'
     import Product from '../../../components/reg-stage/example-1/Product'
@@ -41,11 +42,12 @@
     export default {
         data() {
             return {
-                sections: []
+                home_1_sections: []
             }
         },
         components: {
             Header,
+            NavBar,
             Slider,
             Banner,
             Product,
@@ -102,7 +104,7 @@
             Vue.vueDragula.eventBus.$on('drop', () => {
                 // console.log(args);
                 let arr = [];
-                let wrapper = document.getElementById('dragula_home_components');
+                let wrapper = document.getElementById('dragula_home_1_components');
                 for (let i = 0; i < wrapper.childNodes.length; i++) {
                     let childId = wrapper.childNodes[i].id;
                     // console.log(wrapper.childNodes[i])

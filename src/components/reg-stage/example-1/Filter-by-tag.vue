@@ -37,6 +37,9 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        cursor: pointer;
+        cursor: grab;
+    }
+    #filter-by-tag-component {
+        cursor: grab;
     }
 </style>

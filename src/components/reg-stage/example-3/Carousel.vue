@@ -1,22 +1,9 @@
 <template>
-    <div class="container" id="product-component">
-        <h4>New products</h4>
-        <div class="row" id="products-field">
-            <div class="col s12 m6 l3">
-            <product_1 v-if="product_boxs.product_box === 'product-box-1'"/>
-            <product_2 v-else-if="product_boxs.product_box === 'product-box-2'"/>
-            <product_3 v-else-if="product_boxs.product_box === 'product-box-3'"/>
-            <product_4 v-else-if="product_boxs.product_box === 'product-box-4'"/>
-            <product_5 v-else-if="product_boxs.product_box === 'product-box-5'"/>
-            <product_6 v-else-if="product_boxs.product_box === 'product-box-6'"/>
-            <product_7 v-else-if="product_boxs.product_box === 'product-box-7'"/>
-            <product_8 v-else-if="product_boxs.product_box === 'product-box-8'"/>
-            <product_9 v-else-if="product_boxs.product_box === 'product-box-9'"/>
-            <div class="product-item" v-else>
-                <span>Product item</span>
-            </div>
-        </div>
-            <div class="col s12 m6 l3">
+    <div class="container" id="banner-component">
+        <h5 class="center-align">Featured products</h5>
+        <div class="border-bottom"></div>
+        <VueSlickCarousel v-bind="settings">
+            <div>
                 <product_1 v-if="product_boxs.product_box === 'product-box-1'"/>
                 <product_2 v-else-if="product_boxs.product_box === 'product-box-2'"/>
                 <product_3 v-else-if="product_boxs.product_box === 'product-box-3'"/>
@@ -30,7 +17,7 @@
                     <span>Product item</span>
                 </div>
             </div>
-            <div class="col s12 m6 l3">
+            <div>
                 <product_1 v-if="product_boxs.product_box === 'product-box-1'"/>
                 <product_2 v-else-if="product_boxs.product_box === 'product-box-2'"/>
                 <product_3 v-else-if="product_boxs.product_box === 'product-box-3'"/>
@@ -44,7 +31,7 @@
                     <span>Product item</span>
                 </div>
             </div>
-            <div class="col s12 m6 l3">
+            <div>
                 <product_1 v-if="product_boxs.product_box === 'product-box-1'"/>
                 <product_2 v-else-if="product_boxs.product_box === 'product-box-2'"/>
                 <product_3 v-else-if="product_boxs.product_box === 'product-box-3'"/>
@@ -58,7 +45,7 @@
                     <span>Product item</span>
                 </div>
             </div>
-            <div class="col s12 m6 l3">
+            <div>
                 <product_1 v-if="product_boxs.product_box === 'product-box-1'"/>
                 <product_2 v-else-if="product_boxs.product_box === 'product-box-2'"/>
                 <product_3 v-else-if="product_boxs.product_box === 'product-box-3'"/>
@@ -72,7 +59,7 @@
                     <span>Product item</span>
                 </div>
             </div>
-            <div class="col s12 m6 l3">
+            <div>
                 <product_1 v-if="product_boxs.product_box === 'product-box-1'"/>
                 <product_2 v-else-if="product_boxs.product_box === 'product-box-2'"/>
                 <product_3 v-else-if="product_boxs.product_box === 'product-box-3'"/>
@@ -86,42 +73,16 @@
                     <span>Product item</span>
                 </div>
             </div>
-            <div class="col s12 m6 l3">
-                <product_1 v-if="product_boxs.product_box === 'product-box-1'"/>
-                <product_2 v-else-if="product_boxs.product_box === 'product-box-2'"/>
-                <product_3 v-else-if="product_boxs.product_box === 'product-box-3'"/>
-                <product_4 v-else-if="product_boxs.product_box === 'product-box-4'"/>
-                <product_5 v-else-if="product_boxs.product_box === 'product-box-5'"/>
-                <product_6 v-else-if="product_boxs.product_box === 'product-box-6'"/>
-                <product_7 v-else-if="product_boxs.product_box === 'product-box-7'"/>
-                <product_8 v-else-if="product_boxs.product_box === 'product-box-8'"/>
-                <product_9 v-else-if="product_boxs.product_box === 'product-box-9'"/>
-                <div class="product-item" v-else>
-                    <span>Product item</span>
-                </div>
-            </div>
-            <div class="col s12 m6 l3">
-                <product_1 v-if="product_boxs.product_box === 'product-box-1'"/>
-                <product_2 v-else-if="product_boxs.product_box === 'product-box-2'"/>
-                <product_3 v-else-if="product_boxs.product_box === 'product-box-3'"/>
-                <product_4 v-else-if="product_boxs.product_box === 'product-box-4'"/>
-                <product_5 v-else-if="product_boxs.product_box === 'product-box-5'"/>
-                <product_6 v-else-if="product_boxs.product_box === 'product-box-6'"/>
-                <product_7 v-else-if="product_boxs.product_box === 'product-box-7'"/>
-                <product_8 v-else-if="product_boxs.product_box === 'product-box-8'"/>
-                <product_9 v-else-if="product_boxs.product_box === 'product-box-9'"/>
-                <div class="product-item" v-else>
-                    <span>Product item</span>
-                </div>
-            </div>
-        </div>
-        <div style="display: flex; justify-content: center">
-            <a href="#!" class="btn waves-effect waves-green">View more</a>
-        </div>
+        </VueSlickCarousel>
     </div>
 </template>
 
 <script>
+    import VueSlickCarousel from 'vue-slick-carousel'
+    import 'vue-slick-carousel/dist/vue-slick-carousel.css'
+    // optional style for arrows & dots
+    import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
+
     import product_1 from '../products-box/Product-1'
     import product_2 from '../products-box/Product-2'
     import product_3 from '../products-box/Product-3'
@@ -136,7 +97,23 @@
 
 
     export default {
+        data() {
+            return {
+                settings: {
+                    "arrows": false,
+                    "dots": true,
+                    "infinite": true,
+                    "slidesToShow": 4,
+                    "slidesToScroll": 1,
+                    "autoplay": true,
+                    "speed": 2500,
+                    "autoplaySpeed": 2500,
+                    "cssEase": "linear",
+                }
+            }
+        },
         components: {
+            VueSlickCarousel,
             product_1,
             product_2,
             product_3,
@@ -150,34 +127,39 @@
         computed: {
             ...mapState(['product_boxs'])
         },
-
     }
 </script>
 
 <style scoped>
-    h4 {
-        color: #333c4a;
-        font-size: 28px;
-        font-weight: 800;
+    #banner-component {
+        cursor: grab;
+    }
+
+    .container {
+        margin: 80px auto;
     }
 
     .product-item {
+        position: relative;
         border: dotted;
-        height: 370px;
-        max-height: 370px;
-        margin: 10px 0;
+        height: 365px;
+        margin: 0 10px;
+    }
+
+    .product-item span {
+        position: absolute;
         display: flex;
-        justify-content: center;
+        height: 100%;
+        width: 100%;
         align-items: center;
-        cursor: pointer;
+        justify-content: center;
     }
 
-    #products-field .s12 {
-        margin-bottom: 15px;
-    }
-
-    .btn {
+    .border-bottom {
+        width: 100px;
+        height: 2px;
         background-color: #6ba229;
-        margin-top: 20px;
+        margin: 10px auto;
+        border-radius: 10px;
     }
 </style>

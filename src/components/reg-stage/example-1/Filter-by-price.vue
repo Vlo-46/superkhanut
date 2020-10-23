@@ -41,6 +41,10 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        cursor: pointer;
+        cursor: grab;
+    }
+
+    #filter-by-price-component {
+        cursor: grab;
     }
 </style>

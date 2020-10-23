@@ -1,6 +1,7 @@
 <template>
     <div class="register-stage">
         <div class="row" style="display:flex;">
+            <!--            WEBSITE EXAMPLE 1-->
             <div class="col s2 left-box" @click="CLOSE_RIGHT_PANEL(null)" v-if="pages.page === 'home'">
                 <!--                components-->
                 <ul v-if="header_components.headers === 'header_components'" class="header_components">
@@ -128,38 +129,109 @@
                     </li>
                 </ul>
             </div>
-            <div class="col s2 left-box" @click="CLOSE_RIGHT_PANEL(null)" v-if="pages.page === 'contact'">
-                <h6>Contact components</h6>
-                <ul v-if="contact_information_components.contact_informations === 'contact-information'">
-                    <div class="close" @click="GO_TO_BACK"><i class="material-icons">arrow_back</i></div>
-                    <li>Contact information components</li>
+            <!--            END WEBSITE EXAMPLE 1-->
+
+            <!--            WEBSITE EXAMPLE 2-->
+            <div class="col s2 left-box" @click="CLOSE_RIGHT_PANEL(null)" v-if="pages.page === 'shop-2'">
+                <p>Shop components</p>
+                <ul v-if="category_components.category === 'category_components'">
+                    <h6>Category components</h6>
                     <li>
-                        <button class="panel-button" @click="CONTACT_INFORMATION('contact-information-1')">INFORMATION
-                            BOX 1
-                        </button>
+                        <button class="panel-button" @click="CATEGORY_FILTER('category-1')">CATEGORY 1</button>
+                    </li>
+                    <li>
+                        <button class="panel-button" @click="CATEGORY_FILTER('category-2')">CATEGORY 2</button>
                     </li>
                 </ul>
-                <ul v-else-if="contact_send_msg_components.contact_send_msg === 'contact-send-msg'">
-                    <div class="close" @click="GO_TO_BACK"><i class="material-icons">arrow_back</i></div>
-                    <li>Contact send message components</li>
+                <ul v-else-if="price_filter_components.price_filter === 'price_filter_components'">
+                    <h6>Price filter components</h6>
                     <li>
-                        <button class="panel-button" @click="CONTACT_SEND_MESSAGE('contact-send-msg-1')">SEND MESSAGE
-                            BOX 1
-                        </button>
+                        <button class="panel-button" @click="$PRICE_FILTER('price-filter-1')">PRICE FILTER 1</button>
+                    </li>
+                    <li>
+                        <button class="panel-button" @click="$PRICE_FILTER('price-filter-2')">PRICE FILTER 2</button>
+                    </li>
+                    <li>
+                        <button class="panel-button" @click="$PRICE_FILTER('price-filter-3')">PRICE FILTER 3</button>
+                    </li>
+                    <li>
+                        <button class="panel-button" @click="$PRICE_FILTER('price-filter-4')">PRICE FILTER 4</button>
+                    </li>
+                </ul>
+                <ul v-else-if="tag_filter_components.tag_filter === 'tag_filter_components'">
+                    <h6>Tag filter components</h6>
+                    <li>
+                        <button class="panel-button" @click="$TAG_FILTER('tag-filter-1')">TAG FILTER 1</button>
+                    </li>
+                    <li>
+                        <button class="panel-button" @click="$TAG_FILTER('tag-filter-2')">TAG FILTER 2</button>
+                    </li>
+                    <li>
+                        <button class="panel-button" @click="$TAG_FILTER('tag-filter-3')">TAG FILTER 3</button>
                     </li>
                 </ul>
             </div>
+            <!--            END WEBSITE EXAMPLE 2-->
+
+            <!--            WEBSITE EXAMPLE 3 -->
+            <div class="col s2 left-box" @click="CLOSE_RIGHT_PANEL(null)" v-if="pages.page === 'shop-3'">
+                <p>Shop components</p>
+                <ul v-if="category_components.category === 'category_components'">
+                    <h6>Category components</h6>
+                    <li>
+                        <button class="panel-button" @click="CATEGORY_FILTER('category-1')">CATEGORY 1</button>
+                    </li>
+                    <li>
+                        <button class="panel-button" @click="CATEGORY_FILTER('category-2')">CATEGORY 2</button>
+                    </li>
+                </ul>
+                <ul v-else-if="price_filter_components.price_filter === 'price_filter_components'">
+                    <h6>Price filter components</h6>
+                    <li>
+                        <button class="panel-button" @click="$PRICE_FILTER('price-filter-1')">PRICE FILTER 1</button>
+                    </li>
+                    <li>
+                        <button class="panel-button" @click="$PRICE_FILTER('price-filter-2')">PRICE FILTER 2</button>
+                    </li>
+                    <li>
+                        <button class="panel-button" @click="$PRICE_FILTER('price-filter-3')">PRICE FILTER 3</button>
+                    </li>
+                    <li>
+                        <button class="panel-button" @click="$PRICE_FILTER('price-filter-4')">PRICE FILTER 4</button>
+                    </li>
+                </ul>
+                <ul v-else-if="tag_filter_components.tag_filter === 'tag_filter_components'">
+                    <h6>Tag filter components</h6>
+                    <li>
+                        <button class="panel-button" @click="$TAG_FILTER('tag-filter-1')">TAG FILTER 1</button>
+                    </li>
+                    <li>
+                        <button class="panel-button" @click="$TAG_FILTER('tag-filter-2')">TAG FILTER 2</button>
+                    </li>
+                    <li>
+                        <button class="panel-button" @click="$TAG_FILTER('tag-filter-3')">TAG FILTER 3</button>
+                    </li>
+                </ul>
+            </div>
+            <!--            END WEBSITE EXAMPLE 3-->
+
             <div class="col s10" v-if="pages.page === 'home'">
                 <example-1 v-if="reg_navigation.page === 'example-1'"/>
                 <example-2 v-else-if="reg_navigation.page === 'example-2'"/>
                 <example-3 v-else-if="reg_navigation.page === 'example-3'"/>
-                <p v-else>Select your cover</p>
+                <p v-else class="select_cover">Select your cover</p>
             </div>
+            <!--            WEBSITE EXAMPLE 1-->
             <div class="col s10" v-if="pages.page === 'shop'">
                 <example-1-shop-page/>
             </div>
-            <div class="col s10" v-if="pages.page === 'contact'">
-                <example-1-contact-page/>
+            <!--            WEBSITE EXAMPLE 2-->
+            <div class="col s10" v-if="pages.page === 'shop-2'">
+                <example-2-shop-page/>
+            </div>
+            <!--            WEBSITE EXAMPLE 3-->
+            <div class="col s10" v-if="pages.page === 'shop-3'">
+                <example-3-shop-page/>
             </div>
         </div>
         <!--        RIGHT PANEL-->
@@ -176,10 +248,10 @@
 <script>
     import example_1 from './reg-stage/example-1/Home';
     import example_1_shop_page from './reg-stage/example-1/Shop';
-    import example_1_contact_page from './reg-stage/example-1/Contact';
     import example_2 from './reg-stage/example-2/Home';
-    import example_3 from '../views/example-3/Company-page-example-3';
-
+    import example_2_shop_page from './reg-stage/example-2/Shop'
+    import example_3 from './reg-stage/example-3/Home'
+    import example_3_shop_page from './reg-stage/example-3/Shop'
 
     import {mapActions, mapState} from 'vuex';
 
@@ -197,7 +269,8 @@
             'example-2': example_2,
             'example-3': example_3,
             'example-1-shop-page': example_1_shop_page,
-            'example-1-contact-page': example_1_contact_page,
+            'example-2-shop-page': example_2_shop_page,
+            'example-3-shop-page': example_3_shop_page,
             'button-panel': button_panel,
             'icon-panel': icon_panel,
             'span-panel': span_panel,
@@ -227,7 +300,6 @@
         },
     }
 </script>
-
 <style scoped>
     img {
         width: 100%;
@@ -312,5 +384,12 @@
         color: #fff;
     }
 
+    .select_cover {
+        position: fixed;
+        bottom: 50%;
+        left: 50%;
+        font-size: 36px;
+        font-weight: bold;
+    }
 
 </style>

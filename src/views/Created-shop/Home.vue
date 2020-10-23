@@ -1,27 +1,37 @@
 <template>
-    <div class="home-example-1" v-if="schema === 'example-1'">
-        <NavWrapper/>
-        <!--        header-->
-        <Header :support="company_admin_settings.support_field" :logo="company_admin_settings.company_logo"/>
-        <NavBar :company_name="company_name"/>
-        <div>
-            <template v-for="id in home_page_ids">
-                <template v-if="id === 'slider-component'">
-                    <!--        slider-->
-                    <Slider :key="id" :slider="company_admin_settings.slider_field"/>
+    <div>
+        <div class="home-example-1" v-if="schema === 'example-1'">
+            <NavWrapper/>
+            <!--        header-->
+            <Header :support="company_admin_settings.support_field" :logo="company_admin_settings.company_logo"/>
+            <NavBar :company_name="company_name"/>
+            <div>
+                <template v-for="id in home_page_ids">
+                    <template v-if="id === 'slider-component'">
+                        <!--        slider-->
+                        <Slider :key="id" :slider="company_admin_settings.slider_field"/>
+                    </template>
+                    <template v-else-if="id === 'banner-component'">
+                        <!--        banner-->
+                        <Banner :key="id"/>
+                    </template>
+                    <template v-else-if="id === 'product-component'">
+                        <!--        products-->
+                        <Product :key="id"/>
+                    </template>
                 </template>
-                <template v-else-if="id === 'banner-component'">
-                    <!--        banner-->
-                    <Banner :key="id"/>
-                </template>
-                <template v-else-if="id === 'product-component'">
-                    <!--        products-->
-                    <Product :key="id"/>
-                </template>
-            </template>
+            </div>
+            <!--        footer-->
+            <Footer :support="company_admin_settings.support_field" :logo="company_admin_settings.company_logo"/>
         </div>
-        <!--        footer-->
-        <Footer :support="company_admin_settings.support_field" :logo="company_admin_settings.company_logo"/>
+        <div class="home-example-2" v-else-if="schema === 'example-2'">
+            <NavWrapper/>
+            <h1>home example 2</h1>
+        </div>
+        <div class="home-example-3" v-else>
+            <NavWrapper/>
+            <h1>home example 3</h1>
+        </div>
     </div>
 </template>
 

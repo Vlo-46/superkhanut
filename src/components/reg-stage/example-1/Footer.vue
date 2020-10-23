@@ -1,6 +1,7 @@
 <template>
     <footer>
-        <div class="row" v-dragula="footer_components" bag="footer" id="dragula_footer_components">
+        <div class="row" v-dragula="home_1_footer_components" bag="home_1_footer_components"
+             id="dragula_home_1_footer_components">
             <template v-for="id in FETCH_FOOTER_COMPONENT_IDS">
                 <template v-if="id === 'footer-logo-component'">
                     <div class="col s12 m12 l4" :key="id" id="footer-logo-component">
@@ -15,10 +16,12 @@
                                 <a href="" @click.prevent=""><i class="fab fa-facebook-f" :style="right_panel.icon"></i></a>
                             </div>
                             <div>
-                                <a href="" @click.prevent=""><i class="fab fa-twitter" :style="right_panel.icon"></i></a>
+                                <a href="" @click.prevent=""><i class="fab fa-twitter"
+                                                                :style="right_panel.icon"></i></a>
                             </div>
                             <div>
-                                <a href="" @click.prevent=""><i class="fab fa-youtube" :style="right_panel.icon"></i></a>
+                                <a href="" @click.prevent=""><i class="fab fa-youtube"
+                                                                :style="right_panel.icon"></i></a>
                             </div>
                         </ul>
                     </div>
@@ -40,16 +43,16 @@
                         <p>Information</p>
                         <ul>
                             <li>
-                                <router-link to="/example-1">Home</router-link>
+                                <router-link to="/example-1" @click.prevent="">Home</router-link>
                             </li>
                             <li>
-                                <router-link to="/example-1/shop">Shop</router-link>
+                                <router-link to="/example-1/shop" @click.prevent="">Shop</router-link>
                             </li>
                             <li>
-                                <router-link to="/example-1/about">About</router-link>
+                                <router-link to="/example-1/about" @click.prevent="">About</router-link>
                             </li>
                             <li>
-                                <router-link to="/example-1/contact">Contact</router-link>
+                                <router-link to="/example-1/contact" @click.prevent="">Contact</router-link>
                             </li>
                         </ul>
                     </div>
@@ -58,7 +61,9 @@
         </div>
         <div class="row bottom-footer">
             <div class="col s12 m6 l6"><p>© ArmCoding 2020</p></div>
-            <div class="col s12 m6 l6" style="margin-top: 15px"><img src="../../../assets/payment.png" alt="" class="responsive-img"></div>
+            <div class="col s12 m6 l6" style="margin-top: 15px">
+                <img src="../../../assets/payment.png" alt="" class="responsive-img">
+            </div>
         </div>
     </footer>
 </template>
@@ -70,7 +75,7 @@
     export default {
         data() {
             return {
-                footer_components: []
+                home_1_footer_components: []
             }
         },
         methods: {
@@ -84,7 +89,7 @@
             Vue.vueDragula.eventBus.$on('drop', () => {
                 // console.log(args);
                 let arr = [];
-                let wrapper = document.getElementById('dragula_footer_components');
+                let wrapper = document.getElementById('dragula_home_1_footer_components');
                 for (let i = 0; i < wrapper.childNodes.length; i++) {
                     let childId = wrapper.childNodes[i].id;
                     // console.log(wrapper.childNodes[i])

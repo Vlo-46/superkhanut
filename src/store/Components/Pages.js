@@ -1,6 +1,6 @@
 export default {
     state: {
-        pages: ['home', 'shop', 'contact'],
+        pages: ['home', 'shop', 'home-2', 'shop-2', 'home-3', 'shop-3'],
         page: 'home'
     },
     mutations: {

@@ -39,6 +39,9 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        cursor: pointer;
+        cursor: grab;
+    }
+    #category-component {
+        cursor: grab;
     }
 </style>
