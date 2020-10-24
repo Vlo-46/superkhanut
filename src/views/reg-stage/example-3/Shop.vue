@@ -1,8 +1,28 @@
 <template>
     <div class="shop-example-3">
         <Header/>
-        <div class="wrapper container">
+        <NavBar/>
+        <div class="wrapper">
             <div class="row">
+                <div class="col s12 m3 l3">
+                    <div class="row" v-dragula="shop_filters" bag="shop_filters" id="dragula_shop_category_components"
+                         style="padding: 0 40px;">
+                        <template v-for="id in FETCH_SHOP_COMPONENT_IDS">
+                            <template v-if="id === 'filter-by-price-component'">
+                                <!--                    filter by price-->
+                                <filter-by-price @click.native="testMethod(2)" :key="id"/>
+                            </template>
+                            <template v-else-if="id === 'filter-by-tag-component'">
+                                <!--                    filter by tags-->
+                                <filter-by-tag @click.native="testMethod(3)" :key="id"/>
+                            </template>
+                            <template v-else-if="id === 'category-component'">
+                                <!--                    categories-->
+                                <categories @click.native="testMethod(1)" :key="id"/>
+                            </template>
+                        </template>
+                    </div>
+                </div>
                 <div class="col s12 m9 l9" v-dragula="shop_products" bag="shop_products" id="dragula_shop">
                     <template v-for="id in FETCH_SHOP_RIGHT_COMPONENT_IDS">
                         <template v-if="id === 'shop_img_component'">
@@ -17,7 +37,7 @@
                         <template v-else-if="id === 'shop_products_component'">
                             <div class="row products-field" :key="id" id="shop_products_component">
                                 <h4>Products</h4>
-                                <div class="col s12 m6 l4">
+                                <div class="col s12 m6 l3">
                                     <product_1 v-if="product_boxs.product_box === 'product-box-1'"/>
                                     <product_2 v-else-if="product_boxs.product_box === 'product-box-2'"/>
                                     <product_3 v-else-if="product_boxs.product_box === 'product-box-3'"/>
@@ -31,7 +51,7 @@
                                         <span>Product item</span>
                                     </div>
                                 </div>
-                                <div class="col s12 m6 l4">
+                                <div class="col s12 m6 l3">
                                     <product_1 v-if="product_boxs.product_box === 'product-box-1'"/>
                                     <product_2 v-else-if="product_boxs.product_box === 'product-box-2'"/>
                                     <product_3 v-else-if="product_boxs.product_box === 'product-box-3'"/>
@@ -45,7 +65,7 @@
                                         <span>Product item</span>
                                     </div>
                                 </div>
-                                <div class="col s12 m6 l4">
+                                <div class="col s12 m6 l3">
                                     <product_1 v-if="product_boxs.product_box === 'product-box-1'"/>
                                     <product_2 v-else-if="product_boxs.product_box === 'product-box-2'"/>
                                     <product_3 v-else-if="product_boxs.product_box === 'product-box-3'"/>
@@ -59,7 +79,7 @@
                                         <span>Product item</span>
                                     </div>
                                 </div>
-                                <div class="col s12 m6 l4">
+                                <div class="col s12 m6 l3">
                                     <product_1 v-if="product_boxs.product_box === 'product-box-1'"/>
                                     <product_2 v-else-if="product_boxs.product_box === 'product-box-2'"/>
                                     <product_3 v-else-if="product_boxs.product_box === 'product-box-3'"/>
@@ -73,7 +93,7 @@
                                         <span>Product item</span>
                                     </div>
                                 </div>
-                                <div class="col s12 m6 l4">
+                                <div class="col s12 m6 l3">
                                     <product_1 v-if="product_boxs.product_box === 'product-box-1'"/>
                                     <product_2 v-else-if="product_boxs.product_box === 'product-box-2'"/>
                                     <product_3 v-else-if="product_boxs.product_box === 'product-box-3'"/>
@@ -87,7 +107,35 @@
                                         <span>Product item</span>
                                     </div>
                                 </div>
-                                <div class="col s12 m6 l4">
+                                <div class="col s12 m6 l3">
+                                    <product_1 v-if="product_boxs.product_box === 'product-box-1'"/>
+                                    <product_2 v-else-if="product_boxs.product_box === 'product-box-2'"/>
+                                    <product_3 v-else-if="product_boxs.product_box === 'product-box-3'"/>
+                                    <product_4 v-else-if="product_boxs.product_box === 'product-box-4'"/>
+                                    <product_5 v-else-if="product_boxs.product_box === 'product-box-5'"/>
+                                    <product_6 v-else-if="product_boxs.product_box === 'product-box-6'"/>
+                                    <product_7 v-else-if="product_boxs.product_box === 'product-box-7'"/>
+                                    <product_8 v-else-if="product_boxs.product_box === 'product-box-8'"/>
+                                    <product_9 v-else-if="product_boxs.product_box === 'product-box-9'"/>
+                                    <div class="product-item" v-else>
+                                        <span>Product item</span>
+                                    </div>
+                                </div>
+                                <div class="col s12 m6 l3">
+                                    <product_1 v-if="product_boxs.product_box === 'product-box-1'"/>
+                                    <product_2 v-else-if="product_boxs.product_box === 'product-box-2'"/>
+                                    <product_3 v-else-if="product_boxs.product_box === 'product-box-3'"/>
+                                    <product_4 v-else-if="product_boxs.product_box === 'product-box-4'"/>
+                                    <product_5 v-else-if="product_boxs.product_box === 'product-box-5'"/>
+                                    <product_6 v-else-if="product_boxs.product_box === 'product-box-6'"/>
+                                    <product_7 v-else-if="product_boxs.product_box === 'product-box-7'"/>
+                                    <product_8 v-else-if="product_boxs.product_box === 'product-box-8'"/>
+                                    <product_9 v-else-if="product_boxs.product_box === 'product-box-9'"/>
+                                    <div class="product-item" v-else>
+                                        <span>Product item</span>
+                                    </div>
+                                </div>
+                                <div class="col s12 m6 l3">
                                     <product_1 v-if="product_boxs.product_box === 'product-box-1'"/>
                                     <product_2 v-else-if="product_boxs.product_box === 'product-box-2'"/>
                                     <product_3 v-else-if="product_boxs.product_box === 'product-box-3'"/>
@@ -105,24 +153,7 @@
                         </template>
                     </template>
                 </div>
-                <div class="col s12 m3 l3">
-                    <div class="row" v-dragula="shop_filters" bag="shop_filters" id="dragula_shop_category_components">
-                        <template v-for="id in FETCH_SHOP_COMPONENT_IDS">
-                            <template v-if="id === 'filter-by-price-component'">
-                                <!--                    filter by price-->
-                                <filter-by-price @click.native="testMethod(2)" :key="id"/>
-                            </template>
-                            <template v-else-if="id === 'filter-by-tag-component'">
-                                <!--                    filter by tags-->
-                                <filter-by-tag @click.native="testMethod(3)" :key="id"/>
-                            </template>
-                            <template v-else-if="id === 'category-component'">
-                                <!--                    categories-->
-                                <categories @click.native="testMethod(1)" :key="id"/>
-                            </template>
-                        </template>
-                    </div>
-                </div>
+                <pagination/>
             </div>
         </div>
         <Footer/>
@@ -134,8 +165,9 @@
 </template>
 
 <script>
-    import Header from '../../../components/reg-stage/example-2/Header'
-    import Footer from '../../../components/reg-stage/example-2/Footer'
+    import Header from '../../../components/reg-stage/example-3/Header'
+    import Footer from '../../../components/reg-stage/example-3/Footer'
+    import NavBar from '../../../components/reg-stage/example-3/NavBar'
     import product_1 from '../../../components/reg-stage/products-box/Product-1'
     import product_2 from '../../../components/reg-stage/products-box/Product-2'
     import product_3 from '../../../components/reg-stage/products-box/Product-3'
@@ -149,6 +181,8 @@
     import price_filter from '../../../components/reg-stage/example-1/Filter-by-price'
     import tag_filter from '../../../components/reg-stage/example-1/Filter-by-tag'
     import shop_img from '../../../components/reg-stage/example-1/Shop-image'
+    import pagination from '../../../components/reg-stage/example-3/Pagination'
+
     import {mapActions, mapState, mapGetters} from 'vuex'
     import Vue from "vue";
 
@@ -166,6 +200,7 @@
             'filter-by-tag': tag_filter,
             'shop-image': shop_img,
             Header,
+            NavBar,
             Footer,
             product_1,
             product_2,
@@ -176,6 +211,7 @@
             product_7,
             product_8,
             product_9,
+            pagination
         },
         methods: {
             ...mapActions(['NEXT_PAGE', 'CATEGORY_COMPONENTS', 'PRICE_FILTER_COMPONENTS', 'TAG_FILTER_COMPONENTS', 'OPEN_RIGHT_PANEL', 'GET_SHOP_COMPONENTS_IDS', 'GET_SHOP_RIGHT_BOX_COMPONENTS_IDS', 'CREATE_SHOP']),

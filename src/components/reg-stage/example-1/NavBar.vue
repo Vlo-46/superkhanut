@@ -30,7 +30,6 @@
         computed: {
             ...mapState(['right_panel'])
         },
-
     }
 </script>
 

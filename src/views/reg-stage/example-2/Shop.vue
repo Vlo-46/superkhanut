@@ -1,6 +1,8 @@
 <template>
     <div class="shop-example-2">
         <Header/>
+        <div style="clear: both"></div>
+        <NavBar/>
         <div class="wrapper container">
             <div class="row">
                 <div class="col s12 m9 l9" v-dragula="shop_products" bag="shop_products" id="dragula_shop">
@@ -123,6 +125,7 @@
                         </template>
                     </div>
                 </div>
+                <pagination/>
             </div>
         </div>
         <Footer/>
@@ -135,6 +138,7 @@
 
 <script>
     import Header from '../../../components/reg-stage/example-2/Header'
+    import NavBar from '../../../components/reg-stage/example-2/NavBar'
     import Footer from '../../../components/reg-stage/example-2/Footer'
     import product_1 from '../../../components/reg-stage/products-box/Product-1'
     import product_2 from '../../../components/reg-stage/products-box/Product-2'
@@ -149,6 +153,8 @@
     import price_filter from '../../../components/reg-stage/example-1/Filter-by-price'
     import tag_filter from '../../../components/reg-stage/example-1/Filter-by-tag'
     import shop_img from '../../../components/reg-stage/example-1/Shop-image'
+    import pagination from '../../../components/reg-stage/example-2/Pagination'
+
     import {mapActions, mapState, mapGetters} from 'vuex'
     import Vue from "vue";
 
@@ -166,6 +172,7 @@
             'filter-by-tag': tag_filter,
             'shop-image': shop_img,
             Header,
+            NavBar,
             Footer,
             product_1,
             product_2,
@@ -176,6 +183,7 @@
             product_7,
             product_8,
             product_9,
+            pagination
         },
         methods: {
             ...mapActions(['NEXT_PAGE', 'CATEGORY_COMPONENTS', 'PRICE_FILTER_COMPONENTS', 'TAG_FILTER_COMPONENTS', 'OPEN_RIGHT_PANEL', 'GET_SHOP_COMPONENTS_IDS', 'GET_SHOP_RIGHT_BOX_COMPONENTS_IDS', 'CREATE_SHOP']),
