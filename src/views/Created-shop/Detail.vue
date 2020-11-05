@@ -94,8 +94,8 @@
 
 <script>
     import NavWrapper from '../../components/Navbar'
-    import NavBar from '../../components/Created-shop-components/Navbar'
-    import footer from '../../components/Created-shop-components/Footer'
+    import NavBar from '../../components/Created-shop-1-components/Navbar'
+    import footer from '../../components/Created-shop-1-components/Footer'
     import axios from 'axios'
     import keys from "../../keys";
     import {mapActions, mapState} from "vuex";

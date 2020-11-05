@@ -9,19 +9,15 @@
                         </div>
                         <ul class="links">
                             <div>
-                                <a :href="support.instagram" target="_blank"><i class="fab fa-instagram"
-                                                                                :style="footer_info.icon_style"></i></a>
+                                <a :href="support.instagram" target="_blank">
+                                    <i class="fab fa-instagram" :style="footer_info.icon_style"></i>
+                                </a>
                             </div>
                             <div>
-                                <a :href="support.facebook" target="_blank"><i class="fab fa-facebook-f"
-                                                                               :style="footer_info.icon_style"></i></a>
+                                <a :href="support.facebook" target="_blank">
+                                    <i class="fab fa-facebook-f" :style="footer_info.icon_style"></i>
+                                </a>
                             </div>
-                            <!--                            <div>-->
-                            <!--                                <a href=""><i class="fab fa-twitter" :style="footer_info.icon_style"></i></a>-->
-                            <!--                            </div>-->
-                            <!--                            <div>-->
-                            <!--                                <a href=""><i class="fab fa-youtube" :style="footer_info.icon_style"></i></a>-->
-                            <!--                            </div>-->
                         </ul>
                     </div>
                 </template>
@@ -46,16 +42,16 @@
                         <p>Information</p>
                         <ul>
                             <li>
-                                <router-link to="" :style="footer_info.a_style">Home</router-link>
+                                <a :href="`/${company_name}/home`" :style="footer_info.a_style">Home</a>
                             </li>
                             <li>
-                                <router-link to="" :style="footer_info.a_style">Shop</router-link>
+                                <a :href="`/${company_name}/shop`" :style="footer_info.a_style">Shop</a>
                             </li>
                             <li>
-                                <router-link to="" :style="footer_info.a_style">About</router-link>
+                                <a :href="`/${company_name}/about`" :style="footer_info.a_style">About</a>
                             </li>
                             <li>
-                                <router-link to="" :style="footer_info.a_style">Contact</router-link>
+                                <a :href="`/${company_name}/contact`" :style="footer_info.a_style">Contact</a>
                             </li>
                         </ul>
                     </div>
@@ -75,7 +71,7 @@
     import {mapState} from 'vuex'
 
     export default {
-        props: ['logo', 'support'],
+        props: ['logo', 'support', 'company_name'],
         computed: {
             ...mapState(['footer_info', 'footer_ids'])
         }
