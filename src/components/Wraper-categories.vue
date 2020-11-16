@@ -6,10 +6,10 @@
                     <li class="dropdown">
                         <a href="">Category 1</a>
                         <ul class="dropdown-box" style="display: none">
-                            <li><a href="">drop 1</a></li>
-                            <li><a href="">drop 2</a></li>
-                            <li><a href="">drop 3</a></li>
-                        </ul>
+                        <li><a href="">drop 1</a></li>
+                        <li><a href="">drop 2</a></li>
+                        <li><a href="">drop 3</a></li>
+                    </ul>
                     </li>
                     <li class="dropdown">
                         <a href="">Category 2</a>

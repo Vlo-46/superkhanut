@@ -47,6 +47,7 @@
         max-height: 370px;
         background-color: #fff;
         box-shadow: 0 0 12px inset;
+        margin: 10px 0;
     }
 
     .product:hover {

@@ -53,9 +53,9 @@
         props: ['support', 'logo'],
         computed: {
             ...mapState(['header_info', 'footer_info', 'header_ids']),
-            currentInputComponent() {
-                return this.currentInput
-            }
+            // currentInputComponent() {
+            //     return this.currentInput
+            // }
         },
         methods: {
             ...mapActions(['GET_SHOP_INFO'])
@@ -63,14 +63,14 @@
 
         async created() {
             await this.GET_SHOP_INFO()
-            let x = [];
-            this.input_elements.filter(i => {
-                x.push(i.name)
-            });
-            const y = Object.keys(this.header_info).filter(j => {
-                return x.includes(j)
-            });
-            this.currentInput = y.toString()
+            // let x = [];
+            // this.input_elements.filter(i => {
+            //     x.push(i.name)
+            // });
+            // const y = Object.keys(this.header_info).filter(j => {
+            //     return x.includes(j)
+            // });
+            // this.currentInput = y.toString()
         }
     }
 </script>

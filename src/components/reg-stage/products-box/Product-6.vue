@@ -40,7 +40,7 @@
         -webkit-box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
         -moz-box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
         box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
-        margin-bottom: 15px;
+        margin: 10px 0;
     }
 
     .product-img {

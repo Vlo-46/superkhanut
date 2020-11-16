@@ -355,7 +355,7 @@
         </div>
         <div class="clear-both" style="clear: both"></div>
         <div style="display: flex; justify-content: center">
-            <a href="#!" class="btn waves-effect waves-green view_more_btn">View more</a>
+            <a href="#!" class="btn waves-effect waves-green view_more_btn" @click="OPEN_RIGHT_PANEL('button')"  :style="right_panel.button">View more</a>
         </div>
     </div>
 </template>

@@ -20,7 +20,7 @@
             </template>
         </div>
         <!--        footer-->
-        <Footer @click.native="testMethod(5)"/>
+        <Footer/>
         <div class="next-page">
             <button class="btn" @click="NEXT_PAGE('shop')">NEXT</button>
         </div>
@@ -62,35 +62,24 @@
                         this.SLIDER_COMPONENTS('component');
                         this.BANNER_COMPONENTS('component');
                         this.PRODUCT_COMPONENTS('component');
-                        this.FOOTER_COMPONENTS('component');
                         break;
                     case 2:
                         this.HEADER_COMPONENTS('component');
                         this.SLIDER_COMPONENTS('slider_components');
                         this.BANNER_COMPONENTS('component');
                         this.PRODUCT_COMPONENTS('component');
-                        this.FOOTER_COMPONENTS('component');
                         break;
                     case 3:
                         this.HEADER_COMPONENTS('component');
                         this.SLIDER_COMPONENTS('component');
                         this.BANNER_COMPONENTS('banner_components');
                         this.PRODUCT_COMPONENTS('component');
-                        this.FOOTER_COMPONENTS('component');
                         break;
                     case 4:
                         this.HEADER_COMPONENTS('component');
                         this.SLIDER_COMPONENTS('component');
                         this.BANNER_COMPONENTS('component');
                         this.PRODUCT_COMPONENTS('product_components');
-                        this.FOOTER_COMPONENTS('component');
-                        break;
-                    case 5:
-                        this.HEADER_COMPONENTS('component');
-                        this.SLIDER_COMPONENTS('component');
-                        this.BANNER_COMPONENTS('component');
-                        this.PRODUCT_COMPONENTS('component');
-                        this.FOOTER_COMPONENTS('footer_components');
                         break;
                     default:
                         break;

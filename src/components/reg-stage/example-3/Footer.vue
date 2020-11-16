@@ -24,10 +24,10 @@
                         <ul>
                             <h6>COMPANY PAGES</h6>
                             <div class="hr"></div>
-                            <li><a href="" @click.prevent="">Home</a></li>
-                            <li><a href="" @click.prevent="">Shop</a></li>
-                            <li><a href="" @click.prevent="">About</a></li>
-                            <li><a href="" @click.prevent="">Contact</a></li>
+                            <li><a href="" @click.prevent="OPEN_RIGHT_PANEL('button')" :style="`color: ${right_panel.button.color}`">Home</a></li>
+                            <li><a href="" @click.prevent="OPEN_RIGHT_PANEL('button')" :style="`color: ${right_panel.button.color}`">Shop</a></li>
+                            <li><a href="" @click.prevent="OPEN_RIGHT_PANEL('button')" :style="`color: ${right_panel.button.color}`">About</a></li>
+                            <li><a href="" @click.prevent="OPEN_RIGHT_PANEL('button')" :style="`color: ${right_panel.button.color}`">Contact</a></li>
                         </ul>
                     </div>
                 </template>
@@ -37,22 +37,22 @@
                             <h6>CONTACT US</h6>
                             <div class="hr"></div>
                             <li>
-                                <a href="" @click.prevent="">
+                                <a href="" :style="right_panel.span" @click.prevent="OPEN_RIGHT_PANEL('span')">
                                     <i class="material-icons">location_on</i><small>Armenia, erevan</small>
                                 </a>
                             </li>
                             <li>
-                                <a href="" @click.prevent="">
+                                <a href="" :style="right_panel.span" @click.prevent="OPEN_RIGHT_PANEL('span')">
                                     <i class="material-icons">local_phone</i><small>+374 12 34 56</small>
                                 </a>
                             </li>
                             <li>
-                                <a href="" @click.prevent="">
+                                <a href="" :style="right_panel.span" @click.prevent="OPEN_RIGHT_PANEL('span')">
                                     <i class="material-icons">message</i><small>example@gmail.com</small>
                                 </a>
                             </li>
                             <li>
-                                <a href="" @click.prevent="">
+                                <a href="" :style="right_panel.span" @click.prevent="OPEN_RIGHT_PANEL('span')">
                                     <i class="material-icons">access_time</i>Mon - Sat : 0900 - 1900&nbsp;Sun : Closed
                                 </a>
                             </li>

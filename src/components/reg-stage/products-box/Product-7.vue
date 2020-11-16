@@ -44,7 +44,7 @@
         position: relative;
         box-shadow: 0 2px 7px #dfdfdf;
         background: #fafafa;
-        margin-bottom: 15px;
+        margin: 10px 0;
     }
 
     .badge {

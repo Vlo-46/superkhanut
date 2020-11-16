@@ -153,7 +153,6 @@
         </div>
         <!--        HOME EXAMPLE 3 END-->
     </div>
-
 </template>
 
 <script>
@@ -213,13 +212,13 @@
             'shop-image': shop_img,
             'product-box-1': product_1,
             'product-box-2': product_2,
-            'product-box-3': product_3,
-            'product-box-4': product_4,
-            'product-box-5': product_5,
             'product-box-6': product_6,
             'product-box-7': product_7,
             'product-box-8': product_8,
             'product-box-9': product_9,
+            'product-box-3': product_3,
+            'product-box-4': product_4,
+            'product-box-5': product_5,
             Footer,
         },
         computed: {

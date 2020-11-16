@@ -68,10 +68,12 @@
             Footer
         },
         async created() {
-            await JSON.parse(localStorage.getItem(keys.favorite)).forEach(i => {
-                this.favorite_items.push(i)
-            })
-            await this.GET_FAVORITE_LIST_ITEMS(this.favorite_items)
+            if(localStorage.getItem(keys.favorite)) {
+                await JSON.parse(localStorage.getItem(keys.favorite)).forEach(i => {
+                    this.favorite_items.push(i)
+                })
+                await this.GET_FAVORITE_LIST_ITEMS(this.favorite_items)
+            }
         }
     }
 </script>

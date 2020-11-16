@@ -9,33 +9,33 @@
                 <template v-if="id === 'footer-logo-component'">
                     <div class="col s12 m4 l4" :key="id" id="footer-logo-component">
                         <div class="footer-content">
-                        <span @click.prevent="OPEN_RIGHT_PANEL('icon')"><i class="material-icons"
-                                                                           :style="right_panel.icon">local_phone</i></span>
+                        <span @click.prevent="OPEN_RIGHT_PANEL('icon')">
+                            <i class="material-icons" :style="right_panel.icon">local_phone</i></span>
                             <span>CALL</span>
-                            <p>+374 12 34 56</p>
-                            <p>+374 56 45 32</p>
+                            <p :style="right_panel.span" @click="OPEN_RIGHT_PANEL('span')">+374 12 34 56</p>
+                            <p :style="right_panel.span" @click="OPEN_RIGHT_PANEL('span')">+374 56 45 32</p>
                         </div>
                     </div>
                 </template>
                 <template v-else-if="id === 'footer-contact-component'">
                     <div class="col s12 m4 l4" :key="id" id="footer-contact-component">
                         <div class="footer-content">
-                        <span @click.prevent="OPEN_RIGHT_PANEL('icon')"><i class="material-icons"
-                                                                           :style="right_panel.icon">location_on</i></span>
+                        <span @click.prevent="OPEN_RIGHT_PANEL('icon')">
+                            <i class="material-icons" :style="right_panel.icon">location_on</i></span>
                             <span>FIND US</span>
-                            <p>Hahnenmoos strasse 20C, 3715</p>
-                            <p>Adelboden, Switzerland</p>
+                            <p :style="right_panel.span" @click="OPEN_RIGHT_PANEL('span')">Hahnenmoos strasse 20C, 3715</p>
+                            <p :style="right_panel.span" @click="OPEN_RIGHT_PANEL('span')">Adelboden, Switzerland</p>
                         </div>
                     </div>
                 </template>
                 <template v-else-if="id === 'footer-info-component'">
                     <div class="col s12 m4 l4" :key="id" id="footer-info-component">
                         <div class="footer-content">
-                        <span @click.prevent="OPEN_RIGHT_PANEL('icon')"><i class="material-icons"
-                                                                           :style="right_panel.icon">email</i></span>
+                        <span @click.prevent="OPEN_RIGHT_PANEL('icon')">
+                            <i class="material-icons" :style="right_panel.icon">email</i></span>
                             <span>EMAIL</span>
-                            <p>example@gmail.com</p>
-                            <p>example@mail.ru</p>
+                            <p :style="right_panel.span" @click="OPEN_RIGHT_PANEL('span')">example@gmail.com</p>
+                            <p :style="right_panel.span" @click="OPEN_RIGHT_PANEL('span')">example@mail.ru</p>
                         </div>
                     </div>
                 </template>

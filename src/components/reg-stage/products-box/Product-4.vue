@@ -51,6 +51,7 @@
         height: 370px;
         background-color: #fff;
         box-shadow: #ccc 0 0 16px;
+        margin: 10px 0;
     }
 
     .product:hover {

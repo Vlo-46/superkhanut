@@ -1,7 +1,7 @@
 <!--CREATED SHOP HOME PAGE-->
 <template>
     <div>
-        <!--        HOME EXAMPLE 1 START-->
+        <!--        HOME PAGE EXAMPLE 1 START-->
         <div class="home-example-1" v-if="schema === 'example-1'">
             <NavWrapper/>
             <!--        header-->
@@ -29,7 +29,7 @@
         </div>
         <!--        HOME EXAMPLE 1 END-->
 
-        <!--        HOME EXAMPLE 2 START-->
+        <!--        HOME PAGE EXAMPLE 2 START-->
         <div class="home-example-2" v-else-if="schema === 'example-2'">
             <NavWrapper/>
             <Header_2 :support="company_admin_settings.support_field" :logo="company_admin_settings.company_logo"/>
@@ -52,9 +52,9 @@
             </div>
             <Footer_2 :support="company_admin_settings.support_field" :logo="company_admin_settings.company_logo"/>
         </div>
-        <!--        HOME EXAMPLE 2 END-->
+        <!--        HOME PAGE EXAMPLE 2 END-->
 
-        <!--        HOME EXAMPLE 3 START-->
+        <!--        HOME PAGE EXAMPLE 3 START-->
         <div class="home-example-3" v-else>
             <NavWrapper/>
             <Header_3 :support="company_admin_settings.support_field" :logo="company_admin_settings.company_logo"/>
@@ -75,16 +75,17 @@
                     </template>
                 </template>
             </div>
-            <Footer_3 :support="company_admin_settings.support_field" :logo="company_admin_settings.company_logo" :company_name="company_name"/>
+            <Footer_3 :support="company_admin_settings.support_field" :logo="company_admin_settings.company_logo"
+                      :company_name="company_name"/>
         </div>
-        <!--        HOME EXAMPLE 3 END-->
+        <!--        HOME PAGE EXAMPLE 3 END-->
     </div>
 </template>
 
 <script>
     import NavWrapper from '../../components/Navbar';
 
-    //CREATED SHOP 1
+    //CREATED SHOP, HOME PAGE 1
     import NavBar from '../../components/Created-shop-1-components/Navbar';
     import Header from '../../components/Created-shop-1-components/Header';
     import Slider from '../../components/Created-shop-1-components/Slider';
@@ -92,7 +93,7 @@
     import Product from '../../components/Created-shop-1-components/Product';
     import Footer from '../../components/Created-shop-1-components/Footer';
 
-    //CREATED SHOP 2
+    //CREATED SHOP HOME PAGE 2
     import NavBar_2 from '../../components/Created-shop-2-components/Navbar';
     import Header_2 from '../../components/Created-shop-2-components/Header';
     import Slider_2 from '../../components/Created-shop-2-components/Slider';
@@ -100,7 +101,7 @@
     import Banner_2 from '../../components/Created-shop-2-components/Carousel';
     import Footer_2 from '../../components/Created-shop-2-components/Footer';
 
-    //CREATED SHOP 3
+    //CREATED SHOP HOME PAGE 3
     import NavBar_3 from '../../components/Created-shop-3-components/Navbar';
     import Header_3 from '../../components/Created-shop-3-components/Header';
     import Slider_3 from '../../components/Created-shop-3-components/Slider';
@@ -111,7 +112,6 @@
 
     import {mapState, mapActions} from 'vuex'
 
-
     export default {
         data() {
             return {
@@ -120,7 +120,7 @@
             }
         },
         components: {
-            //CREATED SHOP 1
+            //CREATED SHOP HOME PAGE 1
             NavWrapper,
             NavBar,
             Header,
@@ -128,14 +128,14 @@
             Banner,
             Product,
             Footer,
-            //CREATED SHOP 2
+            //CREATED SHOP HOME PAGE 2
             NavBar_2,
             Header_2,
             Slider_2,
             Product_2,
             Banner_2,
             Footer_2,
-            //CREATED SHOP 3
+            //CREATED SHOP HOME PAGE 3
             NavBar_3,
             Header_3,
             Slider_3,

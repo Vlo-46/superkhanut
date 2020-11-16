@@ -97,7 +97,7 @@ const routes = [
         component: Profile,
         children: [
             {
-                path: 'profile-edit',
+                path: 'settings',
                 component: Settings
             },
             {
@@ -106,6 +106,14 @@ const routes = [
             }
         ]
     },
+    // {
+    //     path: '/profile/profile-edit',
+    //     component: Settings
+    // },
+    // {
+    //     path: '/profile/orders',
+    //     component: MyOrders
+    // },
     {
         path: '/confirmations-account',
         component: Confirmation

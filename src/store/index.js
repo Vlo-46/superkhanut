@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-
 import companies from './Companies/company';
 import products from './Products/products';
 import topCompany from './Companies/top-companies';
@@ -16,7 +15,6 @@ import reg_navigation from './reg-navigation';
 import favorite_list from './Favorite'
 import basket_list from './Basket'
 
-
 import header_components from './Components/Header-components';
 import products_components from './Components/Product-box-components';
 import slider_components from './Components/Slider-components';
@@ -28,7 +26,6 @@ import tag_filter_components from './Components/Tag-filter-components';
 import contact_information_components from './Components/Contact-information-components';
 import contact_send_msg_components from './Components/Contact-send-msg-components';
 
-
 import dragula_header_components from './Dragula-components/Header'
 import home_components from './Dragula-components/Home'
 import shop_components from './Dragula-components/Shop'
@@ -36,9 +33,7 @@ import shop_rightBox_component from './Dragula-components/Shop-rightBox'
 import contact_components from './Dragula-components/Contact'
 import dragula_footer_components from './Dragula-components/Footer'
 
-
 import pages from './Components/Pages';
-
 
 import inputs from './Elements/inputs';
 import product_boxs from './Elements/Product-boxs';
@@ -50,25 +45,20 @@ import tag_filters from './Elements/Tag-filters';
 import contact_information_field from './Elements/Contact-information-fields';
 import contact_send_msg_field from './Elements/Contact-send-msg-fields';
 
-
 import right_panel from './Components/Right-panel';
-
 
 import registerCompany from './Auth/RegisterCompany';
 import registerUser from './Auth/RegisterUser';
 import login from './Auth/Login';
-
 
 import profile from './Profile/Profile';
 
 import company_products from './Company-admin/Products'
 import company_admin_settings from './Company-admin/Settings'
 
-
 import axios from 'axios';
 import keys from '../keys';
-// import router from "../router";
-
+import router from "../router";
 
 Vue.use(Vuex);
 
@@ -140,7 +130,6 @@ export default new Vuex.Store({
             let price_filter = price_filters.state.price_filter;
             let tag_filter = tag_filters.state.tag_filter;
 
-
             let button_style = right_panel.state.button;
             let input_style = right_panel.state.input;
             let icon_style = right_panel.state.icon;
@@ -160,7 +149,7 @@ export default new Vuex.Store({
             let footer_ids = dragula_footer_components.state.ids;
 
             let user = registerCompany.state.user;
-            console.log(user);
+            // console.log(user);
 
             let GLOBAL_OBJECT = {
                 schema: cover,
@@ -213,26 +202,26 @@ export default new Vuex.Store({
                     }
                 }
             };
-            console.log(JSON.stringify(GLOBAL_OBJECT))
+            // console.log(JSON.stringify(GLOBAL_OBJECT))
 
-            // let token = localStorage.getItem(keys.API_TOKEN);
-            // let url = keys.baseURI;
-            //
-            //
-            // await axios.post(`${url}/api/builder/store`, {GLOBAL_OBJECT}, {
-            //     headers: {
-            //         'Content-Type': 'application/json;charset=UTF-8',
-            //         'Authorization': `Bearer ${token}`,
-            //         'Accept': 'application/json'
-            //     },
-            //     timeout: 0,
-            //     responseType: "json",
-            //     maxContentLength: 10000000000
-            // })
-            //     .then(() => {
-            //         router.push(`/${user['store'].name}/home`)
-            //     })
-            //     .catch(e => console.log(e))
+            let token = localStorage.getItem(keys.API_TOKEN);
+            let url = keys.baseURI;
+
+
+            await axios.post(`${url}/api/builder/store`, {GLOBAL_OBJECT}, {
+                headers: {
+                    'Content-Type': 'application/json;charset=UTF-8',
+                    'Authorization': `Bearer ${token}`,
+                    'Accept': 'application/json'
+                },
+                timeout: 0,
+                responseType: "json",
+                maxContentLength: 10000000000
+            })
+                .then(() => {
+                    router.push(`/${user['store'].name}/home`)
+                })
+                .catch(e => console.log(e))
         },
         async GET_SHOP_INFO(ctx, company_name) {
             let url = keys.baseURI;

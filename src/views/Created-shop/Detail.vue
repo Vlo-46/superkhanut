@@ -13,7 +13,6 @@
                         <div class="slider-image-field"><h3>2</h3></div>
                         <div class="slider-image-field"><h3>3</h3></div>
                         <div class="slider-image-field"><h3>4</h3></div>
-                        /*...*/
                     </VueSlickCarousel>
                     <VueSlickCarousel
                             ref="c2"
@@ -24,7 +23,6 @@
                         <div><h3>2</h3></div>
                         <div><h3>3</h3></div>
                         <div><h3>4</h3></div>
-                        /*...*/
                     </VueSlickCarousel>
                 </div>
                 <div class="col s12 m12 l6">
@@ -88,7 +86,8 @@
                 </div>
             </div>
         </div>
-        <company-footer :support="company_admin_settings.support_field" :logo="company_admin_settings.company_logo"/>
+        <company-footer :support="company_admin_settings.support_field" :logo="company_admin_settings.company_logo"
+                        :company_name="this.$route.params.pathMatch"/>
     </div>
 </template>
 

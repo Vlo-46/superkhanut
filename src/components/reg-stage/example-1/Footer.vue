@@ -10,18 +10,24 @@
                         </div>
                         <ul class="links" @click="OPEN_RIGHT_PANEL('icon')">
                             <div>
-                                <a href="" @click.prevent=""><i class="fab fa-instagram" :style="right_panel.icon"></i></a>
+                                <a href="" @click.prevent="">
+                                    <i class="fab fa-instagram" :style="right_panel.icon"></i>
+                                </a>
                             </div>
                             <div>
-                                <a href="" @click.prevent=""><i class="fab fa-facebook-f" :style="right_panel.icon"></i></a>
+                                <a href="" @click.prevent="">
+                                    <i class="fab fa-facebook-f" :style="right_panel.icon"></i>
+                                </a>
                             </div>
                             <div>
-                                <a href="" @click.prevent=""><i class="fab fa-twitter"
-                                                                :style="right_panel.icon"></i></a>
+                                <a href="" @click.prevent="">
+                                    <i class="fab fa-twitter" :style="right_panel.icon"></i>
+                                </a>
                             </div>
                             <div>
-                                <a href="" @click.prevent=""><i class="fab fa-youtube"
-                                                                :style="right_panel.icon"></i></a>
+                                <a href="" @click.prevent="">
+                                    <i class="fab fa-youtube" :style="right_panel.icon"></i>
+                                </a>
                             </div>
                         </ul>
                     </div>
@@ -30,11 +36,11 @@
                     <div class="col s12 m6 l4" :key="id" id="footer-contact-component">
                         <div>
                             <p>Address</p>
-                            <span>4710-4890 Breckinridge St, UK Burlington, VT 05401</span>
+                            <span @click="OPEN_RIGHT_PANEL('span')" :style="right_panel.span">4710-4890 Breckinridge St, UK Burlington, VT 05401</span>
                         </div>
                         <div>
                             <p>Need Help?</p>
-                            <span>Call: 1-800-345-6789</span>
+                            <span @click="OPEN_RIGHT_PANEL('span')" :style="right_panel.span">Call: 1-800-345-6789</span>
                         </div>
                     </div>
                 </template>
@@ -43,16 +49,16 @@
                         <p>Information</p>
                         <ul>
                             <li>
-                                <router-link to="/example-1" @click.prevent="">Home</router-link>
+                                <a href="#" @click.prevent="OPEN_RIGHT_PANEL('button')" :style="`color: ${right_panel.button.color}`">Home</a>
                             </li>
                             <li>
-                                <router-link to="/example-1/shop" @click.prevent="">Shop</router-link>
+                                <a href="#" @click.prevent="OPEN_RIGHT_PANEL('button')" :style="`color: ${right_panel.button.color}`">Shop</a>
                             </li>
                             <li>
-                                <router-link to="/example-1/about" @click.prevent="">About</router-link>
+                                <a href="#" @click.prevent="OPEN_RIGHT_PANEL('button')" :style="`color: ${right_panel.button.color}`">About</a>
                             </li>
                             <li>
-                                <router-link to="/example-1/contact" @click.prevent="">Contact</router-link>
+                                <a href="#" @click.prevent="OPEN_RIGHT_PANEL('button')" :style="`color: ${right_panel.button.color}`">Contact</a>
                             </li>
                         </ul>
                     </div>

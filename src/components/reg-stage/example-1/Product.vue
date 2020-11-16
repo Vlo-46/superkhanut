@@ -116,7 +116,7 @@
             </div>
         </div>
         <div style="display: flex; justify-content: center">
-            <a href="#!" class="btn waves-effect waves-green">View more</a>
+            <a href="#!" class="btn waves-effect waves-green" @click="OPEN_RIGHT_PANEL('button')"  :style="right_panel.button">View more</a>
         </div>
     </div>
 </template>
@@ -148,8 +148,11 @@
             product_9,
         },
         computed: {
-            ...mapState(['product_boxs'])
+            ...mapState(['product_boxs', 'right_panel'])
         },
+        methods: {
+            ...mapState(['OPEN_RIGHT_PANEL'])
+        }
 
     }
 </script>
