@@ -1,18 +1,37 @@
 <template>
     <div class="col s12 m6 l6">
-        <contact-msg-field-1/>
-
+        <div>
+            <h4>Tell Us Your Message</h4>
+            <div class="input-field">
+                <input type="text">
+                <label>Your name</label>
+            </div>
+            <div class="input-field">
+                <input type="text">
+                <label>Your email</label>
+            </div>
+            <div class="input-field">
+                <input type="text">
+                <label>Subject</label>
+            </div>
+            <div class="input-field">
+                <textarea class="materialize-textarea"></textarea>
+                <label>Your message</label>
+            </div>
+            <div>
+                <button class="btn" :style="right_panel.button">Send<i class="material-icons right" :style="right_panel.icon">send</i></button>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
-    import contact_msg_field_1 from '../Created-shop-elements/Contact-msg-fields/Contact-msg-field-1'
+    import {mapState} from 'vuex'
 
     export default {
-        components: {
-            'contact-msg-field-1': contact_msg_field_1
-        },
-
+        computed: {
+            ...mapState(['right_panel'])
+        }
     }
 
 </script>

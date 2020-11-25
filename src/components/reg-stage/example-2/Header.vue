@@ -31,18 +31,24 @@
                         <ul class="links"
                             @click="OPEN_RIGHT_PANEL('icon')">
                             <div>
-                                <a href="" @click.prevent=""><i class="fab fa-instagram" :style="right_panel.icon"></i></a>
+                                <a href="" @click.prevent="">
+                                    <i class="fab fa-instagram" :style="right_panel.icon"></i>
+                                </a>
                             </div>
                             <div>
-                                <a href="" @click.prevent=""><i class="fab fa-facebook-f" :style="right_panel.icon"></i></a>
+                                <a href="" @click.prevent="">
+                                    <i class="fab fa-facebook-f" :style="right_panel.icon"></i>
+                                </a>
                             </div>
                             <div>
-                                <a href="" @click.prevent=""><i class="fab fa-twitter"
-                                                                :style="right_panel.icon"></i></a>
+                                <a href="" @click.prevent="">
+                                    <i class="fab fa-twitter" :style="right_panel.icon"></i>
+                                </a>
                             </div>
                             <div>
-                                <a href="" @click.prevent=""><i class="fab fa-youtube"
-                                                                :style="right_panel.icon"></i></a>
+                                <a href="" @click.prevent="">
+                                    <i class="fab fa-youtube" :style="right_panel.icon"></i>
+                                </a>
                             </div>
                         </ul>
                     </div>

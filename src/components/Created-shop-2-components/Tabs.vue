@@ -9,7 +9,7 @@
         </div>
         <h5 class="center-align">{{currentTab.toUpperCase()}}</h5>
         <div class="border-bottom"></div>
-        <div class="news" v-if="currentTab === 'news'">
+        <div class="news" v-if="currentTab === 'news' && company_products_computed !== undefined && company_products_computed.length > 0">
             <div class="col s12 m6 l3" v-for="product in company_products.products" :key="product.id">
                 <component :is="currentProductComponents"
                            :name="home_page_info[currentProductBox].product_name_style"
@@ -31,7 +31,7 @@
                 />
             </div>
         </div>
-        <div class="best" v-else-if="currentTab === 'best'">
+        <div class="best" v-else-if="currentTab === 'best' && company_products_computed !== undefined && company_products_computed.length > 0">
             <div class="col s12 m6 l3" v-for="product in company_products.products" :key="product.id">
                 <component :is="currentProductComponents"
                            :name="home_page_info[currentProductBox].product_name_style"
@@ -54,26 +54,29 @@
             </div>
         </div>
         <div class="best" v-else>
-            <div class="col s12 m6 l3" v-for="product in company_products.products" :key="product.id">
-                <component :is="currentProductComponents"
-                           :name="home_page_info[currentProductBox].product_name_style"
-                           :price="home_page_info[currentProductBox].product_price_style"
-                           :category="home_page_info[currentProductBox].product_category_style"
-                           :button="home_page_info[currentProductBox].button_style"
-                           :icon="footer_info.icon_style"
-                           :id="product.id"
-                           :file="product.file"
-                           :product_name="product.product_name"
-                           :product_price="product.price"
-                           :discount_price="product.discount_price"
-                           :product_category="product.category"
-                           :tag="product.tag"
-                           :description="product.description"
-                           :top="product.top"
-                           :best="product.best"
-                           :company_name="company_name"
-                />
-            </div>
+            <template v-if="company_products_computed !== undefined && company_products_computed.length > 0">
+                <div class="col s12 m6 l3" v-for="product in company_products.products" :key="product.id">
+                    <component :is="currentProductComponents"
+                               :name="home_page_info[currentProductBox].product_name_style"
+                               :price="home_page_info[currentProductBox].product_price_style"
+                               :category="home_page_info[currentProductBox].product_category_style"
+                               :button="home_page_info[currentProductBox].button_style"
+                               :icon="footer_info.icon_style"
+                               :id="product.id"
+                               :file="product.file"
+                               :product_name="product.product_name"
+                               :product_price="product.price"
+                               :discount_price="product.discount_price"
+                               :product_category="product.category"
+                               :tag="product.tag"
+                               :description="product.description"
+                               :top="product.top"
+                               :best="product.best"
+                               :company_name="company_name"
+                    />
+                </div>
+            </template>
+
         </div>
         <div class="clear-both" style="clear: both"></div>
         <div style="display: flex; justify-content: center">
@@ -130,6 +133,9 @@
             ...mapState(['home_page_info', 'footer_info', 'company_products']),
             currentProductComponents() {
                 return this.currentProductBox
+            },
+            company_products_computed() {
+                return this.company_products.products
             }
         },
         methods: {

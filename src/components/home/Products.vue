@@ -47,7 +47,7 @@
         display: flex;
         flex-direction: column;
         background-color: #fff;
-        box-shadow: #ccc 0 0 16px;
+        box-shadow: #c1c1c1 0 0 16px;
         border-radius: 5px;
         margin-bottom: 20px;
     }

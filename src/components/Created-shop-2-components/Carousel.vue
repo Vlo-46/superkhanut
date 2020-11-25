@@ -1,8 +1,10 @@
 <template>
     <div class="container" id="banner-component">
         <h5 class="center-align">Popular products</h5>
-        <div class="border-bottom" :style="`background: ${right_panel.button['color']}`"></div>
-        <div class="carousel-items">
+        <div class="border-bottom" v-if="right_paneel_computed !== undefined"
+             :style="`background: ${right_panel.button['color']}`"></div>
+        <div class="carousel-items"
+             v-if="company_products_computed !== undefined && company_products_computed.length > 0">
             <div v-for="product in company_products.products" :key="product.id">
                 <component :is="currentProductComponents"
                            :name="home_page_info[currentProductBox].product_name_style"
@@ -70,13 +72,16 @@
             'product-8': product_8,
             'product-9': product_9,
         },
-        // computed: {
-        //     ...mapState(['product_boxs', 'right_panel']),
-        // },
         computed: {
             ...mapState(['home_page_info', 'footer_info', 'company_products']),
             currentProductComponents() {
                 return this.currentProductBox
+            },
+            company_products_computed() {
+                return this.company_products.products
+            },
+            right_paneel_computed() {
+                return this.right_panel.button
             }
         },
         methods: {

@@ -2,7 +2,6 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 
 import companies from './Companies/company';
-import products from './Products/products';
 import topCompany from './Companies/top-companies';
 import navigation from "./navigation";
 import blog_item from './Blog/blog-item';
@@ -14,6 +13,9 @@ import example_3_products from './Example-3/Products';
 import reg_navigation from './reg-navigation';
 import favorite_list from './Favorite'
 import basket_list from './Basket'
+
+import products from './Products/products';
+import filters from './Filters'
 
 import header_components from './Components/Header-components';
 import products_components from './Components/Product-box-components';
@@ -202,7 +204,7 @@ export default new Vuex.Store({
                     }
                 }
             };
-            // console.log(JSON.stringify(GLOBAL_OBJECT))
+            console.log(JSON.stringify(GLOBAL_OBJECT))
 
             let token = localStorage.getItem(keys.API_TOKEN);
             let url = keys.baseURI;
@@ -235,18 +237,17 @@ export default new Vuex.Store({
                 },
             })
                 .then(res => {
+                    // console.log(JSON.stringify(res.data))
                     let header = res.data.header;
                     let footer = res.data.footer;
                     let homePage = res.data.mains.home;
                     let shopPage = res.data.mains.shop;
-                    let contactPage = res.data.mains.contact;
                     let schema = res.data.schema;
 
                     let header_ids = res.data.header.ids;
                     let home_page_ids = res.data.mains.home.ids;
                     let shop_page_filters_ids = res.data.mains.shop.filters_ids;
                     let shop_page_rightBox_ids = res.data.mains.shop.rightBox_ids;
-                    let contact_page_ids = res.data.mains.contact.ids;
                     let footer_ids = res.data.footer.ids;
 
                     ctx.commit('COMPANY_NAME', company_name);
@@ -255,16 +256,13 @@ export default new Vuex.Store({
                     ctx.commit('GET_FOOTER_INFO', footer);
                     ctx.commit('GET_HOME_PAGE_INFO', homePage);
                     ctx.commit('GET_SHOP_PAGE_INFO', shopPage);
-                    ctx.commit('GET_CONTACT_PAGE_INFO', contactPage);
                     ctx.commit('SCHEMA_INFO', schema);
 
                     ctx.commit('GET_HEADER_IDS', header_ids);
                     ctx.commit('GET_HOME_PAGE_IDS', home_page_ids);
                     ctx.commit('GET_SHOP_PAGE_FILTERS_IDS', shop_page_filters_ids);
                     ctx.commit('GET_SHOP_PAGE_RIGHTBOX_IDS', shop_page_rightBox_ids);
-                    ctx.commit('GET_CONTACT_PAGE_IDS', contact_page_ids);
                     ctx.commit('GET_FOOTER_IDS', footer_ids)
-
 
                 })
                 .catch(e => console.log(e))
@@ -273,6 +271,7 @@ export default new Vuex.Store({
     modules: {
         companies,
         products,
+        filters,
         topCompany,
         navigation,
         blog_item,

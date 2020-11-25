@@ -1,6 +1,7 @@
 <template>
     <div class="img-box">
-        <img :src="img" alt="">
+        <img v-if="img" :src="img" alt="">
+        <img v-else src="../../assets/no-img.jpg" alt="">
     </div>
 </template>
 

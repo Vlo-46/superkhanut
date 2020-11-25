@@ -149,7 +149,150 @@
 
         <!--        HOME EXAMPLE 3 START-->
         <div class="shop-example-3" v-else>
-            <h1>EXAMPLE 3</h1>
+            <NavWrapper/>
+            <Header :support="company_admin_settings.support_field" :logo="company_admin_settings.company_logo"/>
+            <NavBar :company_name="company_name"/>
+            <div class="wrapper">
+                <div class="row">
+                    <div class="col s12 m3 l3 example-3-col">
+                        <div class="row">
+                            <template v-for="id in shop_page_filters_ids">
+                                <template v-if="id === 'category-component'">
+                                    <!--                    categories-->
+                                    <template
+                                            v-if="company_admin_settings_computed !== undefined && company_admin_settings_computed.length > 0">
+                                        <categories :key="id" :categories="company_admin_settings.categories"/>
+                                    </template>
+                                    <template v-else>
+                                        <div class="col s6 m12 l12" :key="id">
+                                            <h5 style="margin-bottom: 25px">Categories</h5>
+                                            <div class="category-item">
+                                                <span>Category 1</span>
+                                            </div>
+                                            <div class="category-item">
+                                                <span>Category 2</span>
+                                            </div>
+                                            <div class="category-item">
+                                                <span>Category 3</span>
+                                            </div>
+                                            <div class="category-item">
+                                                <span>Category 4</span>
+                                            </div>
+                                            <div class="category-item">
+                                                <span>Category 5</span>
+                                            </div>
+                                        </div>
+                                    </template>
+                                </template>
+                                <template v-else-if="id === 'filter-by-tag-component'">
+                                    <!--                    filter by tags-->
+                                    <template v-if="all_tags.length > 0">
+                                        <filter-by-tag :key="id" :tags="all_tags"/>
+                                    </template>
+                                    <template v-else>
+                                        <div class="col s6 m12 l12" :key="id">
+                                            <h5 style="margin-bottom: 25px">Tags</h5>
+                                            <div class="category-item">
+                                                <span>#Tag 1</span>
+                                            </div>
+                                            <div class="category-item">
+                                                <span>#Tag 2</span>
+                                            </div>
+                                            <div class="category-item">
+                                                <span>#Tag 3</span>
+                                            </div>
+                                        </div>
+                                    </template>
+
+                                </template>
+                                <template v-else-if="id === 'filter-by-price-component'">
+                                    <!--                    filter by price-->
+                                    <filter-by-price :key="id"
+                                                     :all_prices="all_prices"
+                                                     :max_price="max_price"
+                                                     :min_price="min_price"/>
+                                </template>
+                            </template>
+                        </div>
+                    </div>
+                    <div class="col s12 m9 l9 example-3-col">
+                        <template v-for="id in shop_page_rightBox_ids">
+                            <template v-if="id === 'shop_img_component'">
+                                <div :key="id" class="row">
+                                    <div class="col s12">
+                                        <!--                            shop image -->
+                                        <shop-image :img="company_admin_settings.shop_page_img"/>
+                                        <hr>
+                                    </div>
+                                </div>
+                            </template>
+                            <template v-else-if="id === 'shop_products_component'">
+                                <div :key="id" class="row products-field">
+                                    <h4>Products</h4>
+                                    <template
+                                            v-if="company_products_computed !== undefined && company_products_computed.length > 0">
+                                        <div class="col s12 m6 l4" v-for="product in company_products.products"
+                                             :key="product.id">
+                                            <component :is="currentProductComponent"
+                                                       :name="shop_page_info.product_title.product_name_style"
+                                                       :price="shop_page_info.product_price.product_price_style"
+                                                       :category="shop_page_info.product_category.product_category_style"
+                                                       :icon="footer_info.icon_style"
+                                                       :id="product.id"
+                                                       :file="product.file"
+                                                       :product_name="product.product_name"
+                                                       :product_price="product.price"
+                                                       :discount_price="product.discount_price"
+                                                       :product_category="product.category"
+                                                       :tag="product.tag"
+                                                       :description="product.description"
+                                                       :top="product.top"
+                                                       :best="product.best"
+                                                       :company_name="company_name"
+                                            />
+                                        </div>
+                                    </template>
+                                    <template v-else>
+                                        <div class="col s12 m6 l4">
+                                            <div class="product-item">
+                                                <span>Product item</span>
+                                            </div>
+                                        </div>
+                                        <div class="col s12 m6 l4">
+                                            <div class="product-item">
+                                                <span>Product item</span>
+                                            </div>
+                                        </div>
+                                        <div class="col s12 m6 l4">
+                                            <div class="product-item">
+                                                <span>Product item</span>
+                                            </div>
+                                        </div>
+                                        <div class="col s12 m6 l4">
+                                            <div class="product-item">
+                                                <span>Product item</span>
+                                            </div>
+                                        </div>
+                                        <div class="col s12 m6 l4">
+                                            <div class="product-item">
+                                                <span>Product item</span>
+                                            </div>
+                                        </div>
+                                        <div class="col s12 m6 l4">
+                                            <div class="product-item">
+                                                <span>Product item</span>
+                                            </div>
+                                        </div>
+                                    </template>
+
+                                    <!--:button="home_page_info[currentProductBox].button_style"-->
+                                </div>
+                            </template>
+                        </template>
+                    </div>
+                </div>
+            </div>
+            <Footer :support="company_admin_settings.support_field" :logo="company_admin_settings.company_logo"/>
         </div>
         <!--        HOME EXAMPLE 3 END-->
     </div>
@@ -226,6 +369,12 @@
             currentProductComponent() {
                 return this.currentProductBox
             },
+            company_admin_settings_computed() {
+                return this.company_admin_settings.categories
+            },
+            company_products_computed() {
+                return this.company_products.products
+            }
         },
         methods: {
             ...mapActions(['GET_SHOP_INFO', 'GET_COMPANY_PRODUCTS', 'GET_COMPANY_SETTINGS'])
@@ -294,5 +443,29 @@
 
     .products-field {
         margin-bottom: 50px;
+    }
+
+    .example-3-col {
+        padding: 0 50px;
+    }
+
+    .category-item {
+        margin-bottom: 10px;
+    }
+
+    .product-item {
+        position: relative;
+        border: dotted;
+        height: 365px;
+        margin: 10px 10px;
+    }
+
+    .product-item span {
+        position: absolute;
+        display: flex;
+        height: 100%;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
     }
 </style>

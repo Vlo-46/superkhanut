@@ -5,7 +5,7 @@
             <div class="collapsible-body">
                 <ul>
                     <li v-for="category in categories" :key="category">
-                        <a @click.prevent="WRAPPER_FILTER_BY_CATEGORY(category)">{{category}}</a>
+                        <a @click.prevent="$WRAPPER_FILTER_BY_CATEGORY(category)">{{category}}</a>
                     </li>
                 </ul>
             </div>
@@ -19,8 +19,8 @@
     export default {
         props: ['categories'],
         methods: {
-            ...mapActions(['WRAPPER_FILTER_BY_CATEGORY'])
-        }
+            ...mapActions(['$WRAPPER_FILTER_BY_CATEGORY'])
+        },
     }
 </script>
 

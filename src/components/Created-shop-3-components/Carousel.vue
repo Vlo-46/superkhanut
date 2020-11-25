@@ -2,7 +2,8 @@
     <div class="container" id="banner-component">
         <h5 class="center-align">Featured products</h5>
         <div class="border-bottom"></div>
-        <VueSlickCarousel v-bind="settings">
+        <VueSlickCarousel v-bind="settings"
+                          v-if="company_products_computed !== undefined && company_products_computed.length > 0">
             <div v-for="product in company_products.products" :key="product.id">
                 <component :is="currentProductComponents"
                            :name="home_page_info[currentProductBox].product_name_style"
@@ -22,6 +23,38 @@
                            :best="product.best"
                            :company_name="company_name"
                 />
+            </div>
+        </VueSlickCarousel>
+        <VueSlickCarousel v-bind="settings" v-else>
+            <div>
+                <div class="product-item">
+                    <span>Product item</span>
+                </div>
+            </div>
+            <div>
+                <div class="product-item">
+                    <span>Product item</span>
+                </div>
+            </div>
+            <div>
+                <div class="product-item">
+                    <span>Product item</span>
+                </div>
+            </div>
+            <div>
+                <div class="product-item">
+                    <span>Product item</span>
+                </div>
+            </div>
+            <div>
+                <div class="product-item">
+                    <span>Product item</span>
+                </div>
+            </div>
+            <div>
+                <div class="product-item">
+                    <span>Product item</span>
+                </div>
             </div>
         </VueSlickCarousel>
     </div>
@@ -94,6 +127,9 @@
             ...mapState(['home_page_info', 'footer_info', 'company_products']),
             currentProductComponents() {
                 return this.currentProductBox
+            },
+            company_products_computed() {
+                return this.company_products.products
             }
         },
         methods: {

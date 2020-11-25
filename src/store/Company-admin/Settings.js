@@ -32,6 +32,7 @@ export default {
             state.about_field = data
         },
         CONTACT_INFO(state, data) {
+            console.log(data)
             state.contact_info = data
         },
         CATEGORIES(state, data) {
@@ -42,7 +43,7 @@ export default {
         GET_COMPANY_SETTINGS(ctx, company_name) {
             axios.get(`${keys.baseURI}/api/store/${company_name}`)
                 .then(res => {
-                    // console.log(res.data);
+                    // console.log(JSON.stringify(res.data));
                     ctx.commit('SUPPORT_FIELD', res.data.support_field);
                     ctx.commit('SLIDER_FIELD', res.data.slider_field);
                     ctx.commit('COMPANY_LOGO', res.data.company_logo);

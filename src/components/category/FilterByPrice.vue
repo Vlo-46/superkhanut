@@ -5,7 +5,7 @@
             <div class="collapsible-body">
                 <div>
                     <input type="range" :min="min" :max="max" step="1"
-                           class="custom-range" v-model="price" @change="WRAPPER_FILTER_BY_PRICE({min: price, max})">
+                           class="custom-range" v-model="price" @change="$WRAPPER_FILTER_BY_PRICE({min: price, max})">
                     <span class="filtered_price">{{price}}&nbsp;Դ&nbsp;-&nbsp;{{max}}&nbsp;Դ</span>
                 </div>
             </div>
@@ -23,7 +23,7 @@
                 price: 0
             }
         },
-        methods: {...mapActions(['WRAPPER_FILTER_BY_PRICE'])},
+        methods: {...mapActions(['$WRAPPER_FILTER_BY_PRICE'])},
     }
 </script>
 

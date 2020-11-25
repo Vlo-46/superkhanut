@@ -48,7 +48,7 @@
             ...mapActions(['GET_COMPANY_SETTINGS'])
         },
         computed: {
-            ...mapState(['company_admin_settings'])
+            ...mapState(['company_admin_settings']),
         },
         async created() {
             let company_name = this.$route.params.pathMatch;

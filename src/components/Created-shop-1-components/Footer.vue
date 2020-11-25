@@ -82,6 +82,7 @@
     footer {
         border-top: 1px solid #ccc;
         margin-top: 100px;
+        padding: 20px 50px;
     }
 
     .s4 {
