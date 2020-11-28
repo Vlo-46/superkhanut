@@ -1,10 +1,27 @@
 <template>
     <div class="col s6 m12 l12">
-        <component :is="currentCategoryComponent"
-                   :categories="categories"
-        />
-    </div>
+        <template v-if="categories.length > 0">
+            <component :is="currentCategoryComponent"
+                       :categories="categories"
+            />
+        </template>
+        <template v-else>
+            <h5>Categories</h5>
+            <div class="s12">
+                <p>Category 1</p>
+            </div>
+            <div class="s12">
+                <p>Category 2</p>
+            </div>
+            <div class="s12">
+                <p>Category 3</p>
+            </div>
+            <div class="s12">
+                <p>Category 4</p>
+            </div>
+        </template>
 
+    </div>
 </template>
 
 <script>

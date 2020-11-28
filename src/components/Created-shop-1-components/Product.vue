@@ -1,7 +1,8 @@
 <template>
     <div class="container">
-        <h4>New products</h4>
-        <div class="row" id="products-field">
+        <h4>Products</h4>
+        <div class="row" id="products-field"
+             v-if="company_products_computed !== undefined && company_products_computed.length > 0">
             <div class="col s12 m6 l3" v-for="product in company_products.products" :key="product.id">
                 <component :is="currentProductComponents"
                            :name="home_page_info[currentProductBox].product_name_style"
@@ -22,6 +23,51 @@
                            :company_name="company_name"
                 />
             </div>
+        </div>
+        <div class="row" v-else>
+            <div class="col s12 m6 l3">
+                <div class="product-item">
+                    <span>Product item</span>
+                </div>
+            </div>
+            <div class="col s12 m6 l3">
+                <div class="product-item">
+                    <span>Product item</span>
+                </div>
+            </div>
+            <div class="col s12 m6 l3">
+                <div class="product-item">
+                    <span>Product item</span>
+                </div>
+            </div>
+            <div class="col s12 m6 l3">
+                <div class="product-item">
+                    <span>Product item</span>
+                </div>
+            </div>
+            <div class="col s12 m6 l3">
+                <div class="product-item">
+                    <span>Product item</span>
+                </div>
+            </div>
+            <div class="col s12 m6 l3">
+                <div class="product-item">
+                    <span>Product item</span>
+                </div>
+            </div>
+            <div class="col s12 m6 l3">
+                <div class="product-item">
+                    <span>Product item</span>
+                </div>
+            </div>
+            <div class="col s12 m6 l3">
+                <div class="product-item">
+                    <span>Product item</span>
+                </div>
+            </div>
+        </div>
+        <div style="display: flex; justify-content: center">
+            <a :href="`/${company_name}/shop`" class="btn waves-effect waves-green">View more</a>
         </div>
     </div>
 </template>
@@ -72,6 +118,9 @@
             ...mapState(['home_page_info', 'footer_info', 'company_products']),
             currentProductComponents() {
                 return this.currentProductBox
+            },
+            company_products_computed() {
+                return this.company_products.products
             }
         },
         methods: {
@@ -96,6 +145,10 @@
 </script>
 
 <style scoped>
+    .container {
+        margin-top: 50px;
+    }
+
     h4 {
         color: #333c4a;
         font-size: 28px;
@@ -104,5 +157,26 @@
 
     #products-field .s12 {
         margin-bottom: 15px;
+    }
+
+    .product-item {
+        position: relative;
+        border: dotted;
+        height: 365px;
+        margin-bottom: 25px;
+    }
+
+    .product-item span {
+        position: absolute;
+        display: flex;
+        height: 100%;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .btn {
+        background-color: #6ba229;
+        margin-top: 20px;
     }
 </style>

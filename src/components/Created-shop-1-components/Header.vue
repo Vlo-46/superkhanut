@@ -1,12 +1,12 @@
 <template>
     <nav id="drop_header_components wraper">
-        <div class="container row header-field">
+        <div class="container row header-field" v-if="support_computed">
             <template v-for="id in header_ids">
                 <template v-if="id === 'header-logo'">
                     <div class="col s3 header-s3" :key="id" id="logo-id">
                         <ul>
                             <li class="drag_logo" id="drag-logo-1">
-                                <img :src="logo" alt="">
+                                <a :href="`/${company_name}/home`" v-if="logo"><img :src="logo" alt=""></a>
                             </li>
                         </ul>
                     </div>
@@ -23,10 +23,43 @@
                                 <i class="material-icons" :style="footer_info.icon_style">phone</i>
                             </div>
                             <div>
-                        <span :style="header_info.span">
-                            {{support.title}}
-                        </span>
+                                <span :style="header_info.span">
+                                    {{support.title}}
+                                </span>
                                 <p class="phone-number" :style="header_info.span">{{support.phone}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </template>
+        </div>
+        <div class="container row header-field" v-else>
+            <template v-for="id in header_ids">
+                <template v-if="id === 'header-logo'">
+                    <div class="col s3 header-s3" :key="id">
+                        <ul>
+                            <li class="drag_logo">
+                                <a :href="`/${company_name}/home`"><img src="../../assets/logo-comp.png" alt=""></a>
+                            </li>
+                        </ul>
+                    </div>
+                </template>
+                <template v-else-if="id === 'header-input'">
+                    <div :key="id" class="col s6 header-s6">
+                        <component :is="currentInputComponent" :input="header_info.input" :button="header_info.button"/>
+                    </div>
+                </template>
+                <template v-else-if="id === 'header-support-box'">
+                    <div :key="id" class="col s3 header-3">
+                        <div class="support-box">
+                            <div>
+                                <i class="material-icons" :style="footer_info.icon_style">phone</i>
+                            </div>
+                            <div>
+                                <span :style="header_info.span">
+                                    Information
+                                </span>
+                                <p class="phone-number" :style="header_info.span">+374 123 456</p>
                             </div>
                         </div>
                     </div>
@@ -44,7 +77,7 @@
     import {mapActions, mapState} from 'vuex'
 
     export default {
-        props: ['support', 'logo'],
+        props: ['support', 'logo', 'company_name'],
         data() {
             return {
                 currentInput: '',
@@ -64,6 +97,9 @@
             ...mapState(['header_info', 'footer_info', 'header_ids']),
             currentInputComponent() {
                 return this.currentInput
+            },
+            support_computed() {
+                return this.support
             }
         },
         methods: {
@@ -135,6 +171,7 @@
     .phone-number {
         font-size: 18px;
         color: #333;
+        padding-top: 5px;
     }
 
     i {

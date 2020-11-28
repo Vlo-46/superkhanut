@@ -5,7 +5,8 @@
         <div class="home-example-1" v-if="schema === 'example-1'">
             <NavWrapper/>
             <!--        header-->
-            <Header :support="company_admin_settings.support_field" :logo="company_admin_settings.company_logo"/>
+            <Header :support="company_admin_settings.support_field" :logo="company_admin_settings.company_logo"
+                    :company_name="company_name"/>
             <NavBar :company_name="company_name"/>
             <div>
                 <template v-for="id in home_page_ids">
@@ -32,7 +33,8 @@
         <!--        HOME PAGE EXAMPLE 2 START-->
         <div class="home-example-2" v-else-if="schema === 'example-2'">
             <NavWrapper/>
-            <Header_2 :support="company_admin_settings.support_field" :logo="company_admin_settings.company_logo"/>
+            <Header_2 :support="company_admin_settings.support_field" :logo="company_admin_settings.company_logo"
+                      :company_name="company_name"/>
             <NavBar_2 :company_name="company_name"/>
             <div>
                 <template v-for="id in home_page_ids">
@@ -50,14 +52,16 @@
                     </template>
                 </template>
             </div>
-            <Footer_2 :support="company_admin_settings.support_field" :logo="company_admin_settings.company_logo"/>
+            <Footer_2 :support="company_admin_settings.support_field" :logo="company_admin_settings.company_logo"
+                      :company_name="company_name"/>
         </div>
         <!--        HOME PAGE EXAMPLE 2 END-->
 
         <!--        HOME PAGE EXAMPLE 3 START-->
         <div class="home-example-3" v-else>
             <NavWrapper/>
-            <Header_3 :support="company_admin_settings.support_field" :logo="company_admin_settings.company_logo"/>
+            <Header_3 :support="company_admin_settings.support_field" :logo="company_admin_settings.company_logo"
+                      :company_name="company_name"/>
             <NavBar_3 :company_name="company_name"/>
             <div>
                 <template v-for="id in home_page_ids">

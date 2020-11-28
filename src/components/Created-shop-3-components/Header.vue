@@ -5,21 +5,23 @@
                 <div class="col s3">
                     <ul>
                         <li>
-                            <a href="" class="company-logo">
-                                <img :src="logo">
+                            <a :href="`/${company_name}/home`" class="company-logo">
+                                <img v-if="logo" :src="logo">
+                                <img src="../../assets/logo-comp.png" alt="">
                             </a>
                         </li>
                     </ul>
                 </div>
             </div>
             <div class="col s8">
-                <div class="row">
+                <div class="row" style="height: 100%">
                     <template v-for="id in header_ids">
                         <template v-if="id === 'header-logo'">
                             <div class="col s4" :key="id" id="header-logo">
                                 <div class="header-info-field">
                                     <span>Email support</span>
-                                    <p>example@gmail.com</p>
+                                    <p v-if="support_computed && support_computed.email">{{support.email}}</p>
+                                    <p v-else>example@gmail.com</p>
                                 </div>
                             </div>
                         </template>
@@ -35,7 +37,8 @@
                             <div class="col s4" :key="id" id="header-support-box">
                                 <div class="header-info-field">
                                     <span>Call support</span>
-                                    <p>+374 12 34 56</p>
+                                    <p v-if="support_computed && support_computed.phone">{{support.phone}}</p>
+                                    <p v-else>+374 12 34 56 (example)</p>
                                 </div>
                             </div>
                         </template>
@@ -50,15 +53,18 @@
     import {mapState, mapActions} from 'vuex'
 
     export default {
-        props: ['support', 'logo'],
+        props: ['support', 'logo', 'company_name'],
         computed: {
             ...mapState(['header_info', 'footer_info', 'header_ids']),
             // currentInputComponent() {
             //     return this.currentInput
             // }
+            support_computed() {
+                return this.support
+            }
         },
         methods: {
-            ...mapActions(['GET_SHOP_INFO'])
+            ...mapActions(['GET_SHOP_INFO']),
         },
 
         async created() {

@@ -3,7 +3,7 @@
         <hr>
         <h5 class="center-align">CONTACT INFORMATION</h5>
         <hr>
-        <div>
+        <div class="row">
             <template v-for="id in footer_ids">
                 <template v-if="id === 'footer-logo-component'">
                     <div class="col s12 m4 l4" :key="id" id="footer-logo-component">
@@ -11,8 +11,8 @@
                         <span>
                             <i class="material-icons" :style="footer_info.icon_style">local_phone</i></span>
                             <span>CALL</span>
-                            <p>+374 12 34 56</p>
-                            <p>+374 56 45 32</p>
+                            <p v-if="support_computed && support_computed.phone">{{support.phone}}</p>
+                            <p v-else>+374 56 45 32 (example)</p>
                         </div>
                     </div>
                 </template>
@@ -21,8 +21,8 @@
                         <div class="footer-content">
                             <span><i class="material-icons" :style="footer_info.icon_style">location_on</i></span>
                             <span>FIND US</span>
-                            <p>Hahnenmoos strasse 20C, 3715</p>
-                            <p>Adelboden, Switzerland</p>
+                            <p v-if="support_computed && support_computed.address">{{support.address}}</p>
+                            <p v-else>Adelboden, Switzerland</p>
                         </div>
                     </div>
                 </template>
@@ -31,7 +31,7 @@
                         <div class="footer-content">
                             <span><i class="material-icons" :style="footer_info.icon_style">email</i></span>
                             <span>EMAIL</span>
-                            <p>example@gmail.com</p>
+                            <p v-if="support_computed && support_computed.email">{{support.email}}>example@gmail.com</p>
                             <p>example@mail.ru</p>
                         </div>
                     </div>
@@ -45,16 +45,21 @@
     import {mapState} from "vuex";
 
     export default {
-        props: ['logo', 'support'],
+        props: ['logo', 'support', 'company_name'],
         computed: {
-            ...mapState(['footer_info', 'footer_ids'])
-        }
+            ...mapState(['footer_info', 'footer_ids']),
+            support_computed() {
+                return this.support
+            }
+        },
+
     }
 </script>
 
 <style scoped>
     footer {
         margin-top: 80px;
+        padding-bottom: 20px;
     }
 
     .footer-content {
@@ -64,6 +69,7 @@
         align-items: center;
         border-left: 1px solid #ccc;
         border-right: 1px solid #ccc;
+        padding-bottom: 20px;
     }
 
     .footer-content p {
@@ -81,8 +87,5 @@
         font-size: 24px;
     }
 
-    #footer-contact-component, #footer-info-component, #footer-logo-component {
-        cursor: grab;
-    }
 </style>
 

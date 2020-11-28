@@ -30,6 +30,7 @@
     import keys from "../../../keys";
 
     export default {
+        name: 'product-4',
         props: ['name', 'price', 'category', 'button', 'icon', 'id', 'file', 'product_name', 'product_price', 'discount_price', 'product_category', 'tag', 'description', 'top', 'best', 'company_name'],
         methods: {
             ADD_TO_FAVORITE() {

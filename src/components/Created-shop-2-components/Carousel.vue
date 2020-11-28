@@ -1,8 +1,7 @@
 <template>
     <div class="container" id="banner-component">
         <h5 class="center-align">Popular products</h5>
-        <div class="border-bottom" v-if="right_paneel_computed !== undefined"
-             :style="`background: ${right_panel.button['color']}`"></div>
+        <div class="border-bottom"></div>
         <div class="carousel-items"
              v-if="company_products_computed !== undefined && company_products_computed.length > 0">
             <div v-for="product in company_products.products" :key="product.id">
@@ -24,6 +23,33 @@
                            :best="product.best"
                            :company_name="company_name"
                 />
+            </div>
+        </div>
+        <div class="carousel-items" v-else>
+            <div>
+                <div class="product-item">
+                    <span>Popular item</span>
+                </div>
+            </div>
+            <div>
+                <div class="product-item">
+                    <span>Popular item</span>
+                </div>
+            </div>
+            <div>
+                <div class="product-item">
+                    <span>Popular item</span>
+                </div>
+            </div>
+            <div>
+                <div class="product-item">
+                    <span>Popular item</span>
+                </div>
+            </div>
+            <div>
+                <div class="product-item">
+                    <span>Popular item</span>
+                </div>
             </div>
         </div>
     </div>
@@ -62,15 +88,15 @@
             }
         },
         components: {
-            'product-1': product_1,
-            'product-2': product_2,
-            'product-3': product_3,
-            'product-4': product_4,
-            'product-5': product_5,
-            'product-6': product_6,
-            'product-7': product_7,
-            'product-8': product_8,
-            'product-9': product_9,
+            'product-box-1': product_1,
+            'product-box-2': product_2,
+            'product-box-3': product_3,
+            'product-box-4': product_4,
+            'product-box-5': product_5,
+            'product-box-6': product_6,
+            'product-box-7': product_7,
+            'product-box-8': product_8,
+            'product-box-9': product_9,
         },
         computed: {
             ...mapState(['home_page_info', 'footer_info', 'company_products']),
@@ -80,7 +106,7 @@
             company_products_computed() {
                 return this.company_products.products
             },
-            right_paneel_computed() {
+            right_panel_computed() {
                 return this.right_panel.button
             }
         },
@@ -133,10 +159,6 @@
 </script>
 
 <style scoped>
-    #banner-component {
-        cursor: grab;
-    }
-
     .container {
         margin: 80px auto;
     }

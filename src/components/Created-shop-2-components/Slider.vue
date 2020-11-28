@@ -4,9 +4,8 @@
             <div v-for="item in items" :key="item.id" class="slider-item">
                 <img :src="item.src" alt="">
                 <div class="slider-text-content">
-                    <div v-if="active === false" style="position: relative">
+                    <div style="position: relative">
                         <p>{{item.text}}</p>
-                        <i class="material-icons edit_icon" @click="active = true">edit</i>
                     </div>
                     <!--                    <div class="col s12" v-else style="position: relative">-->
                     <!--                        <label for="textarea1">Change slider text</label>-->
@@ -25,7 +24,6 @@
     export default {
         data() {
             return {
-                active: false,
                 items: [
                     {
                         id: 1,
@@ -59,10 +57,6 @@
 </script>
 
 <style scoped>
-    #slider-component {
-        cursor: grab;
-    }
-
     img {
         width: 100%;
         object-fit: fill;

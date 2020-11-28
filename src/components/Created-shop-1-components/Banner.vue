@@ -54,6 +54,9 @@
             ...mapState(['home_page_info']),
             currentBannerComponent() {
                 return this.currentBanner
+            },
+            home_page_info_computed() {
+                return this.home_page_info[this.currentBanner]
             }
         },
         beforeMount() {

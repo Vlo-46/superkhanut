@@ -5,16 +5,23 @@
                 <template v-if="id === 'footer-logo-component'">
                     <div :key="id" class="col s12 m12 l4">
                         <div class="imgBox">
-                            <img :src="logo" alt="" class="responsive-img">
+                            <img v-if="logo" :src="logo" alt="" class="responsive-img">
+                            <img v-else src="../../assets/logo-comp.png" alt="">
                         </div>
                         <ul class="links">
                             <div>
-                                <a :href="support.instagram" target="_blank">
+                                <a :href="support.instagram" target="_blank" v-if="support_computed">
+                                    <i class="fab fa-instagram" :style="footer_info.icon_style"></i>
+                                </a>
+                                <a href="/your_instagram_link" target="_blank" v-else>
                                     <i class="fab fa-instagram" :style="footer_info.icon_style"></i>
                                 </a>
                             </div>
                             <div>
-                                <a :href="support.facebook" target="_blank">
+                                <a :href="support.facebook" target="_blank" v-if="support_computed">
+                                    <i class="fab fa-facebook-f" :style="footer_info.icon_style"></i>
+                                </a>
+                                <a href="/your_facebook_link" target="_blank" v-else>
                                     <i class="fab fa-facebook-f" :style="footer_info.icon_style"></i>
                                 </a>
                             </div>
@@ -25,15 +32,18 @@
                     <div :key="id" class="col s12 m6 l4">
                         <div>
                             <p>Address</p>
-                            <span>{{support.address}}</span>
+                            <span v-if="support_computed" v>{{support.address}}</span>
+                            <span v-else>Company address</span>
                         </div>
                         <div>
                             <p>Need Help?</p>
-                            <span>Call: {{support.phone}}</span>
+                            <span v-if="support_computed">Call: {{support.phone}}</span>
+                            <span v-else>Call: example +374 123 456</span>
                         </div>
                         <div>
                             <p>Email</p>
-                            <span>{{support.email}}</span>
+                            <span v-if="support_computed">{{support.email}}</span>
+                            <span v-else>example@gmail.com</span>
                         </div>
                     </div>
                 </template>
@@ -73,7 +83,10 @@
     export default {
         props: ['logo', 'support', 'company_name'],
         computed: {
-            ...mapState(['footer_info', 'footer_ids'])
+            ...mapState(['footer_info', 'footer_ids']),
+            support_computed() {
+                return this.support
+            }
         }
     }
 </script>

@@ -1,20 +1,29 @@
 <template>
     <div class="product" id="product-6">
         <div class="product-img">
-            <img src="http://bit.ly/2tMBBTd" height="420" width="327">
+            <img :src="file" height="420" width="327">
         </div>
         <div class="product-info">
             <div class="product-text">
-                <h1>Harvest Vase</h1>
-                <h2>by studio and friends</h2>
-                <p><span>78</span>$</p>
+                <h1 :style="name">{{product_name}}</h1>
+                <h2 :style="category">{{product_category}}</h2>
+                <p><span :style="price">{{product_price}}&nbsp;AMD</span>$</p>
             </div>
             <div class="product-price-btn">
-                <button type="button">buy now</button>
+                <router-link :to="{path: `/${company_name}/detail/${id}`, params: {id}}" class="view-more"
+                             :style="button">View more
+                </router-link>
             </div>
         </div>
     </div>
 </template>
+
+<script>
+    export default {
+        name: 'product-6',
+        props: ['name', 'price', 'category', 'button', 'icon', 'id', 'file', 'product_name', 'product_price', 'discount_price', 'product_category', 'tag', 'description', 'top', 'best', 'company_name'],
+    }
+</script>
 
 <style scoped>
     .product {

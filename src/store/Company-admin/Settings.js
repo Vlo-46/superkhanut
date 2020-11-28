@@ -32,7 +32,6 @@ export default {
             state.about_field = data
         },
         CONTACT_INFO(state, data) {
-            console.log(data)
             state.contact_info = data
         },
         CATEGORIES(state, data) {

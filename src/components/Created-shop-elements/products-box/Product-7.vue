@@ -1,23 +1,69 @@
 <template>
     <div class="product" id="product-7">
-        <div class="badge">Hot</div>
+        <!--        <div class="badge">Hot</div>-->
         <div class="product-tumb">
-            <img src="https://i.imgur.com/xdbHo4E.png" alt="">
+            <img :src="file" alt="">
         </div>
         <div class="product-details">
-            <span class="product-catagory">Women,bag</span>
-            <h4><a href="">Women leather bag</a></h4>
+            <span class="product-catagory" :style="category">{{product_category}}</span>
+            <h4>
+                <router-link :to="{path: `/${company_name}/detail/${id}`, params: {id}}" class="view-more"
+                >{{product_name}}
+                    <!--                    :style="button"-->
+                </router-link>
+            </h4>
             <div class="product-bottom-details">
                 <!--                <div class="product-price"><small>$270.00</small>$230.99</div>-->
-                <div class="product-price">$230.99</div>
+                <div class="product-price" :style="price">{{product_price}}&nbsp;AMD</div>
                 <div class="product-links">
-                    <a href=""><i class="fa fa-heart"></i></a>
-                    <a href=""><i class="fa fa-shopping-cart"></i></a>
+                    <a href="" @click.prevent="ADD_TO_FAVORITE"><i class="fa fa-heart" :style="icon"></i></a>
+                    <!--                    <a href=""><i class="fa fa-shopping-cart" :style="icon"></i></a>-->
                 </div>
             </div>
         </div>
     </div>
 </template>
+
+<script>
+    import keys from "../../../keys";
+
+    export default {
+        name: 'product-7',
+        props: ['name', 'price', 'category', 'button', 'icon', 'id', 'file', 'product_name', 'product_price', 'discount_price', 'product_category', 'tag', 'description', 'top', 'best', 'company_name'],
+        methods: {
+            ADD_TO_FAVORITE() {
+                let favorite_list = keys.favorite;
+
+                let favorite_item = {
+                    company_name: this.company_name,
+                    id: this.id,
+                    file: this.file,
+                    product_name: this.product_name,
+                    product_price: this.product_price,
+                    discount_price: this.discount_price,
+                    product_category: this.product_category,
+                };
+
+                let array = [];
+
+                let local_item = localStorage.getItem(favorite_list);
+
+                array = JSON.parse(local_item) || [];
+
+                for (let i = 0; i < array.length; i++) {
+                    if (array[i].id === favorite_item.id) {
+                        let index = array.indexOf(array[i]);
+                        // console.log(index)
+                        array.splice(index, 1)
+                    }
+                }
+
+                array.push(favorite_item);
+                localStorage.setItem(favorite_list, JSON.stringify(array))
+            }
+        },
+    }
+</script>
 
 <style scoped>
     a {

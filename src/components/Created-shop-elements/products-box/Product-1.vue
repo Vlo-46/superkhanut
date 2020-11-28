@@ -40,6 +40,7 @@
     import favorite_alert from '../../Alerts/Favorite-alert'
 
     export default {
+        name: 'product-1',
         data() {
           return {
               disabled: true

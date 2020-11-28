@@ -9,74 +9,209 @@
         </div>
         <h5 class="center-align">{{currentTab.toUpperCase()}}</h5>
         <div class="border-bottom"></div>
-        <div class="news" v-if="currentTab === 'news' && company_products_computed !== undefined && company_products_computed.length > 0">
-            <div class="col s12 m6 l3" v-for="product in company_products.products" :key="product.id">
-                <component :is="currentProductComponents"
-                           :name="home_page_info[currentProductBox].product_name_style"
-                           :price="home_page_info[currentProductBox].product_price_style"
-                           :category="home_page_info[currentProductBox].product_category_style"
-                           :button="home_page_info[currentProductBox].button_style"
-                           :icon="footer_info.icon_style"
-                           :id="product.id"
-                           :file="product.file"
-                           :product_name="product.product_name"
-                           :product_price="product.price"
-                           :discount_price="product.discount_price"
-                           :product_category="product.category"
-                           :tag="product.tag"
-                           :description="product.description"
-                           :top="product.top"
-                           :best="product.best"
-                           :company_name="company_name"
-                />
+        <div class="news" v-if="currentTab === 'news'">
+            <div class="row">
+                <template v-if="company_products_computed !== undefined && company_products_computed.length > 0">
+                    <div class="col s12 m6 l3" v-for="product in company_products.products" :key="product.id">
+                        <component :is="currentProductComponents"
+                                   :name="home_page_info[currentProductBox].product_name_style"
+                                   :price="home_page_info[currentProductBox].product_price_style"
+                                   :category="home_page_info[currentProductBox].product_category_style"
+                                   :button="home_page_info[currentProductBox].button_style"
+                                   :icon="footer_info.icon_style"
+                                   :id="product.id"
+                                   :file="product.file"
+                                   :product_name="product.product_name"
+                                   :product_price="product.price"
+                                   :discount_price="product.discount_price"
+                                   :product_category="product.category"
+                                   :tag="product.tag"
+                                   :description="product.description"
+                                   :top="product.top"
+                                   :best="product.best"
+                                   :company_name="company_name"
+                        />
+                    </div>
+                </template>
+                <template v-else>
+                    <div class="col s12 m6 l3">
+                        <div class="product-item">
+                            <span>New item</span>
+                        </div>
+                    </div>
+                    <div class="col s12 m6 l3">
+                        <div class="product-item">
+                            <span>New item</span>
+                        </div>
+                    </div>
+                    <div class="col s12 m6 l3">
+                        <div class="product-item">
+                            <span>New item</span>
+                        </div>
+                    </div>
+                    <div class="col s12 m6 l3">
+                        <div class="product-item">
+                            <span>New item</span>
+                        </div>
+                    </div>
+                    <div class="col s12 m6 l3">
+                        <div class="product-item">
+                            <span>New item</span>
+                        </div>
+                    </div>
+                    <div class="col s12 m6 l3">
+                        <div class="product-item">
+                            <span>New item</span>
+                        </div>
+                    </div>
+                    <div class="col s12 m6 l3">
+                        <div class="product-item">
+                            <span>New item</span>
+                        </div>
+                    </div>
+                    <div class="col s12 m6 l3">
+                        <div class="product-item">
+                            <span>New item</span>
+                        </div>
+                    </div>
+                </template>
             </div>
         </div>
-        <div class="best" v-else-if="currentTab === 'best' && company_products_computed !== undefined && company_products_computed.length > 0">
-            <div class="col s12 m6 l3" v-for="product in company_products.products" :key="product.id">
-                <component :is="currentProductComponents"
-                           :name="home_page_info[currentProductBox].product_name_style"
-                           :price="home_page_info[currentProductBox].product_price_style"
-                           :category="home_page_info[currentProductBox].product_category_style"
-                           :button="home_page_info[currentProductBox].button_style"
-                           :icon="footer_info.icon_style"
-                           :id="product.id"
-                           :file="product.file"
-                           :product_name="product.product_name"
-                           :product_price="product.price"
-                           :discount_price="product.discount_price"
-                           :product_category="product.category"
-                           :tag="product.tag"
-                           :description="product.description"
-                           :top="product.top"
-                           :best="product.best"
-                           :company_name="company_name"
-                />
+        <div class="best" v-else-if="currentTab === 'best'">
+            <div class="row">
+                <template v-if="company_products_computed !== undefined && company_products_computed.length > 0">
+                    <div class="col s12 m6 l3" v-for="product in company_products.products" :key="product.id">
+                        <component :is="currentProductComponents"
+                                   :name="home_page_info[currentProductBox].product_name_style"
+                                   :price="home_page_info[currentProductBox].product_price_style"
+                                   :category="home_page_info[currentProductBox].product_category_style"
+                                   :button="home_page_info[currentProductBox].button_style"
+                                   :icon="footer_info.icon_style"
+                                   :id="product.id"
+                                   :file="product.file"
+                                   :product_name="product.product_name"
+                                   :product_price="product.price"
+                                   :discount_price="product.discount_price"
+                                   :product_category="product.category"
+                                   :tag="product.tag"
+                                   :description="product.description"
+                                   :top="product.top"
+                                   :best="product.best"
+                                   :company_name="company_name"
+                        />
+                    </div>
+                </template>
+                <template v-else>
+                    <div class="col s12 m6 l3">
+                        <div class="product-item">
+                            <span>Best item</span>
+                        </div>
+                    </div>
+                    <div class="col s12 m6 l3">
+                        <div class="product-item">
+                            <span>Best item</span>
+                        </div>
+                    </div>
+                    <div class="col s12 m6 l3">
+                        <div class="product-item">
+                            <span>Best item</span>
+                        </div>
+                    </div>
+                    <div class="col s12 m6 l3">
+                        <div class="product-item">
+                            <span>Best item</span>
+                        </div>
+                    </div>
+                    <div class="col s12 m6 l3">
+                        <div class="product-item">
+                            <span>Best item</span>
+                        </div>
+                    </div>
+                    <div class="col s12 m6 l3">
+                        <div class="product-item">
+                            <span>Best item</span>
+                        </div>
+                    </div>
+                    <div class="col s12 m6 l3">
+                        <div class="product-item">
+                            <span>Best item</span>
+                        </div>
+                    </div>
+                    <div class="col s12 m6 l3">
+                        <div class="product-item">
+                            <span>Best item</span>
+                        </div>
+                    </div>
+                </template>
             </div>
         </div>
         <div class="best" v-else>
-            <template v-if="company_products_computed !== undefined && company_products_computed.length > 0">
-                <div class="col s12 m6 l3" v-for="product in company_products.products" :key="product.id">
-                    <component :is="currentProductComponents"
-                               :name="home_page_info[currentProductBox].product_name_style"
-                               :price="home_page_info[currentProductBox].product_price_style"
-                               :category="home_page_info[currentProductBox].product_category_style"
-                               :button="home_page_info[currentProductBox].button_style"
-                               :icon="footer_info.icon_style"
-                               :id="product.id"
-                               :file="product.file"
-                               :product_name="product.product_name"
-                               :product_price="product.price"
-                               :discount_price="product.discount_price"
-                               :product_category="product.category"
-                               :tag="product.tag"
-                               :description="product.description"
-                               :top="product.top"
-                               :best="product.best"
-                               :company_name="company_name"
-                    />
-                </div>
-            </template>
-
+            <div class="row">
+                <template v-if="company_products_computed !== undefined && company_products_computed.length > 0">
+                    <div class="col s12 m6 l3" v-for="product in company_products.products" :key="product.id">
+                        <component :is="currentProductComponents"
+                                   :name="home_page_info[currentProductBox].product_name_style"
+                                   :price="home_page_info[currentProductBox].product_price_style"
+                                   :category="home_page_info[currentProductBox].product_category_style"
+                                   :button="home_page_info[currentProductBox].button_style"
+                                   :icon="footer_info.icon_style"
+                                   :id="product.id"
+                                   :file="product.file"
+                                   :product_name="product.product_name"
+                                   :product_price="product.price"
+                                   :discount_price="product.discount_price"
+                                   :product_category="product.category"
+                                   :tag="product.tag"
+                                   :description="product.description"
+                                   :top="product.top"
+                                   :best="product.best"
+                                   :company_name="company_name"
+                        />
+                    </div>
+                </template>
+                <template v-else>
+                    <div class="col s12 m6 l3">
+                        <div class="product-item">
+                            <span>Top item</span>
+                        </div>
+                    </div>
+                    <div class="col s12 m6 l3">
+                        <div class="product-item">
+                            <span>Top item</span>
+                        </div>
+                    </div>
+                    <div class="col s12 m6 l3">
+                        <div class="product-item">
+                            <span>Top item</span>
+                        </div>
+                    </div>
+                    <div class="col s12 m6 l3">
+                        <div class="product-item">
+                            <span>Top item</span>
+                        </div>
+                    </div>
+                    <div class="col s12 m6 l3">
+                        <div class="product-item">
+                            <span>Top item</span>
+                        </div>
+                    </div>
+                    <div class="col s12 m6 l3">
+                        <div class="product-item">
+                            <span>Top item</span>
+                        </div>
+                    </div>
+                    <div class="col s12 m6 l3">
+                        <div class="product-item">
+                            <span>Top item</span>
+                        </div>
+                    </div>
+                    <div class="col s12 m6 l3">
+                        <div class="product-item">
+                            <span>Top item</span>
+                        </div>
+                    </div>
+                </template>
+            </div>
         </div>
         <div class="clear-both" style="clear: both"></div>
         <div style="display: flex; justify-content: center">
@@ -119,15 +254,15 @@
             }
         },
         components: {
-            'product-1': product_1,
-            'product-2': product_2,
-            'product-3': product_3,
-            'product-4': product_4,
-            'product-5': product_5,
-            'product-6': product_6,
-            'product-7': product_7,
-            'product-8': product_8,
-            'product-9': product_9,
+            'product-box-1': product_1,
+            'product-box-2': product_2,
+            'product-box-3': product_3,
+            'product-box-4': product_4,
+            'product-box-5': product_5,
+            'product-box-6': product_6,
+            'product-box-7': product_7,
+            'product-box-8': product_8,
+            'product-box-9': product_9,
         },
         computed: {
             ...mapState(['home_page_info', 'footer_info', 'company_products']),
@@ -163,10 +298,6 @@
 </script>
 
 <style scoped>
-    #product-component {
-        cursor: grab;
-    }
-
     .best-sales {
         margin-top: 80px;
     }
@@ -175,6 +306,7 @@
         position: relative;
         border: dotted;
         height: 365px;
+        margin-bottom: 25px;
     }
 
     .product-item span {

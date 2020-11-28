@@ -5,7 +5,8 @@
                 <template v-if="id === 'footer-logo-component'">
                     <div class="col s12 m4 l4" :key="id" id="footer-logo-component">
                         <div class="company_logo">
-                            <img :src="logo" alt="">
+                            <img v-if="logo" :src="logo" alt="">
+                            <img v-else src="../../assets/logo-comp.png" alt="">
                         </div>
                         <div style="padding: 0 20px;">
                     <span>
@@ -36,28 +37,39 @@
                             <h6>CONTACT US</h6>
                             <div class="hr"></div>
                             <li>
-                                <a href="">
-                                    <i class="material-icons" :style="footer_info.icon_style">location_on</i><small>Armenia,
-                                    erevan</small>
-                                </a>
+                                <span v-if="support_computed && support_computed.address">
+                                    <i class="material-icons" :style="footer_info.icon_style">location_on</i>
+                                    <small>{{support.address}}</small>
+                                </span>
+                                <span v-else>
+                                    <i class="material-icons" :style="footer_info.icon_style">location_on</i>
+                                    <small>Armenia, erevan</small>
+                                </span>
                             </li>
                             <li>
-                                <a href="">
-                                    <i class="material-icons" :style="footer_info.icon_style">local_phone</i><small>+374
-                                    12 34 56</small>
-                                </a>
+                                <span v-if="support_computed && support_computed.phone">
+                                    <i class="material-icons" :style="footer_info.icon_style">local_phone</i>
+                                    <small>{{support.phone}}</small>
+                                </span>
+                                <span>
+                                    <i class="material-icons" :style="footer_info.icon_style">local_phone</i>
+                                    <small>+374 12 34 56 (example)</small>
+                                </span>
                             </li>
                             <li>
-                                <a href="">
+                                <span v-if="support_computed && support_computed.email">
+                                    <i class="material-icons" :style="footer_info.icon_style">message</i><small>{{support.email}}</small>
+                                </span>
+                                <span v-else>
                                     <i class="material-icons" :style="footer_info.icon_style">message</i><small>example@gmail.com</small>
-                                </a>
+                                </span>
                             </li>
-                            <li>
-                                <a href="">
-                                    <i class="material-icons" :style="footer_info.icon_style">access_time</i>
-                                    Mon - Sat : 0900 - 1900&nbsp;Sun : Closed
-                                </a>
-                            </li>
+                            <!--                            <li>-->
+                            <!--                                <span>-->
+                            <!--                                    <i class="material-icons" :style="footer_info.icon_style">access_time</i>-->
+                            <!--                                    Mon - Sat : 0900 - 1900&nbsp;Sun : Closed-->
+                            <!--                                </span>-->
+                            <!--                            </li>-->
                         </ul>
                     </div>
                 </template>
@@ -72,7 +84,10 @@
     export default {
         props: ['logo', 'support', 'company_name'],
         computed: {
-            ...mapState(['footer_info', 'footer_ids'])
+            ...mapState(['footer_info', 'footer_ids']),
+            support_computed() {
+                return this.support
+            }
         }
     }
 </script>
@@ -82,7 +97,7 @@
         margin-top: 100px;
         border-top: 1px solid #ccc;
         border-bottom: 1px solid #ccc;
-        cursor: grab;
+        padding: 20px 50px;
     }
 
     img {
@@ -118,7 +133,13 @@
         display: block;
     }
 
-    .footer-contact-field li a {
+    ul li span {
+        color: #666666;
+        text-decoration: none;
+        display: block;
+    }
+
+    .footer-contact-field li span {
         display: flex;
         align-items: center;
     }

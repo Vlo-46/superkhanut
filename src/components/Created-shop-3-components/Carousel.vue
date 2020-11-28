@@ -3,7 +3,8 @@
         <h5 class="center-align">Featured products</h5>
         <div class="border-bottom"></div>
         <VueSlickCarousel v-bind="settings"
-                          v-if="company_products_computed !== undefined && company_products_computed.length > 0">
+                          v-if="company_products_computed !== undefined && company_products_computed.length > 0"
+        >
             <div v-for="product in company_products.products" :key="product.id">
                 <component :is="currentProductComponents"
                            :name="home_page_info[currentProductBox].product_name_style"
@@ -110,19 +111,25 @@
         },
         components: {
             VueSlickCarousel,
-            'product-1': product_1,
-            'product-2': product_2,
-            'product-3': product_3,
-            'product-4': product_4,
-            'product-5': product_5,
-            'product-6': product_6,
-            'product-7': product_7,
-            'product-8': product_8,
-            'product-9': product_9,
+            'product-box-1': product_1,
+            'product-box-2': product_2,
+            'product-box-3': product_3,
+            'product-box-4': product_4,
+            'product-box-5': product_5,
+            'product-box-6': product_6,
+            'product-box-7': product_7,
+            'product-box-8': product_8,
+            'product-box-9': product_9,
+            // 'product-1': () => import('../Created-shop-elements/products-box/Product-1'),
+            // 'product-2': () => import('../Created-shop-elements/products-box/Product-2'),
+            // 'product-3': () => import('../Created-shop-elements/products-box/Product-3'),
+            // 'product-4': () => import('../Created-shop-elements/products-box/Product-4'),
+            // 'product-5': () => import('../Created-shop-elements/products-box/Product-5'),
+            // 'product-6': () => import('../Created-shop-elements/products-box/Product-6'),
+            // 'product-7': () => import('../Created-shop-elements/products-box/Product-7'),
+            // 'product-8': () => import('../Created-shop-elements/products-box/Product-8'),
+            // 'product-9': () => import('../Created-shop-elements/products-box/Product-9'),
         },
-        // computed: {
-        //     ...mapState(['product_boxs'])
-        // },
         computed: {
             ...mapState(['home_page_info', 'footer_info', 'company_products']),
             currentProductComponents() {
@@ -154,10 +161,6 @@
 </script>
 
 <style scoped>
-    #banner-component {
-        cursor: grab;
-    }
-
     .container {
         margin: 80px auto;
     }

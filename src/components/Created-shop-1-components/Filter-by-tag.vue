@@ -1,9 +1,24 @@
 <template>
     <div class="col s6 m12 l12">
         <!--        <tag_filter_1 :tags="tags"/>-->
-        <component :is="currentTagFilterComponent"
-                   :tags="tags"
-        />
+        <template v-if="tags.length > 0">
+            <component :is="currentTagFilterComponent"
+                       :tags="tags"
+            />
+        </template>
+        <template v-else>
+            <h5>Tags</h5>
+            <div class="s12">
+                <p>#Tag 1</p>
+            </div>
+            <div class="s12">
+                <p>#Tag 2</p>
+            </div>
+            <div class="s12">
+                <p>#Tag 3</p>
+            </div>
+        </template>
+
     </div>
 </template>
 

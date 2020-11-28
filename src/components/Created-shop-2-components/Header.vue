@@ -6,8 +6,9 @@
                     <div class="col s3" :key="id" id="header-logo">
                         <ul>
                             <li>
-                                <a href="" class="company-logo">
-                                    <img :src="logo" alt="">
+                                <a :href="`/${company_name}/home`" class="company-logo">
+                                    <img v-if="logo" :src="logo" alt="">
+                                    <img src="../../assets/logo-comp.png" alt="">
                                 </a>
                             </li>
                         </ul>
@@ -22,23 +23,19 @@
                     <div class="col s3" :key="id" id="header-support-box">
                         <ul class="links">
                             <div>
-                                <a href="">
+                                <a :href="support.instagram" v-if="support_computed && support_computed.instagram">
+                                    <i class="fab fa-instagram" :style="footer_info.icon_style"></i>
+                                </a>
+                                <a href="/your_instagram_link" v-else>
                                     <i class="fab fa-instagram" :style="footer_info.icon_style"></i>
                                 </a>
                             </div>
                             <div>
-                                <a href="">
+                                <a :href="support.facebook" v-if="support_computed && support_computed.facebook">
                                     <i class="fab fa-facebook-f" :style="footer_info.icon_style"></i>
                                 </a>
-                            </div>
-                            <div>
-                                <a href="">
-                                    <i class="fab fa-twitter" :style="footer_info.icon_style"></i>
-                                </a>
-                            </div>
-                            <div>
-                                <a href="">
-                                    <i class="fab fa-youtube" :style="footer_info.icon_style"></i>
+                                <a href="/your_facebook_link">
+                                    <i class="fab fa-facebook-f" :style="footer_info.icon_style"></i>
                                 </a>
                             </div>
                         </ul>
@@ -57,26 +54,7 @@
     import {mapState, mapActions} from 'vuex'
 
     export default {
-        // methods: {
-        //     ...mapActions(['OPEN_RIGHT_PANEL', 'GET_HEADER_COMPONENTS_IDS'])
-        // },
-        // computed: {
-        //     ...mapState(['inputs', 'right_panel', 'header_components']),
-        //     ...mapGetters(['FETCH_HEADER_COMPONENT_IDS'])
-        // },
-        // created() {
-        //     Vue.vueDragula.eventBus.$on('drop', () => {
-        //         // console.log(args);
-        //         let arr = [];
-        //         let wrapper = document.getElementById('dragula_home_2_header_components');
-        //         for (let i = 0; i < wrapper.childNodes.length; i++) {
-        //             let childId = wrapper.childNodes[i].id;
-        //             arr.push(childId);
-        //         }
-        //         this.GET_HEADER_COMPONENTS_IDS(arr)
-        //     })
-        // },
-        props: ['support', 'logo'],
+        props: ['support', 'logo', 'company_name'],
         data() {
             return {
                 currentInput: '',
@@ -96,6 +74,9 @@
             ...mapState(['header_info', 'footer_info', 'header_ids']),
             currentInputComponent() {
                 return this.currentInput
+            },
+            support_computed() {
+                return this.support
             }
         },
         methods: {
@@ -177,9 +158,5 @@
         justify-content: center;
         align-items: center;
         border: dotted;
-    }
-
-    #header-input, #header-logo, #header-support-box {
-        cursor: grab !important;
     }
 </style>

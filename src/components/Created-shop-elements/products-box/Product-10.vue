@@ -14,6 +14,12 @@
     </div>
 </template>
 
+<script>
+    export default {
+        name: 'product-10',
+    }
+</script>
+
 <style scoped>
     .card {
         height: 370px;

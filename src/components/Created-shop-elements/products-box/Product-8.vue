@@ -1,18 +1,31 @@
 <template>
     <div class="card">
         <div class="card-image waves-effect waves-block waves-light">
-            <img class="activator" src="https://www.allianceplast.com/wp-content/uploads/2017/11/no-image.png">
+            <img class="activator" :src="file">
         </div>
         <div class="card-content">
-            <span class="card-title activator grey-text text-darken-4">Title<i class="material-icons right">more_vert</i></span>
-            <p><a href="#">View detail</a></p>
+            <span class="card-title activator grey-text text-darken-4">{{product_name}}<i class="material-icons right"
+                                                                                          :style="icon">more_vert</i></span>
+            <p>
+                <router-link :to="{path: `/${company_name}/detail/${id}`, params: {id}}" class="view-more"
+                             :style="`color: ${button.color}`">View more
+                </router-link>
+            </p>
         </div>
         <div class="card-reveal">
-            <span class="card-title grey-text text-darken-4">Category<i class="material-icons right">close</i></span>
-            <p>Here is some more information about this product that is only revealed once clicked on.</p>
+            <span class="card-title grey-text text-darken-4" :style="category">{{product_category}}<i
+                    class="material-icons right" :style="icon">close</i></span>
+            <p v-if="description">{{description}}</p>
         </div>
     </div>
 </template>
+
+<script>
+    export default {
+        name: 'product-8',
+        props: ['name', 'price', 'category', 'button', 'icon', 'id', 'file', 'product_name', 'product_price', 'discount_price', 'product_category', 'tag', 'description', 'top', 'best', 'company_name'],
+    }
+</script>
 
 <style scoped>
     .card {
