@@ -13,26 +13,26 @@
             <div class="settingsPageField" v-if="currentSettingsPage === 1">
                 <div>
                     <label for="name">Name</label>
-                    <input type="text" id="name">
+                    <input type="text" id="name" v-model="user.name">
                 </div>
                 <div>
                     <label for="surname">Surname</label>
-                    <input type="text" id="surname">
+                    <input type="text" id="surname" v-model="user.surname">
                 </div>
                 <div>
                     <label for="email">Email</label>
-                    <input type="text" id="email">
+                    <input type="text" id="email" v-model="user.email">
                 </div>
                 <div>
                     <label for="phone">Phone</label>
-                    <input type="text" id="phone">
+                    <input type="text" id="phone" v-model="user.phone">
                 </div>
                 <div>
                     <label for="address">Address</label>
-                    <input type="text" id="address">
+                    <input type="text" id="address" v-model="user.address">
                 </div>
                 <div>
-                    <button class="save_settings_button">Save</button>
+                    <button class="save_settings_button" @click="UPDATE_USER_INFO(user)">Save</button>
                 </div>
             </div>
             <div class="settingsPageField" v-else-if="currentSettingsPage === 2">
@@ -46,7 +46,7 @@
                     </div>
                 </div>
                 <div>
-                    <button class="save_settings_button">Save</button>
+                    <button class="save_settings_button" @click="UPDATE_USER_INFO(user)">Save</button>
                 </div>
             </div>
             <div class="settingsPageField" v-else>
@@ -68,9 +68,16 @@
 
 
 <script>
+    import {mapActions, mapState} from 'vuex'
+    import keys from "../../keys";
+    import axios from 'axios'
+
     export default {
         data() {
             return {
+                user_info: {
+                    address: ''
+                },
                 links: [
                     {id: 1, path: '/personal-info', active: false, name: 'Personal information'},
                     {id: 2, path: '/edit-profile', active: true, name: 'Profile'},
@@ -80,10 +87,11 @@
                     color: '#6ba229',
                     fontWeight: 'bold'
                 },
-                currentSettingsPage: 1
+                currentSettingsPage: 1,
             }
         },
         methods: {
+            ...mapActions(['GET_USER']),
             change(id) {
                 this.currentSettingsPage = id
             },
@@ -91,10 +99,33 @@
                 const file = this.$refs.file.files[0];
                 let reader = new FileReader();
                 reader.onloadend = () => {
-                    this.file = reader.result
+                    this.profile.user.avatar = reader.result
                 };
                 reader.readAsDataURL(file);
             },
+            UPDATE_USER_INFO(user) {
+                let token = localStorage.getItem(keys.API_TOKEN)
+                // console.log(user)
+                axios.patch(`${keys.baseURI}/api/account`, user, {
+                    headers: {
+                        'Authorization': `bearer ${token}`
+                    }
+                })
+                    .then(res => {
+                        console.log(res.data)
+                    })
+                    .catch(e => console.log(e))
+            }
+        },
+        computed: {
+            ...mapState(['profile']),
+            user() {
+                return this.profile.user
+            }
+        },
+        created() {
+            const token = localStorage.getItem(keys.API_TOKEN);
+            this.GET_USER(token);
         }
     }
 </script>

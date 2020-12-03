@@ -21,9 +21,10 @@
             <tr>
                 <td class="date"><span class="title">Date:</span>&nbsp;<span>{{order.created_at}}</span></td>
                 <td/>
-                <td/>
                 <td class="total"><span class="title">Total:</span>&nbsp;<span>{{order.total}}</span>&nbsp;AMD</td>
                 <td class="status"><span class="title">Status:</span>&nbsp;<span>OK</span></td>
+                <td class="status"><span class="title">Wait, order in progress:&nbsp;<span><i
+                        class="material-icons cached">cached</i></span></span></td>
             </tr>
             </tbody>
         </table>
@@ -55,6 +56,11 @@
 
     .order_id {
         color: #6ba229;
+    }
+
+    .cached {
+        color: red;
+        font-size: 19px;
     }
 
 </style>

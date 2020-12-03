@@ -5,10 +5,12 @@
             <div class="col s12" v-if="profile.user.type === 'COMPANY'">
                 <Profile :type="profile.user.type"
                          :company_name="profile.user['store'].name"
+                         :user="profile.user"
                 />
             </div>
             <div class="col s12" v-if="profile.user.type === 'USER'">
                 <Profile :type="profile.user.type"
+                         :user="profile.user"
                 />
             </div>
         </div>

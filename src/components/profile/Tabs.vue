@@ -1,10 +1,10 @@
 <template>
     <div class="tab">
         <ul class="row" style="border-bottom: 1px solid #e1e8ed;">
-            <li v-for="tab in tabs"
+            <li v-for="tab in tabs_computed"
                 :key="tab.id" class="col s4 m3 l2"
                 :style="tab.active ? active: disabled">
-                <a :href="tab.path">{{tab.name}}</a>
+                <router-link :to="tab.path">{{tab.name}}</router-link>
             </li>
         </ul>
     </div>
@@ -27,13 +27,23 @@
                 disabled: {}
             }
         },
-        mounted() {
-            this.tabs.filter(i => {
-                if (this.$route.path === i.path) {
-                    i.active = true
-                }
-            })
+        computed: {
+            tabs_computed() {
+                this.tabs.filter(i => {
+                    if (this.$route.path === i.path) {
+                        i.active = true
+                    }
+                })
+                return this.tabs
+            }
         },
+        // mounted() {
+        //     this.tabs.filter(i => {
+        //         if (this.$route.path === i.path) {
+        //             i.active = true
+        //         }
+        //     })
+        // },
     }
 </script>
 

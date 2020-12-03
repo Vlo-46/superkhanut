@@ -13,6 +13,7 @@ import example_3_products from './Example-3/Products';
 import reg_navigation from './reg-navigation';
 import favorite_list from './Favorite'
 import basket_list from './Basket'
+import favorite_companies_list from './Favorite-companies'
 
 import products from './Products/products';
 import filters from './Filters'
@@ -278,6 +279,7 @@ export default new Vuex.Store({
         blog_navigation,
         favorite_list,
         basket_list,
+        favorite_companies_list,
         comments,
         example_1_products,
         example_2_products,

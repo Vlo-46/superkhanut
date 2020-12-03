@@ -2,8 +2,11 @@
     <div class="company-item">
         <div class="imgBox">
             <a :href="`/${encoded_name}/home`" style="width: 100%;"><img src="../../assets/no-img.jpg" alt=""></a>
-            <a onclick="M.toast({html: 'Company added to the favorites list'})" class="favorite"
-               style="display: none"><i class="material-icons">favorite</i></a>
+            <!--            <a onclick="M.toast({html: 'Company added to the favorites list'})" class="favorite"-->
+            <!--               style="display: none"><i class="material-icons">favorite</i></a>-->
+
+            <i class="material-icons favorite" @click="ADD_TO_FAVORITE" style="display: none">favorite</i>
+
         </div>
         <div class="company-body row">
             <div class="col s12 m6 l6" style="align-self: flex-end;">
@@ -24,7 +27,7 @@
             </div>
         </div>
         <!--                    rate component-->
-        <rate :length="5" :value="0" :showcount="false" />
+        <rate :length="5" :value="0" :showcount="false"/>
     </div>
 </template>
 
@@ -33,12 +36,44 @@
     import Vue from 'vue'
     import rate from 'vue-rate'
     import 'vue-rate/dist/vue-rate.css'
+    import keys from "../../keys";
+
     Vue.use(rate);
 
     export default {
         props: ['company_name', 'sales', 'id', 'uri', 'encoded_name', 'logo'],
-        components: {
-        },
+        components: {},
+        methods: {
+            ADD_TO_FAVORITE() {
+                let favorite_list = keys.favorite_companies;
+
+                let favorite_item = {
+                    company_name: this.company_name,
+                    id: this.id,
+                    // file: this.uri,
+                    logo: this.logo,
+                    encoded_name: this.encoded_name,
+                    sales: this.sales
+                };
+
+                let array = [];
+
+                let local_item = localStorage.getItem(favorite_list);
+
+                array = JSON.parse(local_item) || [];
+
+                for (let i = 0; i < array.length; i++) {
+                    if (array[i].id === favorite_item.id) {
+                        let index = array.indexOf(array[i]);
+                        // console.log(index)
+                        array.splice(index, 1)
+                    }
+                }
+
+                array.push(favorite_item);
+                localStorage.setItem(favorite_list, JSON.stringify(array))
+            }
+        }
     }
 </script>
 
@@ -101,7 +136,6 @@
         align-self: flex-end;
     }
 
-
     .sales {
         color: #999;
         display: flex;
@@ -112,14 +146,10 @@
         align-self: flex-end;
         position: absolute;
         right: 10px;
-    }
-
-    .favorite i {
         font-size: 26px;
-        color: #ccc;
+        color: #aaa;
         cursor: pointer;
     }
-
 
     .company-item:hover .favorite {
         display: block !important;
@@ -130,9 +160,5 @@
         padding-right: 6px;
     }
 
-
-    @media (min-width: 576px) {
-
-    }
 
 </style>
