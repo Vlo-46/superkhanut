@@ -2,17 +2,27 @@
     <div class="row pruduct-item" style="display: flex">
         <div class="col s12 m12 l4">
             <div class="imgBox">
-                <router-link :to="{path: `/${encoded_name}/detail/${id}`, params: {id}}"><img :src="img" alt="">
+                <router-link :to="{path: `/${encoded_name}/detail/${id}`, params: {id}}">
+                    <img :src="img" alt="">
                 </router-link>
             </div>
         </div>
         <div class="col s12 m12 l5 infoBox">
-            <div><p><a href="" class="product_title">{{product_name}}</a></p></div>
-            <div><a href="" class="by_company"><em>By {{company_name}}</em></a></div>
+            <div>
+                <p>
+                    <router-link :to="{path: `/${encoded_name}/detail/${id}`, params: {id}}" class="product_title">
+                        {{product_name}}
+                    </router-link>
+                </p>
+            </div>
+            <div>
+                <router-link :to="`/${company_name}/home`" class="by_company"><em>By {{company_name}}</em></router-link>
+            </div>
             <div>
                 <ul class="descriptionBox">
                     <li v-if="description.length > 150">
-                        <span><i><small>{{description.substr(0, 160)}}...</small> </i></span></li>
+                        <span><i><small>{{description.substr(0, 160)}}...</small> </i></span>
+                    </li>
                     <li v-else><span><i><small>{{description}}</small> </i></span></li>
                 </ul>
             </div>
