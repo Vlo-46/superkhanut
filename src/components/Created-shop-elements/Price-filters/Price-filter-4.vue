@@ -1,22 +1,37 @@
 <template>
     <div class="double-slider">
-        <input type="range" name="range_from" class="from" value="0" min="0" max="150" data-prev-value="0">
+        <input type="range" name="range_from" class="from" :min="min_price" :max="max_price" data-prev-value="0"
+               v-model="price" @change="COMPANY_FILTER_BY_PRICE({min: price, max: max_price})">
         <div class="progressbar_from"></div>
-        <input type="range" name="range_to" class="to" value="150" min="0" max="150" data-prev-value="150">
-        <div class="progressbar_to"></div>
 
-        <span class="value-output from">0</span>
-        <span class="value-output to">150</span>
+        <span class="value-output">{{price}} &nbsp;AMD</span>
+        <span class="value-output">{{max_price}}&nbsp;AMD</span>
     </div>
 </template>
 
+<script>
+    import {mapActions} from 'vuex'
+
+    export default {
+        data() {
+            return {
+                price: 0
+            }
+        },
+        props: ['all_prices', 'max_price', 'min_price', 'company_name'],
+        methods: {
+            ...mapActions(['COMPANY_FILTER_BY_PRICE'])
+        },
+    }
+</script>
+
 <style scoped>
-    .double-slider{
-        display:flex;
+    .double-slider {
+        display: flex;
         justify-content: space-between;
-        height:50px;
-        position:relative;
-        margin:10vh auto;
+        height: 50px;
+        position: relative;
+        margin: 10vh auto;
     }
 
     .value-output {
@@ -25,18 +40,18 @@
     }
 
     .value-output.from:before {
-        content:'From: ';
+        content: 'From: ';
     }
 
     .value-output.to:before {
-        content:'To: ';
+        content: 'To: ';
     }
 
 
     .progressbar_from {
         position: absolute;
         top: -3px;
-        left:0;
+        left: 0;
         height: 5px;
         width: 0;
         background-color: #e6e6e6;
@@ -46,7 +61,7 @@
     .progressbar_to {
         position: absolute;
         top: -3px;
-        right:0;
+        right: 0;
         height: 5px;
         width: 0;
         background-color: #e6e6e6;
@@ -77,6 +92,7 @@
         border: 0px solid #000101;
         position: relative;
     }
+
     input[type=range]::-webkit-slider-thumb {
         box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
         border: 1px solid #e6e6e6;
@@ -109,6 +125,7 @@
         border-radius: 25px;
         border: 0px solid #000101;
     }
+
     input[type=range]::-moz-range-thumb {
         box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
         border: 0px solid #000000;
@@ -130,18 +147,21 @@
         border-width: 39px 0;
         color: transparent;
     }
+
     input[type=range]::-ms-fill-lower {
         background: #ac51b5;
         border: 0px solid #000101;
         border-radius: 50px;
         box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
     }
+
     input[type=range]::-ms-fill-upper {
         background: #ac51b5;
         border: 0px solid #000101;
         border-radius: 50px;
         box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
     }
+
     input[type=range]::-ms-thumb {
         box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
         border: 0px solid #000000;
@@ -151,9 +171,11 @@
         background: #65001c;
         cursor: pointer;
     }
+
     input[type=range]:focus::-ms-fill-lower {
         background: #ac51b5;
     }
+
     input[type=range]:focus::-ms-fill-upper {
         background: #ac51b5;
     }

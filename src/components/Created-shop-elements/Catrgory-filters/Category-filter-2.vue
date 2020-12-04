@@ -2,14 +2,19 @@
     <div class="categories">
         <h5>CATEGORIES</h5>
         <ul>
-            <li v-for="category in categories" :key="category"><span>{{category}}</span></li>
+            <li v-for="category in categories" :key="category"><span @click="COMPANY_FILTER_BY_CATEGORY(category)">{{category}}</span></li>
         </ul>
     </div>
 </template>
 
 <script>
+    import {mapActions} from  'vuex'
+
     export default {
         props: ['categories'],
+        methods: {
+            ...mapActions(['COMPANY_FILTER_BY_CATEGORY'])
+        }
     }
 </script>
 

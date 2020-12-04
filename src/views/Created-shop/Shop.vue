@@ -4,7 +4,8 @@
         <!--        HOME EXAMPLE 1 START-->
         <div class="shop-example-1" v-if="schema === 'example-1'">
             <NavWrapper/>
-            <Header :support="company_admin_settings.support_field" :logo="company_admin_settings.company_logo" :company_name="company_name"/>
+            <Header :support="company_admin_settings.support_field" :logo="company_admin_settings.company_logo"
+                    :company_name="company_name"/>
             <NavBar :company_name="company_name"/>
             <div class="wrapper container">
                 <div class="row">
@@ -17,14 +18,17 @@
                                 </template>
                                 <template v-else-if="id === 'filter-by-tag-component'">
                                     <!--                    filter by tags-->
-                                    <filter-by-tag :key="id" :tags="all_tags"/>
+                                    <filter-by-tag :key="id" :tags="company_tags_computed"/>
+
                                 </template>
                                 <template v-else-if="id === 'filter-by-price-component'">
                                     <!--                    filter by price-->
                                     <filter-by-price :key="id"
                                                      :all_prices="all_prices"
                                                      :max_price="max_price"
-                                                     :min_price="min_price"/>
+                                                     :min_price="min_price"
+                                                     :company_name="company_name"
+                                    />
                                 </template>
                             </template>
                         </div>
@@ -45,26 +49,51 @@
                                     <h4>Products</h4>
                                     <template
                                             v-if="company_products_computed !== undefined && company_products_computed.length > 0">
-                                        <div class="col s12 m6 l4" v-for="product in company_products.products"
-                                             :key="product.id">
-                                            <component :is="currentProductComponent"
-                                                       :name="shop_page_info.product_title.product_name_style"
-                                                       :price="shop_page_info.product_price.product_price_style"
-                                                       :category="shop_page_info.product_category.product_category_style"
-                                                       :icon="footer_info.icon_style"
-                                                       :id="product.id"
-                                                       :file="product.file"
-                                                       :product_name="product.product_name"
-                                                       :product_price="product.price"
-                                                       :discount_price="product.discount_price"
-                                                       :product_category="product.category"
-                                                       :tag="product.tag"
-                                                       :description="product.description"
-                                                       :top="product.top"
-                                                       :best="product.best"
-                                                       :company_name="company_name"
-                                            />
-                                        </div>
+                                        <template v-if="Company_filters.filtered === false">
+                                            <div class="col s12 m6 l4" v-for="product in company_products.products"
+                                                 :key="product.id">
+                                                <component :is="currentProductComponent"
+                                                           :name="shop_page_info.product_title.product_name_style"
+                                                           :price="shop_page_info.product_price.product_price_style"
+                                                           :category="shop_page_info.product_category.product_category_style"
+                                                           :icon="footer_info.icon_style"
+                                                           :id="product.id"
+                                                           :file="product.file"
+                                                           :product_name="product.product_name"
+                                                           :product_price="product.price"
+                                                           :discount_price="product.discount_price"
+                                                           :product_category="product.category"
+                                                           :tag="product.tag"
+                                                           :description="product.description"
+                                                           :top="product.top"
+                                                           :best="product.best"
+                                                           :company_name="company_name"
+                                                />
+                                            </div>
+                                        </template>
+                                        <template v-else>
+                                            <div class="col s12 m6 l4" v-for="product in Company_filters.filtered_products"
+                                                 :key="product.id">
+                                                <component :is="currentProductComponent"
+                                                           :name="shop_page_info.product_title.product_name_style"
+                                                           :price="shop_page_info.product_price.product_price_style"
+                                                           :category="shop_page_info.product_category.product_category_style"
+                                                           :icon="footer_info.icon_style"
+                                                           :id="product.id"
+                                                           :file="product.file"
+                                                           :product_name="product.product_name"
+                                                           :product_price="product.price"
+                                                           :discount_price="product.discount_price"
+                                                           :product_category="product.category"
+                                                           :tag="product.tag"
+                                                           :description="product.description"
+                                                           :top="product.top"
+                                                           :best="product.best"
+                                                           :company_name="company_name"
+                                                />
+                                            </div>
+                                        </template>
+
                                     </template>
                                     <template v-else>
                                         <div class="col s12 m6 l4">
@@ -98,7 +127,6 @@
                                             </div>
                                         </div>
                                     </template>
-
                                     <!--:button="home_page_info[currentProductBox].button_style"-->
                                 </div>
                             </template>
@@ -106,14 +134,16 @@
                     </div>
                 </div>
             </div>
-            <Footer :support="company_admin_settings.support_field" :logo="company_admin_settings.company_logo" :company_name="company_name"/>
+            <Footer :support="company_admin_settings.support_field" :logo="company_admin_settings.company_logo"
+                    :company_name="company_name"/>
         </div>
         <!--        HOME EXAMPLE 1 END-->
 
         <!--        HOME EXAMPLE 2 START-->
         <div class="shop-example-2" v-else-if="schema === 'example-2'">
             <NavWrapper/>
-            <Header_2 :support="company_admin_settings.support_field" :logo="company_admin_settings.company_logo" :company_name="company_name"/>
+            <Header_2 :support="company_admin_settings.support_field" :logo="company_admin_settings.company_logo"
+                      :company_name="company_name"/>
             <NavBar :company_name="company_name"/>
             <div class="wrapper container">
                 <div class="row">
@@ -126,14 +156,15 @@
                                 </template>
                                 <template v-else-if="id === 'filter-by-tag-component'">
                                     <!--                    filter by tags-->
-                                    <filter-by-tag :key="id" :tags="all_tags"/>
+                                    <filter-by-tag :key="id" :tags="company_tags_computed"/>
                                 </template>
                                 <template v-else-if="id === 'filter-by-price-component'">
                                     <!--                    filter by price-->
                                     <filter-by-price :key="id"
                                                      :all_prices="all_prices"
                                                      :max_price="max_price"
-                                                     :min_price="min_price"/>
+                                                     :min_price="min_price"
+                                                     :company_name="company_name"/>
                                 </template>
                             </template>
                         </div>
@@ -154,8 +185,30 @@
                                     <h4>Products</h4>
                                     <template
                                             v-if="company_products_computed !== undefined && company_products_computed.length > 0">
-                                        <div class="col s12 m6 l4" v-for="product in company_products.products"
-                                             :key="product.id">
+                                        <template v-if="Company_filters.filtered === false">
+                                            <div class="col s12 m6 l4" v-for="product in company_products.products"
+                                                 :key="product.id">
+                                                <component :is="currentProductComponent"
+                                                           :name="shop_page_info.product_title.product_name_style"
+                                                           :price="shop_page_info.product_price.product_price_style"
+                                                           :category="shop_page_info.product_category.product_category_style"
+                                                           :icon="footer_info.icon_style"
+                                                           :id="product.id"
+                                                           :file="product.file"
+                                                           :product_name="product.product_name"
+                                                           :product_price="product.price"
+                                                           :discount_price="product.discount_price"
+                                                           :product_category="product.category"
+                                                           :tag="product.tag"
+                                                           :description="product.description"
+                                                           :top="product.top"
+                                                           :best="product.best"
+                                                           :company_name="company_name"
+                                                />
+                                            </div>
+                                        </template>
+                                        <template v-else><div class="col s12 m6 l4" v-for="product in Company_filters.filtered_products"
+                                                              :key="product.id">
                                             <component :is="currentProductComponent"
                                                        :name="shop_page_info.product_title.product_name_style"
                                                        :price="shop_page_info.product_price.product_price_style"
@@ -173,7 +226,8 @@
                                                        :best="product.best"
                                                        :company_name="company_name"
                                             />
-                                        </div>
+                                        </div></template>
+
                                     </template>
                                     <template v-else>
                                         <div class="col s12 m6 l4">
@@ -214,14 +268,16 @@
                     </div>
                 </div>
             </div>
-            <Footer_2 :support="company_admin_settings.support_field" :logo="company_admin_settings.company_logo" :company_name="company_name"/>
+            <Footer_2 :support="company_admin_settings.support_field" :logo="company_admin_settings.company_logo"
+                      :company_name="company_name"/>
         </div>
         <!--        HOME EXAMPLE 2 END-->
 
         <!--        HOME EXAMPLE 3 START-->
         <div class="shop-example-3" v-else>
             <NavWrapper/>
-            <Header_3 :support="company_admin_settings.support_field" :logo="company_admin_settings.company_logo" :company_name="company_name"/>
+            <Header_3 :support="company_admin_settings.support_field" :logo="company_admin_settings.company_logo"
+                      :company_name="company_name"/>
             <NavBar :company_name="company_name"/>
             <div class="wrapper">
                 <div class="row">
@@ -257,8 +313,8 @@
                                 </template>
                                 <template v-else-if="id === 'filter-by-tag-component'">
                                     <!--                    filter by tags-->
-                                    <template v-if="all_tags.length > 0">
-                                        <filter-by-tag :key="id" :tags="all_tags"/>
+                                    <template v-if="all_tags.size > 0">
+                                        <filter-by-tag :key="id" :tags="company_tags_computed"/>
                                     </template>
                                     <template v-else>
                                         <div class="col s6 m12 l12" :key="id">
@@ -281,7 +337,8 @@
                                     <filter-by-price :key="id"
                                                      :all_prices="all_prices"
                                                      :max_price="max_price"
-                                                     :min_price="min_price"/>
+                                                     :min_price="min_price"
+                                                     :company_name="company_name"/>
                                 </template>
                             </template>
                         </div>
@@ -302,26 +359,51 @@
                                     <h4>Products</h4>
                                     <template
                                             v-if="company_products_computed !== undefined && company_products_computed.length > 0">
-                                        <div class="col s12 m6 l3" v-for="product in company_products.products"
-                                             :key="product.id">
-                                            <component :is="currentProductComponent"
-                                                       :name="shop_page_info.product_title.product_name_style"
-                                                       :price="shop_page_info.product_price.product_price_style"
-                                                       :category="shop_page_info.product_category.product_category_style"
-                                                       :icon="footer_info.icon_style"
-                                                       :id="product.id"
-                                                       :file="product.file"
-                                                       :product_name="product.product_name"
-                                                       :product_price="product.price"
-                                                       :discount_price="product.discount_price"
-                                                       :product_category="product.category"
-                                                       :tag="product.tag"
-                                                       :description="product.description"
-                                                       :top="product.top"
-                                                       :best="product.best"
-                                                       :company_name="company_name"
-                                            />
-                                        </div>
+                                        <template v-if="Company_filters.filtered === false">
+                                            <div class="col s12 m6 l3" v-for="product in company_products.products"
+                                                 :key="product.id">
+                                                <component :is="currentProductComponent"
+                                                           :name="shop_page_info.product_title.product_name_style"
+                                                           :price="shop_page_info.product_price.product_price_style"
+                                                           :category="shop_page_info.product_category.product_category_style"
+                                                           :icon="footer_info.icon_style"
+                                                           :id="product.id"
+                                                           :file="product.file"
+                                                           :product_name="product.product_name"
+                                                           :product_price="product.price"
+                                                           :discount_price="product.discount_price"
+                                                           :product_category="product.category"
+                                                           :tag="product.tag"
+                                                           :description="product.description"
+                                                           :top="product.top"
+                                                           :best="product.best"
+                                                           :company_name="company_name"
+                                                />
+                                            </div>
+                                        </template>
+                                        <template v-else>
+                                            <div class="col s12 m6 l3" v-for="product in Company_filters.filtered_products"
+                                                 :key="product.id">
+                                                <component :is="currentProductComponent"
+                                                           :name="shop_page_info.product_title.product_name_style"
+                                                           :price="shop_page_info.product_price.product_price_style"
+                                                           :category="shop_page_info.product_category.product_category_style"
+                                                           :icon="footer_info.icon_style"
+                                                           :id="product.id"
+                                                           :file="product.file"
+                                                           :product_name="product.product_name"
+                                                           :product_price="product.price"
+                                                           :discount_price="product.discount_price"
+                                                           :product_category="product.category"
+                                                           :tag="product.tag"
+                                                           :description="product.description"
+                                                           :top="product.top"
+                                                           :best="product.best"
+                                                           :company_name="company_name"
+                                                />
+                                            </div>
+                                        </template>
+
                                     </template>
                                     <template v-else>
                                         <div class="col s12 m6 l3">
@@ -373,7 +455,8 @@
                     </div>
                 </div>
             </div>
-            <Footer_3 :support="company_admin_settings.support_field" :logo="company_admin_settings.company_logo" :company_name="company_name"/>
+            <Footer_3 :support="company_admin_settings.support_field" :logo="company_admin_settings.company_logo"
+                      :company_name="company_name"/>
         </div>
         <!--        HOME EXAMPLE 3 END-->
     </div>
@@ -456,7 +539,7 @@
             Footer_3
         },
         computed: {
-            ...mapState(['footer_info', 'shop_page_filters_ids', 'shop_page_rightBox_ids', 'shop_page_info', 'company_products', 'company_admin_settings', 'schema']),
+            ...mapState(['footer_info', 'shop_page_filters_ids', 'shop_page_rightBox_ids', 'shop_page_info', 'company_products', 'company_admin_settings', 'schema', 'Company_filters']),
             currentProductComponent() {
                 return this.currentProductBox
             },
@@ -464,17 +547,22 @@
                 return this.company_admin_settings.categories
             },
             company_products_computed() {
-                return this.company_products.products
+                return this.Company_filters.products
+            },
+            company_tags_computed() {
+                return this.all_tags
             }
         },
         methods: {
-            ...mapActions(['GET_SHOP_INFO', 'GET_COMPANY_PRODUCTS', 'GET_COMPANY_SETTINGS'])
+            ...mapActions(['GET_SHOP_INFO', 'GET_COMPANY_PRODUCTS', 'GET_COMPANY_SETTINGS', 'GET_COMPANY_PRODUCTS_FOR_FILTER'])
+
         },
         async created() {
             let company_name = this.$route.params.pathMatch;
             await this.GET_SHOP_INFO(company_name);
             await this.GET_COMPANY_PRODUCTS(company_name);
             await this.GET_COMPANY_SETTINGS(company_name);
+            await this.GET_COMPANY_PRODUCTS_FOR_FILTER(company_name)
             let x = [];
             this.product_boxs.filter(i => {
                 x.push(i.name)

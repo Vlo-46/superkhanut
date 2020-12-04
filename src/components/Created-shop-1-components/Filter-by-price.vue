@@ -4,10 +4,12 @@
         <!--                      :max_price="max_price"-->
         <!--                      :min_price="min_price"-->
         <!--        />-->
-        <component :is="currentPriceFilterComponent">
-            :all_prices="all_prices"
-            :max_price="max_price"
-            :min_price="min_price"
+        <component :is="currentPriceFilterComponent"
+                   :all_prices="all_prices"
+                   :max_price="max_price"
+                   :min_price="min_price"
+                   :company_name="company_name"
+        >
         </component>
     </div>
 
@@ -19,10 +21,11 @@
     import price_filter_3 from '../Created-shop-elements/Price-filters/Price-filter-3';
     import price_filter_4 from '../Created-shop-elements/Price-filters/Price-filter-4';
 
+
     import {mapState, mapActions} from 'vuex'
 
     export default {
-        props: ['all_prices', 'max_price', 'min_price'],
+        props: ['all_prices', 'max_price', 'min_price', 'company_name'],
         data() {
             return {
                 currentPriceFilterComponent: '',

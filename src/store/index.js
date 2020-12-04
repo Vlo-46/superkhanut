@@ -17,6 +17,7 @@ import favorite_companies_list from './Favorite-companies'
 
 import products from './Products/products';
 import filters from './Filters'
+import Company_filters from './Company-filters'
 
 import header_components from './Components/Header-components';
 import products_components from './Components/Product-box-components';
@@ -273,6 +274,7 @@ export default new Vuex.Store({
         companies,
         products,
         filters,
+        Company_filters,
         topCompany,
         navigation,
         blog_item,

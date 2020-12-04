@@ -1,7 +1,7 @@
 <template>
     <div class="col s6 m12 l12">
         <!--        <tag_filter_1 :tags="tags"/>-->
-        <template v-if="tags.length > 0">
+        <template v-if="tags.size > 0">
             <component :is="currentTagFilterComponent"
                        :tags="tags"
             />

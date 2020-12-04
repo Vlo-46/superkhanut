@@ -4,17 +4,35 @@
             <div id="rangeSlider" class="range-slider">
                 <label>Price:</label>
                 <div class="number-group">
-                    <input class="number-input" type="number" value="100" min="0" max="50000"/> to
-                    <input class="number-input" type="number" value="50000" min="0" max="50000"/>
+                    <input class="number-input" type="number" :min="min_price" :max="max_price" v-model="price"/> to
+                    <input class="number-input" type="number" :min="min_price" :max="max_price" :value="max_price" disabled/>
                 </div>
                 <div class="range-group">
-                    <input class="range-input" value="100" min="1" max="50000" step="1" type="range"/>
-                    <input class="range-input" value="50000" min="1" max="50000" step="1" type="range"/>
+                    <input class="range-input" :min="min_price" :max="max_price" type="range"
+                           v-model="price"
+                           @change="COMPANY_FILTER_BY_PRICE({min: price, max: max_price})"/>
+                    <!--                    <input class="range-input" :min="min_price" :max="max_price" type="range"/>-->
                 </div>
             </div>
         </div>
     </div>
 </template>
+
+<script>
+    import {mapActions} from 'vuex'
+
+    export default {
+        data() {
+            return {
+                price: 0
+            }
+        },
+        props: ['all_prices', 'max_price', 'min_price', 'company_name'],
+        methods: {
+            ...mapActions(['COMPANY_FILTER_BY_PRICE'])
+        },
+    }
+</script>
 
 <style scoped>
     .range-slider {

@@ -1,31 +1,35 @@
 <template>
-    <div class="pruduct-item">
-        <div class="row" style="display: flex; margin: 0">
-            <div class="col s4">
-                <div class="imgBox">
-                    <a href=""><img :src="img" alt=""></a>
-                </div>
+    <div class="row pruduct-item" style="display: flex">
+        <div class="col s12 m12 l4">
+            <div class="imgBox">
+                <router-link :to="{path: `/${encoded_name}/detail/${id}`, params: {id}}"><img :src="img" alt="">
+                </router-link>
             </div>
-            <div class="col s5 infoBox">
-                <div><p><a href="" class="product_title">{{product_name}}</a></p></div>
-                <div><a href="" class="by_company"><em>By {{company_name}}</em></a></div>
+        </div>
+        <div class="col s12 m12 l5 infoBox">
+            <div><p><a href="" class="product_title">{{product_name}}</a></p></div>
+            <div><a href="" class="by_company"><em>By {{company_name}}</em></a></div>
+            <div>
+                <ul class="descriptionBox">
+                    <li v-if="description.length > 150">
+                        <span><i><small>{{description.substr(0, 160)}}...</small> </i></span></li>
+                    <li v-else><span><i><small>{{description}}</small> </i></span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col s12 m12 l3">
+            <!--                <a onclick="M.toast({html: 'Product added to the favorites list'})" class="favorite"><i-->
+            <!--                        class="material-icons">favorite</i></a>-->
+            <i class="material-icons favorite" @click="ADD_TO_FAVORITE">favorite</i>
+            <div class="previewBox">
+                <div><span class="product-price">{{price}} &nbsp; AMD</span></div>
+                <!--                    <div>-->
+                <!--                        <button class="buy_btn">Add to cart</button>-->
+                <!--                    </div>-->
                 <div>
-                    <ul class="descriptionBox">
-                        <li><span><i><small>{{description}}</small> </i></span></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col s3">
-                <a onclick="M.toast({html: 'Product added to the favorites list'})" class="favorite"><i
-                        class="material-icons">favorite</i></a>
-                <div class="previewBox">
-                    <div><span class="product-price">{{price}} &nbsp; AMD</span></div>
-                    <div>
-                        <button class="buy_btn">Add to cart</button>
-                    </div>
-                    <div>
-                        <router-link :to="{path: `/${encoded_name}/detail/${id}`, params: {id}}" class="preview">Preview</router-link>
-                    </div>
+                    <router-link :to="{path: `/${encoded_name}/detail/${id}`, params: {id}}" class="preview">
+                        Preview
+                    </router-link>
                 </div>
             </div>
         </div>
@@ -33,8 +37,42 @@
 </template>
 
 <script>
+    import keys from "../../keys";
+
     export default {
         props: ['product_name', 'img', 'company_name', 'price', 'id', 'encoded_name', 'description'],
+        methods: {
+            ADD_TO_FAVORITE() {
+                let favorite_list = keys.favorite;
+
+                let favorite_item = {
+                    company_name: this.company_name,
+                    id: this.id,
+                    product_name: this.product_name,
+                    file: this.img,
+                    product_price: this.price,
+                    // discount_price: this.discount_price,
+                    // product_category: this.product_category,
+                };
+
+                let array = [];
+
+                let local_item = localStorage.getItem(favorite_list);
+
+                array = JSON.parse(local_item) || [];
+
+                for (let i = 0; i < array.length; i++) {
+                    if (array[i].id === favorite_item.id) {
+                        let index = array.indexOf(array[i]);
+                        // console.log(index)
+                        array.splice(index, 1)
+                    }
+                }
+
+                array.push(favorite_item);
+                localStorage.setItem(favorite_list, JSON.stringify(array))
+            }
+        }
     }
 </script>
 
@@ -74,15 +112,23 @@
         color: #999;
     }
 
-    .favorite {
-        position: absolute;
-        right: 0;
-        padding: 10px;
-    }
+    /*.favorite {*/
+    /*    position: absolute;*/
+    /*    right: 0;*/
+    /*    padding: 10px;*/
+    /*}*/
 
-    .favorite i {
-        font-size: 28px;
-        color: #999;
+    /*.favorite i {*/
+    /*    font-size: 28px;*/
+    /*    color: #999;*/
+    /*    cursor: pointer;*/
+    /*}*/
+    .favorite {
+        align-self: flex-end;
+        position: absolute;
+        right: 10px;
+        font-size: 26px;
+        color: #aaa;
         cursor: pointer;
     }
 

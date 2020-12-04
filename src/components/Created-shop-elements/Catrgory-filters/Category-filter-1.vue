@@ -2,18 +2,21 @@
     <ul :style="right_panel.categoryElements.ul">
         <h5>CATEGORIES</h5>
         <li v-for="category in categories" :key="category">
-            <a href="" :style="right_panel.categoryElements.a">{{category}}</a>
+            <a href="" @click.prevent="COMPANY_FILTER_BY_CATEGORY(category)" :style="right_panel.categoryElements.a">{{category}}</a>
         </li>
     </ul>
 </template>
 
 <script>
-    import {mapState} from 'vuex'
+    import {mapState, mapActions} from 'vuex'
 
     export default {
         props: ['categories'],
         computed: {
             ...mapState(['right_panel'])
+        },
+        methods: {
+            ...mapActions(['COMPANY_FILTER_BY_CATEGORY'])
         }
     }
 </script>

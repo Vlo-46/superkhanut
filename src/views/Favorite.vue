@@ -26,7 +26,7 @@
                             </div>
                             <div class="col s12 m12 l6 previewBox">
                                 <div>
-                                    <button class="preview">Preview</button>
+                                    <router-link :to="`/${item.company_name}/detail/${item.id}`" class="preview">Preview</router-link>
                                 </div>
                                 <div>
                                     <button class="delete" @click="DELETE_FAVORITE_ITEM(item.id)">Delete</button>
@@ -107,7 +107,7 @@
     }
 
     .pruduct-item {
-        height: auto;
+        height: 380px;
         display: flex;
         flex-direction: column;
         background-color: #fff;

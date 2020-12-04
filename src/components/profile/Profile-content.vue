@@ -5,6 +5,7 @@
                 Your preferred companies will be displayed here
             </p>
             <div class="favorite_companies row" v-else>
+                <p>Your favorite shops</p>
                 <div v-for="company in favorite_companies_items_computed" :key="company.id"
                      class="company_item col s12 m6 l2">
                     <div class="img_box">
@@ -73,7 +74,7 @@
         width: 100%;
         border: 1px solid #eee;
         padding: 0;
-        margin: 20px 10px;
+        margin: 10px;
     }
 
     .img_box {

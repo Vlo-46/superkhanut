@@ -47,7 +47,7 @@
                             </div>
                             <div class="add" @click="add"><i class="material-icons">add_circle_outline</i></div>
                             <div class="product-buy">
-                                <button class="buy-btn btn" @click="ADD_TO_BASKET">Buy</button>
+                                <button class="buy-btn btn" @click="ADD_TO_BASKET">ADD TO CART</button>
                             </div>
                         </div>
                         <div class="product-category">
