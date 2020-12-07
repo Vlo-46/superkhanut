@@ -1,4 +1,5 @@
 import keys from "../keys";
+import Swal from "sweetalert2";
 
 export default {
     state: {
@@ -33,6 +34,13 @@ export default {
 
             ctx.commit('UPDATE_FAVORITE_COMPANIES', array);
             localStorage.setItem(keys.favorite_companies, JSON.stringify(array))
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'The company removed from the list of preferred',
+                showConfirmButton: false,
+                timer: 1500
+            })
         }
     },
     getters: {}

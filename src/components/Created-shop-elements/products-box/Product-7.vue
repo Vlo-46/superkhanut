@@ -2,7 +2,9 @@
     <div class="product" id="product-7">
         <!--        <div class="badge">Hot</div>-->
         <div class="product-tumb">
-            <img :src="file" alt="">
+            <router-link :to="`/${company_name}/detail/${id}`">
+                <img :src="file" alt="">
+            </router-link>
         </div>
         <div class="product-details">
             <span class="product-catagory" :style="category">{{product_category}}</span>
@@ -26,6 +28,7 @@
 
 <script>
     import keys from "../../../keys";
+    import Swal from 'sweetalert2'
 
     export default {
         name: 'product-7',
@@ -60,6 +63,13 @@
 
                 array.push(favorite_item);
                 localStorage.setItem(favorite_list, JSON.stringify(array))
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Product in your list of preferences',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
             }
         },
     }

@@ -44,12 +44,39 @@
                         <tr>
                             <td class="date"><span class="title">Date:</span>&nbsp;<span>
                                 {{item.created_at}}
-                            </span></td>
+                            </span>
+                            </td>
                             <td/>
                             <td class="total"><span class="title">Total:</span>&nbsp;<span>{{item.price}}</span>&nbsp;AMD
                             </td>
-                            <td class="status"><span class="title">Status:</span>&nbsp;<span>OK</span></td>
-                            <td><button class="btn" style="float: right">Confirm order</button></td>
+                            <td class="status" v-if="item.status === 'pending'"><span class="title">Status:</span>&nbsp;
+                                <span>Pending &nbsp; <i class="material-icons cached">cached</i></span>
+                            </td>
+                            <td class="status" v-if="item.status === 'canceled'"><span class="title">Status:</span>&nbsp;
+                                <span>Canceled &nbsp; <i class="material-icons cached">canceled</i></span>
+                            </td>
+                            <td class="status" v-if="item.status === 'accepted'"><span class="title">Status:</span>&nbsp;
+                                <span>Accepted &nbsp; <i class="material-icons cached">check</i></span>
+                            </td>
+                            <td class="status" v-if="item.status === 'completed'"><span class="title">Status:</span>&nbsp;
+                                <span>Completed &nbsp; <i class="material-icons cached">done_all</i></span>
+                            </td>
+                            <td v-if="item.status === 'pending'">
+                                <button class="btn red"
+                                        @click="COMPANY_ORDER_STATUS({orderId: item.order_id, status: 'canceled'})">
+                                    Cancel order
+                                </button>
+                                <button class="btn" style="float: right"
+                                        @click="COMPANY_ORDER_STATUS({orderId: item.order_id, status: 'accepted'})">
+                                    Confirm order
+                                </button>
+                            </td>
+                            <td v-else-if="item.status === 'accepted'">
+                                <button class="btn" style="float: right"
+                                        @click="COMPANY_ORDER_STATUS({orderId: item.order_id, status: 'completed'})">
+                                    Order ended
+                                </button>
+                            </td>
                         </tr>
                         </tbody>
                     </table>
@@ -60,30 +87,24 @@
 </template>
 
 <script>
-    import axios from "axios";
-    import keys from "../../keys";
     import left_panel from './Left-panel'
+    import {mapActions, mapState} from 'vuex'
 
     export default {
-        data() {
-            return {
-                orders: [],
-            }
-        },
         components: {
             left_panel
         },
-        computed: {},
+        computed: {
+            ...mapState(['company_admin_orders']),
+            orders() {
+                return this.company_admin_orders.orders
+            }
+        },
+        methods: {
+            ...mapActions(['GET_COMPANY_ORDERS', 'COMPANY_ORDER_STATUS']),
+        },
         created() {
-            const token = localStorage.getItem(keys.API_TOKEN);
-            axios.get(`${keys.baseURI}/api/order`, {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            }).then(res => {
-                console.log(res.data);
-                this.orders = res.data;
-            }).catch(e => console.log(e))
+            this.GET_COMPANY_ORDERS()
         }
     }
 </script>
@@ -117,6 +138,11 @@
 
     .item_information_row:nth-last-child {
         display: flex;
+    }
+
+    .cached {
+        color: red;
+        font-size: 19px;
     }
 
 

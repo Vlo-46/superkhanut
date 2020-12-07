@@ -30,6 +30,7 @@
 
 <script>
     import keys from "../../keys";
+    import Swal from 'sweetalert2'
 
     export default {
         props: ['product_name', 'img', 'company_name', 'price', 'id', 'encoded_name'],
@@ -63,6 +64,13 @@
 
                 array.push(favorite_item);
                 localStorage.setItem(favorite_list, JSON.stringify(array))
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Product in your list of preferences',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
             }
         }
     }

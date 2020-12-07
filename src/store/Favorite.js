@@ -1,4 +1,5 @@
 import keys from "../keys";
+import Swal from "sweetalert2";
 
 export default {
     state: {
@@ -35,11 +36,25 @@ export default {
 
             ctx.commit('UPDATE_FAVORITE_ITEMS', array);
             localStorage.setItem(keys.favorite, JSON.stringify(array))
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Product removed from the preferred list',
+                showConfirmButton: false,
+                timer: 1500
+            })
         },
         REMOVE_ALL_ITEMS(ctx) {
             localStorage.removeItem(keys.favorite);
             let arr = [];
             ctx.commit('REMOVE_ALL', arr)
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'All products have been removed from the preferred list',
+                showConfirmButton: false,
+                timer: 1500
+            })
         }
     },
     getters: {}

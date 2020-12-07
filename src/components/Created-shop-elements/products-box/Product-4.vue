@@ -1,7 +1,9 @@
 <template>
     <div class="product" id="product-4">
         <div class="img-box">
-            <img :src="file" alt="">
+            <router-link :to="`/${company_name}/detail/${id}`">
+                <img :src="file" alt="">
+            </router-link>
         </div>
         <div class="product-body">
             <div class="product-title">
@@ -9,8 +11,8 @@
             </div>
             <div class="details">
                 <div>
-                    <router-link :to="{path: `/${company_name}/detail/${id}`, params: {id}}" class="view-more" :style="button">View
-                        more
+                    <router-link :to="{path: `/${company_name}/detail/${id}`, params: {id}}" class="view-more"
+                                 :style="button">View more
                     </router-link>
                 </div>
                 <div>
@@ -28,6 +30,7 @@
 
 <script>
     import keys from "../../../keys";
+    import Swal from 'sweetalert2'
 
     export default {
         name: 'product-4',
@@ -62,6 +65,13 @@
 
                 array.push(favorite_item);
                 localStorage.setItem(favorite_list, JSON.stringify(array))
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Product in your list of preferences',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
             }
         }
     }

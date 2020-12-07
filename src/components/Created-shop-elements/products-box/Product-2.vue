@@ -1,16 +1,24 @@
 <template>
     <div class="product" id="product-2">
         <div class="imgBox">
-            <img :src="file" alt="">
+            <router-link :to="`/${company_name}/detail/${id}`">
+                <img :src="file" alt="">
+            </router-link>
         </div>
         <div class="product-body">
-            <div><span class="product_name" :style="name">{{product_name}}</span></div>
+            <div>
+                <router-link :to="`/${company_name}/detail/${id}`">
+                    <span class="product_name" :style="name">{{product_name}}</span>
+                </router-link>
+            </div>
             <div>
                 <p class="product_price" :style="price">{{product_price}}&nbsp;AMD</p>
                 <span class="discount" v-if="discount_price">{{discount_price}}&nbsp;AMD</span>
             </div>
             <div>
-                <router-link :to="{path: `/${company_name}/detail/${id}`, params: {id}}" class="btn" :style="button" >View</router-link>
+                <router-link :to="{path: `/${company_name}/detail/${id}`, params: {id}}" class="btn" :style="button">
+                    View
+                </router-link>
             </div>
         </div>
     </div>
@@ -18,6 +26,7 @@
 
 <script>
     import keys from "../../../keys";
+    import Swal from 'sweetalert2'
 
     export default {
         name: 'product-2',
@@ -52,6 +61,13 @@
 
                 array.push(favorite_item);
                 localStorage.setItem(favorite_list, JSON.stringify(array))
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Product in your list of preferences',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
             }
         }
     }

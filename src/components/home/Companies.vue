@@ -38,6 +38,8 @@
     import 'vue-rate/dist/vue-rate.css'
     import keys from "../../keys";
 
+    import Swal from 'sweetalert2'
+
     Vue.use(rate);
 
     export default {
@@ -72,6 +74,13 @@
 
                 array.push(favorite_item);
                 localStorage.setItem(favorite_list, JSON.stringify(array))
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'The company is in the list of your preferences',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
             }
         }
     }

@@ -26,7 +26,6 @@
         </div>
     </footer>
 </template>
-
 <style scoped>
     footer {
         background-color: #262626;

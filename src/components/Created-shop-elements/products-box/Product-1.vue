@@ -1,6 +1,10 @@
 <template>
     <div class="product" id="product-1">
-        <div class="img-box"><img :src="file"></div>
+        <div class="img-box">
+            <router-link :to="`/${company_name}/detail/${id}`">
+                <img :src="file">
+            </router-link>
+        </div>
         <div class="item-body">
             <div class="type-box"><span :style="category">{{product_category}}</span></div>
             <div class="product-name-box">
@@ -24,33 +28,29 @@
                     <i class="material-icons" :style="icon">favorite_border</i>
                 </button>
             </div>
-            <div>
-                <button>
-                    <i class="material-icons" :style="icon">shopping_cart</i>
-                </button>
-            </div>
+            <!--            <div>-->
+            <!--                <button>-->
+            <!--                    <i class="material-icons" :style="icon">shopping_cart</i>-->
+            <!--                </button>-->
+            <!--            </div>-->
         </div>
-        <favorite-alert v-if="disabled === false"/>
     </div>
 </template>
 
 <script>
     import keys from "../../../keys";
 
-    import favorite_alert from '../../Alerts/Favorite-alert'
+    import Swal from 'sweetalert2'
 
     export default {
         name: 'product-1',
         data() {
-          return {
-              disabled: true
-          }
+            return {
+                disabled: true
+            }
         },
         props: ['name', 'price', 'category', 'button', 'icon', 'id', 'file', 'product_name', 'product_price',
             'discount_price', 'product_category', 'tag', 'description', 'top', 'best', 'company_name'],
-        components: {
-            'favorite-alert': favorite_alert
-        },
         methods: {
             ADD_TO_FAVORITE() {
                 this.disabled = false;
@@ -83,6 +83,13 @@
 
                 array.push(favorite_item);
                 localStorage.setItem(favorite_list, JSON.stringify(array))
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Product in your list of preferences',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
             }
         },
     }

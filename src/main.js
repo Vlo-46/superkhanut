@@ -10,6 +10,8 @@ Vue.use(VueDragula);
 import SkeletonCards from 'vue-ultimate-skeleton-cards'
 Vue.use(SkeletonCards)
 
+import VueSimpleAlert from "vue-simple-alert";
+Vue.use(VueSimpleAlert);
 
 new Vue({
     router,

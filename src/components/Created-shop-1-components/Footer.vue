@@ -13,7 +13,7 @@
                                 <a :href="support.instagram" target="_blank" v-if="support_computed">
                                     <i class="fab fa-instagram" :style="footer_info.icon_style"></i>
                                 </a>
-                                <a href="/your_instagram_link" target="_blank" v-else>
+                                <a href="your_instagram_link" target="_blank" v-else>
                                     <i class="fab fa-instagram" :style="footer_info.icon_style"></i>
                                 </a>
                             </div>
@@ -21,7 +21,7 @@
                                 <a :href="support.facebook" target="_blank" v-if="support_computed">
                                     <i class="fab fa-facebook-f" :style="footer_info.icon_style"></i>
                                 </a>
-                                <a href="/your_facebook_link" target="_blank" v-else>
+                                <a href="your_facebook_link" target="_blank" v-else>
                                     <i class="fab fa-facebook-f" :style="footer_info.icon_style"></i>
                                 </a>
                             </div>

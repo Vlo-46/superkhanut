@@ -1,11 +1,14 @@
 <template>
     <div class="card">
         <div class="card-image waves-effect waves-block waves-light">
-            <img class="activator" :src="file">
+            <router-link :to="`/${company_name}/detail/${id}`">
+                <img class="activator" :src="file">
+            </router-link>
         </div>
         <div class="card-content">
-            <span class="card-title activator grey-text text-darken-4">{{product_name}}<i class="material-icons right"
-                                                                                          :style="icon">more_vert</i></span>
+            <span class="card-title activator grey-text text-darken-4">{{product_name}}
+                <i class="material-icons right" :style="icon">more_vert</i>
+            </span>
             <p>
                 <router-link :to="{path: `/${company_name}/detail/${id}`, params: {id}}" class="view-more"
                              :style="`color: ${button.color}`">View more

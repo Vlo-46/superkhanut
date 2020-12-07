@@ -1,8 +1,8 @@
 <template>
     <div class="card">
         <div class="card-image">
-            <img :src="file">
-            <span class="card-title" :style="name">{{product_name}}</span>
+            <router-link :to="`/${company_name}/detail/${id}`"><img :src="file"></router-link>
+            <router-link :to="`/${company_name}/detail/${id}`"><span class="card-title" :style="name">{{product_name}}</span></router-link>
             <a class="btn-floating halfway-fab waves-effect waves-light red" @click.prevent="ADD_TO_FAVORITE"><i
                     class="material-icons">favorite</i></a>
         </div>
@@ -14,6 +14,7 @@
 
 <script>
     import keys from "../../../keys";
+    import Swal from 'sweetalert2'
 
     export default {
         name: 'product-9',
@@ -48,6 +49,13 @@
 
                 array.push(favorite_item);
                 localStorage.setItem(favorite_list, JSON.stringify(array))
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Product in your list of preferences',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
             }
         }
     }

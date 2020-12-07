@@ -1,6 +1,7 @@
 import axios from 'axios'
 import keys from '../../keys'
 import router from '../../router/index'
+import Swal from "sweetalert2";
 
 export default {
     state: {},
@@ -15,7 +16,15 @@ export default {
                     localStorage.setItem(API_TOKEN, token);
                     router.push('/profile')
                 })
-                .catch(e => console.log(e))
+                .catch(e => {
+                    console.log(e)
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Please enter the correct information',
+                        // footer: '<a href="/registration">You may not have registered?</a>'
+                    })
+                })
         }
     },
     getters: {}

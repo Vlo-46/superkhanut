@@ -59,6 +59,7 @@ import profile from './Profile/Profile';
 
 import company_products from './Company-admin/Products'
 import company_admin_settings from './Company-admin/Settings'
+import company_admin_orders from './Company-admin/Orders'
 
 import axios from 'axios';
 import keys from '../keys';
@@ -321,6 +322,7 @@ export default new Vuex.Store({
         dragula_header_components,
 
         company_products,
-        company_admin_settings
+        company_admin_settings,
+        company_admin_orders
     }
 })

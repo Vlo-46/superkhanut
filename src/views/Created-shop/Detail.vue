@@ -103,6 +103,7 @@
     import 'vue-slick-carousel/dist/vue-slick-carousel.css'
     // optional style for arrows & dots
     import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
+    import Swal from 'sweetalert2'
 
     export default {
         props: ['id'],
@@ -161,6 +162,13 @@
 
                 array.push(basket_item);
                 localStorage.setItem(basket_list, JSON.stringify(array))
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Product in the shopping cart',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
             },
         },
         computed: {

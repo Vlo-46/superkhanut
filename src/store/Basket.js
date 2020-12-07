@@ -1,4 +1,5 @@
 import keys from "../keys";
+import Swal from "sweetalert2";
 
 export default {
     state: {
@@ -36,6 +37,13 @@ export default {
 
             ctx.commit('UPDATE_BASKET_ITEMS', array);
             localStorage.setItem(keys.basket, JSON.stringify(array))
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'The order was removed from the shopping cart',
+                showConfirmButton: false,
+                timer: 1500
+            })
         },
         DELETE_ALL_ITEMS_FROM_BASKET(ctx) {
             ctx.commit('DELETE_ALL')

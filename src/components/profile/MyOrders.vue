@@ -22,9 +22,30 @@
                 <td class="date"><span class="title">Date:</span>&nbsp;<span>{{order.created_at}}</span></td>
                 <td/>
                 <td class="total"><span class="title">Total:</span>&nbsp;<span>{{order.total}}</span>&nbsp;AMD</td>
-                <td class="status"><span class="title">Status:</span>&nbsp;<span>OK</span></td>
-                <td class="status"><span class="title">Wait, order in progress:&nbsp;<span><i
-                        class="material-icons cached">cached</i></span></span></td>
+                <td/>
+                <td class="status" v-if="order.status === 'pending'">
+                    <span class="title">Status:</span>&nbsp;
+                    <span>Wait, order in progress:&nbsp;<span><i class="material-icons cached">cached</i></span></span>
+                </td>
+                <td class="status" v-if="order.status === 'canceled'">
+                    <span class="title">Status:</span>&nbsp;
+                    <span>Your order was rejected:&nbsp;<span><i class="material-icons cached">cancel</i></span></span>
+                </td>
+                <td class="status" v-if="order.status === 'accepted'">
+                    <span class="title">Status:</span>&nbsp;
+                    <span>Your order is approved:&nbsp;<span><i class="material-icons cached">check</i></span></span>
+                </td>
+                <td class="status" v-if="order.status === 'completed'">
+                    <span class="title">Status:</span>&nbsp;
+                    <span>Your order was completed:&nbsp;<span><i
+                            class="material-icons cached">done_all</i></span></span>
+                </td>
+                <td class="status" v-if="order.status === 'pending'">
+                    <button class="btn red" @click="USER_ORDER_STATUS({orderId: order.id, status: 'canceled'})">Cancel
+                        order
+                    </button>
+                </td>
+                <!--                <td class="status"><span class="title"></span></td>-->
             </tr>
             </tbody>
         </table>
@@ -32,11 +53,16 @@
 </template>
 
 <script>
+    import {mapActions} from 'vuex'
+
     export default {
         props: ['orders'],
-        // beforeMount() {
-        //     console.log(this.$route.query)
-        // }
+        methods: {
+            ...mapActions(['COMPANY_ORDER_STATUS', 'USER_ORDER_STATUS']),
+        },
+        created() {
+            console.log(this.orders)
+        }
     }
 </script>
 

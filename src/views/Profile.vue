@@ -57,14 +57,9 @@
 
     import {mapActions, mapState} from 'vuex';
     import keys from '../keys';
-    import axios from 'axios';
+    // import axios from 'axios';
 
     export default {
-        data() {
-            return {
-                orders: []
-            }
-        },
         components: {
             NavBar,
             Footer,
@@ -74,22 +69,18 @@
             'profile-content': ProfileContent
         },
         methods: {
-            ...mapActions(['GET_USER'])
+            ...mapActions(['GET_USER', 'GET_USER_ORDERS'])
         },
         created() {
             const token = localStorage.getItem(keys.API_TOKEN);
             this.GET_USER(token);
-            axios.get(`${keys.baseURI}/api/order`, {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            }).then(res => {
-                // console.log(res.data);
-                this.orders = res.data
-            }).catch(e => console.log(e))
+            this.GET_USER_ORDERS(token)
         },
         computed: {
-            ...mapState(['profile'])
+            ...mapState(['profile']),
+            orders() {
+                return this.profile.orders
+            }
         }
     }
 </script>

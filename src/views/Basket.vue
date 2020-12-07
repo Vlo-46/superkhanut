@@ -82,6 +82,7 @@
     import {mapState, mapActions} from 'vuex'
     import keys from "../keys";
     import axios from 'axios'
+    import Swal from "sweetalert2";
 
     export default {
         data() {
@@ -106,8 +107,23 @@
                     .then(() => {
                         this.$router.push('/profile/orders');
                         this.DELETE_ALL_ITEMS_FROM_BASKET()
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'The order was made successfully',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
                     })
-                    .catch(e => console.log(e))
+                    .catch(e => {
+                        console.log(e)
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Something went wrong!',
+                            // footer: '<a href>Why do I have this issue?</a>'
+                        })
+                    })
             }
         },
         computed: {

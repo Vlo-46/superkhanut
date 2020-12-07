@@ -1,7 +1,9 @@
 <template>
     <div class="product" id="product-6">
         <div class="product-img">
-            <img :src="file" height="420" width="327">
+            <router-link :to="`/${company_name}/detail/${id}`">
+                <img :src="file" height="420" width="327">
+            </router-link>
         </div>
         <div class="product-info">
             <div class="product-text">
