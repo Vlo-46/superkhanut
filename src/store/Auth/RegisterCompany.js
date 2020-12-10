@@ -14,6 +14,7 @@ export default {
     },
     actions: {
         REGISTER_COMPANY(ctx, register) {
+            // console.log(JSON.stringify(register))
             let url = keys.baseURI;
             axios.post(`${url}/api/auth/register`, {register})
                 .then(res => {

@@ -90,14 +90,16 @@
                     slider_text: this.slider.slider_text
                 };
 
+                // console.log(JSON.stringify({slider_field}))
+
                 axios.patch(`${url}/api/store`, {slider_field}, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
                 })
-                    .then(res => {
+                    .then(() => {
                         this.disabled = true;
-                        console.log(res.data)
+                        // console.log(res.data)
                     })
                     .catch(e => console.log(e))
             }

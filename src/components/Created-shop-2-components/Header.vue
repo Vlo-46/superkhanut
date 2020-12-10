@@ -7,8 +7,8 @@
                         <ul>
                             <li>
                                 <a :href="`/${company_name}/home`" class="company-logo">
-                                    <img v-if="logo" :src="logo" alt="">
-                                    <img src="../../assets/logo-comp.png" alt="">
+                                    <img v-if="logo" :src="logo" alt="" style="width: 230px; height: 60px">
+                                    <img src="../../assets/logo-comp.png" alt="" v-else>
                                 </a>
                             </li>
                         </ul>
@@ -34,7 +34,7 @@
                                 <a :href="support.facebook" v-if="support_computed && support_computed.facebook">
                                     <i class="fab fa-facebook-f" :style="footer_info.icon_style"></i>
                                 </a>
-                                <a href="/your_facebook_link">
+                                <a href="/your_facebook_link" v-else>
                                     <i class="fab fa-facebook-f" :style="footer_info.icon_style"></i>
                                 </a>
                             </div>

@@ -55,14 +55,16 @@
 
                 let shop_page_img = this.file
 
+                // console.log(JSON.stringify({shop_page_img}))
+
                 axios.patch(`${url}/api/store`, {shop_page_img}, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
                 })
-                    .then(res => {
+                    .then(() => {
                         this.disabled = true
-                        console.log(res.data)
+                        // console.log(res.data)
                     })
                     .catch(e => console.log(e))
             }

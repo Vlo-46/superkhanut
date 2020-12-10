@@ -54,15 +54,16 @@
                 let token = localStorage.getItem(keys.API_TOKEN)
 
                 let company_logo = this.file
+                // console.log({company_logo})
 
                 axios.patch(`${url}/api/store`, {company_logo}, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
                 })
-                    .then(res => {
+                    .then(() => {
                         this.disabled = true
-                        console.log(res.data)
+                        // console.log(res.data)
                     })
                     .catch(e => console.log(e))
             }

@@ -4,16 +4,16 @@
             <h5>Contact Us</h5>
             <p v-if="$text">{{text}}</p>
             <div>
-                <p><i class="material-icons" :style="right_panel.icon">location_on</i>&nbsp; Address</p>
+                <p><i class="material-icons" :style="icon_style">location_on</i>&nbsp; Address</p>
                 <span v-if="$support">{{support.address}}</span>
             </div>
             <div>
-                <p><i class="material-icons" :style="right_panel.icon">phone</i>&nbsp; Phone</p>
+                <p><i class="material-icons" :style="icon_style">phone</i>&nbsp; Phone</p>
                 <span v-if="$support">Mobile: {{support.phone}}</span>
                 <br>
             </div>
             <div>
-                <p><i class="material-icons" :style="right_panel.icon">local_post_office</i>&nbsp; Email</p>
+                <p><i class="material-icons" :style="icon_style">local_post_office</i>&nbsp; Email</p>
                 <span v-if="$support">{{support.email}}</span>
             </div>
         </div>
@@ -22,12 +22,10 @@
 </template>
 
 <script>
-    import {mapState} from "vuex";
 
     export default {
-        props: ['text', 'support'],
+        props: ['text', 'support', 'button_style', 'icon_style'],
         computed: {
-            ...mapState(['right_panel']),
             $text() {
                 return this.text
             },

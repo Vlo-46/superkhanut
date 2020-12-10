@@ -5,8 +5,9 @@
                 <template v-if="id === 'header-logo'">
                     <div class="col s3 header-s3" :key="id" id="logo-id">
                         <ul>
-                            <li class="drag_logo" id="drag-logo-1">
-                                <a :href="`/${company_name}/home`" v-if="logo"><img :src="logo" alt=""></a>
+                            <li class="drag_logo" id="drag-logo-1" v-if="logo">
+                                <a :href="`/${company_name}/home`" v-if="logo"><img :src="logo" alt="" style="width: 230px; height: 60px"></a>
+                                <a :href="`/${company_name}/home`" v-else><img src="../../assets/logo-comp.png" alt="" style="width: 230px; height: 60px"></a>
                             </li>
                         </ul>
                     </div>

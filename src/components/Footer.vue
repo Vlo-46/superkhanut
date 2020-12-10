@@ -10,10 +10,17 @@
                 <div class="col l4 offset-l2 s12">
                     <h5 class="white-text">Links</h5>
                     <ul>
-                        <li><a class="grey-text text-lighten-3" href="#">Link 1</a></li>
-                        <li><a class="grey-text text-lighten-3" href="#">Link 2</a></li>
-                        <li><a class="grey-text text-lighten-3" href="#">Link 3</a></li>
-                        <li><a class="grey-text text-lighten-3" href="#">Link 4</a></li>
+                        <li><a class="grey-text text-lighten-3" href="/">Home</a></li>
+                        <li><a class="grey-text text-lighten-3" href="/category">Category</a></li>
+                        <li>
+                            <router-link class="grey-text text-lighten-3" to="/about">About</router-link>
+                        </li>
+                        <li>
+                            <router-link class="grey-text text-lighten-3" to="/blog">Blog</router-link>
+                        </li>
+                        <li>
+                            <router-link class="grey-text text-lighten-3" to="/contact">Contact</router-link>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -21,7 +28,7 @@
         <div class="footer-copyright">
             <div class="container">
                 © ArmCoding 2020
-                <a class="grey-text text-lighten-4 right" href="#">More Links</a>
+<!--                <a class="grey-text text-lighten-4 right" href="#">More Links</a>-->
             </div>
         </div>
     </footer>

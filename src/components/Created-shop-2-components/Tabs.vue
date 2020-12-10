@@ -1,14 +1,14 @@
 <template>
     <div class="best-sales container" id="product-component">
         <div class="tab-list">
-            <button class="btn" v-for="tab in tab_components"
+            <button class="btn" :style="header_info.button" v-for="tab in tab_components"
                     :key="tab" @click="change_tab(tab)"
             >
                 {{tab}}
             </button>
         </div>
         <h5 class="center-align">{{currentTab.toUpperCase()}}</h5>
-        <div class="border-bottom"></div>
+        <div class="border-bottom" :style="`background-color: ${header_info.button.color}`"></div>
         <div class="news" v-if="currentTab === 'news'">
             <div class="row">
                 <template v-if="company_products_computed !== undefined && company_products_computed.length > 0">
@@ -215,7 +215,7 @@
         </div>
         <div class="clear-both" style="clear: both"></div>
         <div style="display: flex; justify-content: center">
-            <a href="#!" class="btn waves-effect waves-green view_more_btn">View more</a>
+            <a :href="`/${company_name}/shop`" class="btn waves-effect waves-green view_more_btn" :style="header_info.button">View more</a>
         </div>
     </div>
 </template>
@@ -265,7 +265,7 @@
             'product-box-9': product_9,
         },
         computed: {
-            ...mapState(['home_page_info', 'footer_info', 'company_products']),
+            ...mapState(['home_page_info', 'footer_info', 'company_products', 'header_info']),
             currentProductComponents() {
                 return this.currentProductBox
             },

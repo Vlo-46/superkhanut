@@ -44,9 +44,9 @@
                         'Authorization': `Bearer ${token}`
                     }
                 })
-                    .then(res => {
+                    .then(() => {
                         this.disabled = true
-                        console.log(res)
+                        // console.log(res)
                     })
                     .catch(e => console.log(e))
             }

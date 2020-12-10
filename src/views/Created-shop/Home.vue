@@ -12,7 +12,7 @@
                 <template v-for="id in home_page_ids">
                     <template v-if="id === 'slider-component'">
                         <!--        slider-->
-                        <Slider :key="id" :slider="company_admin_settings.slider_field"/>
+                        <Slider v-if="slider_computed.slider_img.length > 0" :key="id" :slider="slider_computed"/>
                     </template>
                     <template v-else-if="id === 'banner-component'">
                         <!--        banner-->
@@ -33,14 +33,15 @@
         <!--        HOME PAGE EXAMPLE 2 START-->
         <div class="home-example-2" v-else-if="schema === 'example-2'">
             <NavWrapper/>
-            <Header_2 :support="company_admin_settings.support_field" :logo="company_admin_settings.company_logo"
+            <Header_2 :support="company_admin_settings.support_field"
+                      :logo="company_admin_settings.company_logo"
                       :company_name="company_name"/>
             <NavBar_2 :company_name="company_name"/>
             <div>
                 <template v-for="id in home_page_ids">
                     <template v-if="id === 'slider-component'">
                         <!--        slider-->
-                        <Slider_2 :key="id" :slider="company_admin_settings.slider_field"/>
+                        <Slider_2 v-if="slider_computed.slider_img.length > 0" :key="id" :slider="slider_computed"/>
                     </template>
                     <template v-else-if="id === 'banner-component'">
                         <!--        banner-->
@@ -67,7 +68,7 @@
                 <template v-for="id in home_page_ids">
                     <template v-if="id === 'slider-component'">
                         <!--        slider-->
-                        <Slider_3 :key="id" :slider="company_admin_settings.slider_field"/>
+                        <Slider_3 v-if="slider_computed.slider_img.length > 0" :key="id" :slider="slider_computed"/>
                     </template>
                     <template v-else-if="id === 'banner-component'">
                         <!--        banner-->
@@ -97,7 +98,7 @@
     import Product from '../../components/Created-shop-1-components/Product';
     import Footer from '../../components/Created-shop-1-components/Footer';
 
-    //CREATED SHOP HOME PAGE 2
+    //CREATED SHOP, HOME PAGE 2
     import NavBar_2 from '../../components/Created-shop-2-components/Navbar';
     import Header_2 from '../../components/Created-shop-2-components/Header';
     import Slider_2 from '../../components/Created-shop-2-components/Slider';
@@ -105,7 +106,7 @@
     import Banner_2 from '../../components/Created-shop-2-components/Carousel';
     import Footer_2 from '../../components/Created-shop-2-components/Footer';
 
-    //CREATED SHOP HOME PAGE 3
+    //CREATED SHOP, HOME PAGE 3
     import NavBar_3 from '../../components/Created-shop-3-components/Navbar';
     import Header_3 from '../../components/Created-shop-3-components/Header';
     import Slider_3 from '../../components/Created-shop-3-components/Slider';
@@ -151,7 +152,10 @@
             ...mapActions(['GET_SHOP_INFO', 'GET_COMPANY_SETTINGS'])
         },
         computed: {
-            ...mapState(['schema', 'home_page_ids', 'company_admin_settings'])
+            ...mapState(['schema', 'home_page_ids', 'company_admin_settings']),
+            slider_computed() {
+                return this.company_admin_settings.slider_field
+            }
         },
         async created() {
             let company_name = this.$route.params.pathMatch;

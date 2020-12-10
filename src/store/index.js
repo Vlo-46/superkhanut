@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import Swal from "sweetalert2";
 
 import companies from './Companies/company';
 import topCompany from './Companies/top-companies';
@@ -207,7 +208,7 @@ export default new Vuex.Store({
                     }
                 }
             };
-            console.log(JSON.stringify(GLOBAL_OBJECT))
+            // console.log(JSON.stringify(GLOBAL_OBJECT))
 
             let token = localStorage.getItem(keys.API_TOKEN);
             let url = keys.baseURI;
@@ -225,8 +226,23 @@ export default new Vuex.Store({
             })
                 .then(() => {
                     router.push(`/${user['store'].name}/home`)
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'You have successfully completed registration',
+                        text: 'Your company\'s website is half finished. Please fill in the details.',
+                        // footer: '<a href="/profile">Fill in the details</a>'
+                    })
                 })
-                .catch(e => console.log(e))
+                .catch(e => {
+                    console.log(e)
+                    router.push('/registration-stage')
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Something went wrong!',
+                        footer: '<a href="/registration-stage">Please try again</a>'
+                    })
+                })
         },
         async GET_SHOP_INFO(ctx, company_name) {
             let url = keys.baseURI;

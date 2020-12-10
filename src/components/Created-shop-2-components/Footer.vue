@@ -31,8 +31,8 @@
                         <div class="footer-content">
                             <span><i class="material-icons" :style="footer_info.icon_style">email</i></span>
                             <span>EMAIL</span>
-                            <p v-if="support_computed && support_computed.email">{{support.email}}>example@gmail.com</p>
-                            <p>example@mail.ru</p>
+                            <p v-if="support_computed && support_computed.email">{{support.email}}</p>
+                            <p v-else>example@mail.ru</p>
                         </div>
                     </div>
                 </template>

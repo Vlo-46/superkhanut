@@ -43,7 +43,7 @@ export default {
                 }
             }).then(res => {
                 ctx.commit('USER_ORDERS', res.data)
-                console.log(res.data);
+                // console.log(res.data);
             }).catch(e => console.log(e))
         },
         USER_ORDER_STATUS(ctx, data) {

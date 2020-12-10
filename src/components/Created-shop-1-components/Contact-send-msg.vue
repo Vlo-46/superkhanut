@@ -19,19 +19,16 @@
                 <label>Your message</label>
             </div>
             <div>
-                <button class="btn" :style="right_panel.button">Send<i class="material-icons right" :style="right_panel.icon">send</i></button>
+                <button class="btn" :style="button_style">Send<i class="material-icons right" :style="icon_style">send</i></button>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-    import {mapState} from 'vuex'
 
     export default {
-        computed: {
-            ...mapState(['right_panel'])
-        }
+        props: ['icon_style', 'button_style']
     }
 
 </script>

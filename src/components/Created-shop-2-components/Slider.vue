@@ -1,18 +1,18 @@
 <template>
-    <div id="slider-component">
-        <div class="header-slider">
-            <div v-for="item in items" :key="item.id" class="slider-item">
-                <img :src="item.src" alt="">
+    <div id="slider-component container">
+        <div class="header-slider" v-if="slider.slider_img.length > 0">
+            <div v-for="img in slider.slider_img" :key="img" class="slider-item">
+                <img :src="img" alt="" width="100%; height: 400px">
                 <div class="slider-text-content">
                     <div style="position: relative">
-                        <p>{{item.text}}</p>
+                        <p>{{slider.slider_text}}</p>
                     </div>
-                    <!--                    <div class="col s12" v-else style="position: relative">-->
-                    <!--                        <label for="textarea1">Change slider text</label>-->
-                    <!--                        <textarea id="textarea1" class="materialize-textarea" v-model="item.text"/>-->
-                    <!--                        <i class="material-icons check_icon" @click="active = false">check</i>-->
-                    <!--                    </div>-->
                 </div>
+            </div>
+        </div>
+        <div class="header-slider" v-else>
+            <div class="slider-item">
+                <img src="../../assets/no-img.jpg" alt="" width="100%; height: 400px">
             </div>
         </div>
     </div>
@@ -22,24 +22,7 @@
     import {tns} from "../../../node_modules/tiny-slider/src/tiny-slider"
 
     export default {
-        data() {
-            return {
-                items: [
-                    {
-                        id: 1,
-                        src: require(`@/assets/no-img.jpg`),
-                        text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur, consequuntur ex iure nihil\n' +
-                            'optio quidem sed ullam veniam vitae voluptas?'
-                    },
-                    // {
-                    //     id: 2,
-                    //     src: require(`@/assets/no-img.jpg`),
-                    //     text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur, consequuntur ex iure nihil\n' +
-                    //         'optio quidem sed ullam veniam vitae voluptas?'
-                    // },
-                ],
-            }
-        },
+        props: ['slider'],
         mounted() {
             let slider = tns({
                 "container": ".header-slider",

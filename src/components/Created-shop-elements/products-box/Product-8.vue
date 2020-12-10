@@ -35,5 +35,6 @@
         height: 370px;
         max-height: 370px;
         margin: 0;
+        margin-bottom: 20px;
     }
 </style>

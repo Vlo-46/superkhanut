@@ -5,7 +5,7 @@
                 <template v-if="id === 'footer-logo-component'">
                     <div :key="id" class="col s12 m12 l4">
                         <div class="imgBox">
-                            <img v-if="logo" :src="logo" alt="" class="responsive-img">
+                            <img v-if="logo" :src="logo" alt="" class="responsive-img" style="width: 300px; height: 150px">
                             <img v-else src="../../assets/logo-comp.png" alt="">
                         </div>
                         <ul class="links">

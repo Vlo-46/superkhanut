@@ -6,8 +6,8 @@
                     <ul>
                         <li>
                             <a :href="`/${company_name}/home`" class="company-logo">
-                                <img v-if="logo" :src="logo">
-                                <img src="../../assets/logo-comp.png" alt="">
+                                <img v-if="logo" :src="logo" style="width: 230px; height: 60px">
+                                <img src="../../assets/logo-comp.png" alt="" v-else>
                             </a>
                         </li>
                     </ul>

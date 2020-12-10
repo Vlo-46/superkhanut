@@ -51,7 +51,7 @@
                                     <i class="material-icons" :style="footer_info.icon_style">local_phone</i>
                                     <small>{{support.phone}}</small>
                                 </span>
-                                <span>
+                                <span v-else>
                                     <i class="material-icons" :style="footer_info.icon_style">local_phone</i>
                                     <small>+374 12 34 56 (example)</small>
                                 </span>
@@ -146,5 +146,9 @@
 
     i {
         padding-right: 10px;
+    }
+    img {
+        width: 300px;
+        height: 150px;
     }
 </style>

@@ -9,7 +9,7 @@
             <div class="product-text">
                 <h1 :style="name">{{product_name}}</h1>
                 <h2 :style="category">{{product_category}}</h2>
-                <p><span :style="price">{{product_price}}&nbsp;AMD</span>$</p>
+                <p><span :style="price">{{product_price}}&nbsp;AMD</span></p>
             </div>
             <div class="product-price-btn">
                 <router-link :to="{path: `/${company_name}/detail/${id}`, params: {id}}" class="view-more"

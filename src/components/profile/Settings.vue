@@ -36,6 +36,9 @@
                 </div>
             </div>
             <div class="settingsPageField" v-else-if="currentSettingsPage === 2">
+                <div v-if="profile.user.avatar" class="image-field">
+                    <img :src="profile.user.avatar" alt="" class="responsive-img">
+                </div>
                 <div class="file-field input-field">
                     <div class="btn">
                         <span>Avatar</span>
@@ -49,17 +52,44 @@
                     <button class="save_settings_button" @click="UPDATE_USER_INFO(user)">Save</button>
                 </div>
             </div>
-            <div class="settingsPageField" v-else>
+            <div class="settingsPageField" v-else-if="currentSettingsPage === 3">
                 <div class="input-field">
                     <label for="current_password">Current password</label>
-                    <input type="password" id="current_password">
+                    <input type="password" id="current_password" v-model="change_password.current_password">
                 </div>
                 <div class="input-field">
                     <label for="new_password">New password</label>
-                    <input type="password" id="new_password">
+                    <input type="password" id="new_password" v-model="change_password.new_password">
                 </div>
                 <div>
-                    <button class="save_settings_button">Save</button>
+                    <button class="save_settings_button" @click="CHANGE_PASSWORD(change_password)">Save</button>
+                </div>
+            </div>
+            <div class="settingsPageField" v-else>
+                <p class="condition_1">In this section you will be able to delete your profile.</p>
+                <p class="condition_2">Warning!</p>
+                <p class="condition_3">After deleting your profile, all your data will be deleted and cannot be
+                    restored.</p>
+                <div class="delete-field">
+                    <div class="input-field">
+                        <label>Email</label>
+                        <input type="text" v-model="data_of_the_user_being_deleted.email">
+                    </div>
+                    <div class="input-field">
+                        <label>Password</label>
+                        <input type="password" v-model="data_of_the_user_being_deleted.password">
+                    </div>
+                    <div class="confirm-the-deletion">
+                        <button class="btn" :disabled="disabled"
+                                @click="DELETE_ACCOUNT(data_of_the_user_being_deleted)">Delete account
+                        </button>
+                        <p>
+                            <label @change="disabled = !disabled">
+                                <input type="checkbox"/>
+                                <span>You definitely want to delete your profile?</span>
+                            </label>
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -83,12 +113,22 @@
                     {id: 1, path: '/personal-info', active: false, name: 'Personal information'},
                     {id: 2, path: '/edit-profile', active: true, name: 'Profile'},
                     {id: 3, path: '/change-password', active: false, name: 'Change password'},
+                    {id: 4, path: '/delete-account', active: false, name: 'Delete account'},
                 ],
                 styles: {
                     color: '#6ba229',
                     fontWeight: 'bold'
                 },
                 currentSettingsPage: 1,
+                disabled: true,
+                data_of_the_user_being_deleted: {
+                    email: '',
+                    password: ''
+                },
+                change_password: {
+                    current_password: '',
+                    new_password: ''
+                }
             }
         },
         methods: {
@@ -112,8 +152,8 @@
                         'Authorization': `bearer ${token}`
                     }
                 })
-                    .then(res => {
-                        console.log(res.data)
+                    .then(() => {
+                        // console.log(res.data)
                         Swal.fire({
                             position: 'top-end',
                             icon: 'success',
@@ -131,13 +171,68 @@
                             // footer: '<a href>Why do I have this issue?</a>'
                         })
                     })
-            }
+            },
+            CHANGE_PASSWORD(data) {
+                // console.log(JSON.stringify(data))
+                let token = localStorage.getItem(keys.API_TOKEN)
+                axios.patch(`${keys.baseURI}/api/account/password`, data, {
+                    headers: {
+                        'Authorization': `bearer ${token}`
+                    }
+                })
+                    .then(() => {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Your password successfully changed',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    })
+                    .catch(e => {
+                        console.log(e)
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Incorrect data',
+                            // footer: '<a href>Why do I have this issue?</a>'
+                        })
+                    })
+            },
+            DELETE_ACCOUNT(data) {
+                let token = localStorage.getItem(keys.API_TOKEN)
+                // console.log(JSON.stringify(data))
+                axios.delete(`${keys.baseURI}/api/account`, {
+                    headers: {
+                        'Authorization': `bearer ${token}`
+                    },
+                    data: data
+                })
+                    .then(() => {
+                        localStorage.removeItem(keys.API_TOKEN)
+                        this.$router.push('/signin')
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Your account successfully deleted',
+                            // text: 'Your account successfully deleted',
+                            // footer: '<a href>Why do I have this issue?</a>'
+                        })
+                    })
+                    .catch(e => {
+                        console.log(e)
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Something went wrong!',
+                        })
+                    })
+            },
         },
         computed: {
             ...mapState(['profile']),
             user() {
                 return this.profile.user
-            }
+            },
         },
         created() {
             const token = localStorage.getItem(keys.API_TOKEN);
@@ -200,4 +295,43 @@
         background-color: #6ba229;
     }
 
+    .delete-field {
+        margin-top: 40px;
+    }
+
+    .condition_1 {
+        color: #000;
+        font-weight: bold;
+    }
+
+    .condition_2 {
+        color: red;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .condition_3 {
+        color: red;
+        font-weight: bold;
+        font-size: small;
+    }
+
+    .confirm-the-deletion {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .image-field {
+        height: 200px;
+        max-height: 200px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .image-field img {
+        width: 50%;
+        height: 100%;
+        display: block;
+    }
 </style>

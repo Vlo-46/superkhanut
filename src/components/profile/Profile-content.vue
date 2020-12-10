@@ -1,9 +1,9 @@
 <template>
     <div class="profile-content row">
         <div class="col s8">
-            <p v-if="favorite_companies_items_computed.length < 1">
-                Your preferred companies will be displayed here
-            </p>
+            <div v-if="favorite_companies_items_computed.length < 1">
+                <p class="about_profile_content_text">Your preferred companies will be displayed here</p>
+            </div>
             <div class="favorite_companies row" v-else>
                 <p>Your favorite shops</p>
                 <div v-for="company in favorite_companies_items_computed" :key="company.id"
@@ -130,5 +130,12 @@
 
     a {
         color: #222;
+    }
+
+    .about_profile_content_text {
+        font-size: 20px;
+        color: #000;
+        font-weight: bold;
+        padding: 10px;
     }
 </style>

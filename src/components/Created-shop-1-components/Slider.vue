@@ -1,7 +1,7 @@
 <template>
     <div class="header-slider">
-        <div v-for="img in items" :key="img.id" class="slider-item">
-            <img :src="img.src" alt="">
+        <div v-for="img in slider.slider_img" :key="img" class="slider-item" >
+            <img :src="img" alt="">
             <div class="slider-text-content">
                 <p>{{slider.slider_text}}</p>
             </div>

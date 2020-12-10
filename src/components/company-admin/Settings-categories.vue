@@ -45,15 +45,17 @@
 
                 let category = this.category;
 
+                // console.log(JSON.stringify({category}))
 
                 axios.patch(`${url}/api/store`, {category}, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
                 })
-                    .then(res => {
+                    .then(() => {
                         this.disabled = true;
-                        console.log(res.data)
+                        this.category = ''
+                        // console.log(res.data)
                     })
                     .catch(e => console.log(e))
             }

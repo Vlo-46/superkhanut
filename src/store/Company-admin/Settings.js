@@ -10,7 +10,7 @@ export default {
         },
         company_logo: '',
         shop_page_img: '',
-        about_field: {},
+        about_field: '',
         contact_info: '',
         categories: []
     },

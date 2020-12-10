@@ -3,34 +3,47 @@
         <div class="row">
             <div class="col s12 m6 l6">
                 <div class="img-field">
-                    <img src="../../assets/no-img.jpg" alt="">
+                    <img v-if="about.about_img" :src="about.about_img" alt="">
+                    <img v-else src="../../assets/no-img.jpg" alt="">
                 </div>
             </div>
             <div class="col s12 m6 l6">
-                <div class="about-field">
-                    <h5>Welcome To Our Consulting Agency</h5>
-                    <div class="bottom-border"></div>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                        laboris nisi ut aliquip ex ea commodo consequat.
+                <div class="about-field" v-if="about">
+                    <h5 v-if="about.about_title">{{about.about_title}}</h5>
+                    <div class="bottom-border" :style="`background-color: ${border_computed}`"></div>
+                    <p v-if="about.about_text">
+                        {{about.about_text}}
                     </p>
-                    <div class="row">
-                        <div class="col s12 m12 l6 information">
-                            <span><i class="material-icons icon_right">chevron_right</i>&nbsp;<b>Lorem ipsum dolor sit amet.</b></span>
-                            <span><i class="material-icons icon_right">chevron_right</i>&nbsp;<b>Lorem ipsum dolor sit amet.</b></span>
-                        </div>
-                        <div class="col s12 m12 l6 information">
-                            <span><i class="material-icons icon_right">chevron_right</i>&nbsp;<b>Lorem ipsum dolor sit amet.</b></span>
-                            <span><i class="material-icons icon_right">chevron_right</i>&nbsp;<b>Lorem ipsum dolor sit amet.</b></span>
-                        </div>
-                    </div>
+                    <!--                    <div class="row">-->
+                    <!--                        <div class="col s12 m12 l6 information">-->
+                    <!--                            <span><i class="material-icons icon_right" :style="icon_style">chevron_right</i>&nbsp;<b>Lorem ipsum dolor sit amet.</b></span>-->
+                    <!--                            <span><i class="material-icons icon_right" :style="icon_style">chevron_right</i>&nbsp;<b>Lorem ipsum dolor sit amet.</b></span>-->
+                    <!--                        </div>-->
+                    <!--                        <div class="col s12 m12 l6 information">-->
+                    <!--                            <span><i class="material-icons icon_right" :style="icon_style">chevron_right</i>&nbsp;<b>Lorem ipsum dolor sit amet.</b></span>-->
+                    <!--                            <span><i class="material-icons icon_right" :style="icon_style">chevron_right</i>&nbsp;<b>Lorem ipsum dolor sit amet.</b></span>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                </div>
+                <div class="about-field" v-else>
+                    <h5>Fill in your company details</h5>
+                    <div class="bottom-border" :style="`background-color: ${border_computed}`"></div>
                 </div>
             </div>
         </div>
     </div>
 </template>
 
+<script>
+    export default {
+        props: ['icon_style', 'border', 'about'],
+        computed: {
+            border_computed() {
+                return this.border
+            }
+        }
+    }
+</script>
 
 <style scoped>
     .about {

@@ -16,9 +16,10 @@
         <NavBar :company_name="company_name"/>
         <div class="container contact">
             <div class="row">
-                <contact-send-msg/>
+                <contact-send-msg :button_style="header_info.button" :icon_style="footer_info.icon_style"/>
                 <contact-information :text="company_admin_settings.contact_text"
                                      :support="company_admin_settings.support_field"
+                                     :button_style="header_info.button" :icon_style="footer_info.icon_style"
                 />
             </div>
         </div>
@@ -86,7 +87,7 @@
             'contact-information': contact_information
         },
         computed: {
-            ...mapState(['contact_page_ids', 'company_admin_settings', 'schema'])
+            ...mapState(['contact_page_ids', 'company_admin_settings', 'schema', 'header_info', 'footer_info'])
         },
         methods: {
             ...mapActions(['GET_SHOP_INFO', 'GET_COMPANY_SETTINGS'])

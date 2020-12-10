@@ -1,9 +1,7 @@
 <template>
     <div id="slider-component">
-        <VueSlickCarousel v-bind="settings">
-            <div><img src="../../assets/no-img.jpg"/></div>
-            <div><img src="../../assets/no-img.jpg"/></div>
-            <div><img src="../../assets/no-img.jpg"/></div>
+        <VueSlickCarousel v-bind="settings" v-if="slider.slider_img.length > 0">
+            <div v-for="img in slider.slider_img" :key="img"><img :src="img"/></div>
         </VueSlickCarousel>
     </div>
 </template>
@@ -15,6 +13,7 @@
     import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 
     export default {
+        props: ['slider'],
         data() {
             return {
                 settings: {

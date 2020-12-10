@@ -16,7 +16,7 @@ export default {
             if (data.filtered_type === 'price') {
                 let min = Number(data.price.min)
                 let max = Number(data.price.max)
-                console.log(data)
+                // console.log(data)
                 let filtered_items = []
                 state.products.forEach(i => {
                     if (Number(i.price) >= Number(min) && Number(i.price) <= Number(max)) {

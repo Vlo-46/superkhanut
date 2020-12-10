@@ -1,7 +1,7 @@
 <template>
     <div class="container" id="banner-component">
         <h5 class="center-align">Popular products</h5>
-        <div class="border-bottom"></div>
+        <div class="border-bottom" :style="`background-color: ${header_info.button.color}`"></div>
         <div class="carousel-items"
              v-if="company_products_computed !== undefined && company_products_computed.length > 0">
             <div v-for="product in company_products.products" :key="product.id">
@@ -99,7 +99,7 @@
             'product-box-9': product_9,
         },
         computed: {
-            ...mapState(['home_page_info', 'footer_info', 'company_products']),
+            ...mapState(['home_page_info', 'footer_info', 'company_products', 'header_info']),
             currentProductComponents() {
                 return this.currentProductBox
             },

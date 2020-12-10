@@ -25,7 +25,7 @@ export default {
                     'Authorization': `Bearer ${token}`
                 }
             }).then(res => {
-                console.log(res.data);
+                // console.log(res.data);
                 ctx.commit('GET_ORDERS', res.data)
             }).catch(e => console.log(e))
         },

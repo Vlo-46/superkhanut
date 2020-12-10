@@ -13,7 +13,7 @@
 
         <NavBar :company_name="company_name"/>
         <div class="container">
-            <About/>
+            <About :border="header_info.button.color" :icon_style="footer_info.icon_style" :about="company_admin_settings.about_field"/>
         </div>
 
 
@@ -66,7 +66,7 @@
             ...mapActions(['GET_SHOP_INFO', 'GET_COMPANY_SETTINGS'])
         },
         computed: {
-            ...mapState(['company_admin_settings', 'schema'])
+            ...mapState(['company_admin_settings', 'schema', 'header_info', 'footer_info']),
         },
         async created() {
             this.company_name = this.$route.params.pathMatch;

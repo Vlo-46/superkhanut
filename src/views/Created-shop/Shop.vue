@@ -72,7 +72,8 @@
                                             </div>
                                         </template>
                                         <template v-else>
-                                            <div class="col s12 m6 l4" v-for="product in Company_filters.filtered_products"
+                                            <div class="col s12 m6 l4"
+                                                 v-for="product in Company_filters.filtered_products"
                                                  :key="product.id">
                                                 <component :is="currentProductComponent"
                                                            :name="shop_page_info.product_title.product_name_style"
@@ -132,6 +133,9 @@
                             </template>
                         </template>
                     </div>
+                </div>
+                <div class="pagination-field">
+                    <pagination :button_style="header_info.button"/>
                 </div>
             </div>
             <Footer :support="company_admin_settings.support_field" :logo="company_admin_settings.company_logo"
@@ -204,29 +208,34 @@
                                                            :top="product.top"
                                                            :best="product.best"
                                                            :company_name="company_name"
+                                                           :button="header_info.button"
                                                 />
                                             </div>
                                         </template>
-                                        <template v-else><div class="col s12 m6 l4" v-for="product in Company_filters.filtered_products"
-                                                              :key="product.id">
-                                            <component :is="currentProductComponent"
-                                                       :name="shop_page_info.product_title.product_name_style"
-                                                       :price="shop_page_info.product_price.product_price_style"
-                                                       :category="shop_page_info.product_category.product_category_style"
-                                                       :icon="footer_info.icon_style"
-                                                       :id="product.id"
-                                                       :file="product.file"
-                                                       :product_name="product.product_name"
-                                                       :product_price="product.price"
-                                                       :discount_price="product.discount_price"
-                                                       :product_category="product.category"
-                                                       :tag="product.tag"
-                                                       :description="product.description"
-                                                       :top="product.top"
-                                                       :best="product.best"
-                                                       :company_name="company_name"
-                                            />
-                                        </div></template>
+                                        <template v-else>
+                                            <div class="col s12 m6 l4"
+                                                 v-for="product in Company_filters.filtered_products"
+                                                 :key="product.id">
+                                                <component :is="currentProductComponent"
+                                                           :name="shop_page_info.product_title.product_name_style"
+                                                           :price="shop_page_info.product_price.product_price_style"
+                                                           :category="shop_page_info.product_category.product_category_style"
+                                                           :icon="footer_info.icon_style"
+                                                           :id="product.id"
+                                                           :file="product.file"
+                                                           :product_name="product.product_name"
+                                                           :product_price="product.price"
+                                                           :discount_price="product.discount_price"
+                                                           :product_category="product.category"
+                                                           :tag="product.tag"
+                                                           :description="product.description"
+                                                           :top="product.top"
+                                                           :best="product.best"
+                                                           :company_name="company_name"
+                                                           :button="header_info.button"
+                                                />
+                                            </div>
+                                        </template>
 
                                     </template>
                                     <template v-else>
@@ -267,6 +276,10 @@
                         </template>
                     </div>
                 </div>
+                <div class="pagination-field">
+                    <pagination :button_style="header_info.button"/>
+                </div>
+
             </div>
             <Footer_2 :support="company_admin_settings.support_field" :logo="company_admin_settings.company_logo"
                       :company_name="company_name"/>
@@ -382,7 +395,8 @@
                                             </div>
                                         </template>
                                         <template v-else>
-                                            <div class="col s12 m6 l3" v-for="product in Company_filters.filtered_products"
+                                            <div class="col s12 m6 l3"
+                                                 v-for="product in Company_filters.filtered_products"
                                                  :key="product.id">
                                                 <component :is="currentProductComponent"
                                                            :name="shop_page_info.product_title.product_name_style"
@@ -454,6 +468,10 @@
                         </template>
                     </div>
                 </div>
+                <div class="pagination-field">
+                    <pagination :button_style="header_info.button"/>
+                </div>
+
             </div>
             <Footer_3 :support="company_admin_settings.support_field" :logo="company_admin_settings.company_logo"
                       :company_name="company_name"/>
@@ -490,6 +508,8 @@
     import product_7 from "../../components/Created-shop-elements/products-box/Product-7";
     import product_8 from "../../components/Created-shop-elements/products-box/Product-8";
     import product_9 from "../../components/Created-shop-elements/products-box/Product-9";
+
+    import pagination from '../../components/Created-shop-elements/paginations/Pagination-1'
     import {mapActions, mapState} from "vuex";
 
 
@@ -536,10 +556,11 @@
             Header_2,
             Footer_2,
             Header_3,
-            Footer_3
+            Footer_3,
+            pagination
         },
         computed: {
-            ...mapState(['footer_info', 'shop_page_filters_ids', 'shop_page_rightBox_ids', 'shop_page_info', 'company_products', 'company_admin_settings', 'schema', 'Company_filters']),
+            ...mapState(['footer_info', 'shop_page_filters_ids', 'shop_page_rightBox_ids', 'shop_page_info', 'company_products', 'company_admin_settings', 'schema', 'Company_filters', 'header_info']),
             currentProductComponent() {
                 return this.currentProductBox
             },
@@ -645,6 +666,11 @@
         height: 100%;
         width: 100%;
         align-items: center;
+        justify-content: center;
+    }
+
+    .pagination-field {
+        display: flex;
         justify-content: center;
     }
 </style>
