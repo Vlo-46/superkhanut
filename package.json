@@ -32,6 +32,7 @@
     "vue-tiny-slider": "^0.1.39",
     "vue-top-progress": "^0.7.0",
     "vue-ultimate-skeleton-cards": "^1.0.3",
+    "vuejs-paginate": "^2.1.0",
     "vuex": "^3.4.0"
   },
   "devDependencies": {

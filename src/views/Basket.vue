@@ -117,12 +117,24 @@
                     })
                     .catch(e => {
                         console.log(e)
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Oops...',
-                            text: 'Something went wrong!',
-                            // footer: '<a href>Why do I have this issue?</a>'
-                        })
+                        if(token) {
+                            this.$router.push('/login')
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Something went wrong!',
+                                // footer: '<a href>Why do I have this issue?</a>'
+                            })
+                        }else {
+                            this.$router.push('/signin')
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Please log in to complete the order',
+                                // footer: '<a href>Why do I have this issue?</a>'
+                            })
+                        }
+
                     })
             }
         },

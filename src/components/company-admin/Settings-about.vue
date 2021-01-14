@@ -65,6 +65,7 @@
 <script>
     import axios from 'axios'
     import keys from '../../keys'
+    import Swal from "sweetalert2";
 
     export default {
         props: ['about'],
@@ -109,8 +110,23 @@
                         .then(() => {
                             this.disabled = true;
                             // console.log(res.data)
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Data successfully changed',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
                         })
-                        .catch(e => console.log(e))
+                        .catch(e => {
+                            console.log(e)
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Something went wrong',
+                                // footer: '<a href>Why do I have this issue?</a>'
+                            })
+                        })
                 } else {
                     let title = this.title
                     let text = this.text;
@@ -131,9 +147,24 @@
                     })
                         .then(() => {
                             this.disabled = true;
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Data successfully changed',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
                             // console.log(res.data)
                         })
-                        .catch(e => console.log(e))
+                        .catch(e => {
+                            console.log(e)
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Something went wrong',
+                                // footer: '<a href>Why do I have this issue?</a>'
+                            })
+                        })
                 }
 
             }

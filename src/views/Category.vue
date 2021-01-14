@@ -81,7 +81,18 @@
                 </template>
             </div>
         </div>
-        <pagination/>
+        <!--        <pagination/>-->
+        <paginate
+                :page-count="WAITING_FOR_DATAS.pagination.pages"
+                :page-range="3"
+                :margin-pages="2"
+                :click-handler="clickCallback"
+                :prev-text="'Prev'"
+                :next-text="'Next'"
+                :container-class="'pagination'"
+                :page-class="'page-item'">
+        </paginate>
+        <h1>{{WAITING_FOR_DATAS.pagination.skip}}</h1>
         <footer-wrapper/>
     </div>
 </template>
@@ -93,13 +104,15 @@
     import FilterByCategory from '../components/category/FilterByCategory'
     import FilterByTag from '../components/category/FilterByTag'
     import FilterByPrice from '../components/category/FilterByPrice'
-    import pagination from '../components/home/Pagination'
+    // import pagination from '../components/home/Pagination'
     import filters from '../components/category/Filters'
     import ProductList from '../components/category/ProductList'
     import products from '../components/home/Products'
     import company from '../components/home/Companies'
 
     import {mapState, mapActions} from 'vuex'
+
+    import Paginate from 'vuejs-paginate'
 
 
     export default {
@@ -108,7 +121,7 @@
                 categories: [],
                 tags: [],
                 max_price: [],
-                min_price: []
+                min_price: [],
             }
         },
         components: {
@@ -119,12 +132,18 @@
             FilterByTag,
             FilterByPrice,
             products,
-            pagination,
+            // pagination,
             filters,
             ProductList,
-            company
+            company,
+            'paginate': Paginate
         },
-        methods: {...mapActions(['GET_PRODUCTS', '$GET_ALL_PRODUCTS', '$GET_ALL_COMPANIES'])},
+        methods: {
+            ...mapActions(['GET_PRODUCTS', '$GET_ALL_PRODUCTS', '$GET_ALL_COMPANIES']),
+            clickCallback(currentPage) {
+                console.log(currentPage)
+            }
+        },
         computed: {
             // ...mapGetters(['FILTERED_ITEMS']),
             ...mapState(['navigation', 'filters']),
@@ -137,15 +156,26 @@
                     tag_arr.push(i.tag);
                     price_arr.push(Number(i.price))
                 });
+                let postsCount = Number(this.filters.products.length);
+                let perPage = 2;
+                let pages = postsCount / perPage
+
                 let data = {
+                    products: this.filters.products,
                     category_arr: new Set(category_arr),
                     tag_arr: new Set(tag_arr),
                     max_price: Math.max.apply(null, price_arr),
                     min_price: Math.min.apply(null, price_arr),
-                    price_arr
+                    price_arr,
+                    pagination: {
+                        postsCount,
+                        perPage,
+                        pages,
+                        skip: (perPage * pages) - perPage
+                    }
                 }
                 return data
-            }
+            },
         },
         async created() {
             await this.$GET_ALL_PRODUCTS();

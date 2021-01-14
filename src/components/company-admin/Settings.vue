@@ -3,11 +3,15 @@
         <div class="dashboard row">
             <left-panel/>
             <div class="col s12 m10 l10 right-field">
+                <template v-if="schema === 'example-1'">
+                    <adverstising-field :all_advertising="company_admin_settings.advertising"/>
+                    <hr>
+                </template>
                 <support-field :support="company_admin_settings.support_field"/>
                 <hr>
                 <company-logo-field :logo="company_admin_settings.company_logo"/>
                 <hr>
-                <slider-field :slider="company_admin_settings.slider_field"/>
+                <slider-field :slider="company_admin_settings.slider_field.slider_img"/>
                 <hr>
                 <!--                <contact-information-field :contact_text="company_admin_settings.contact_info"/>-->
                 <!--                <hr>-->
@@ -25,6 +29,7 @@
 
 <script>
     import left_panel from './Left-panel'
+    import adverstising_field from './Settings-advertising'
     import support_field from './Settings-support-field'
     import company_logo_field from './Settings-company-logo'
     import slider_field from './Settings-slider-field'
@@ -39,6 +44,7 @@
     export default {
         components: {
             'left-panel': left_panel,
+            'adverstising-field': adverstising_field,
             'support-field': support_field,
             'company-logo-field': company_logo_field,
             'slider-field': slider_field,
@@ -46,17 +52,18 @@
             'about-field': about_field,
             'categories-field': categories_field,
             'shop-page-img-field': shop_page_img_field,
-            'delete-account': delete_account
+            'delete-account': delete_account,
         },
         methods: {
-            ...mapActions(['GET_COMPANY_SETTINGS'])
+            ...mapActions(['GET_COMPANY_SETTINGS', 'GET_SHOP_INFO'])
         },
         computed: {
-            ...mapState(['company_admin_settings']),
+            ...mapState(['company_admin_settings', 'schema']),
         },
         async created() {
             let company_name = this.$route.params.pathMatch;
             await this.GET_COMPANY_SETTINGS(company_name)
+            this.GET_SHOP_INFO(company_name)
         }
     }
 </script>

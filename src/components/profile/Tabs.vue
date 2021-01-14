@@ -3,7 +3,7 @@
         <ul class="row" style="border-bottom: 1px solid #e1e8ed;">
             <li v-for="tab in tabs_computed"
                 :key="tab.id" class="col s4 m3 l2"
-                :style="tab.active ? active: disabled">
+                :style="tab.active ? active : disabled">
                 <router-link :to="tab.path">{{tab.name}}</router-link>
             </li>
         </ul>
@@ -24,7 +24,10 @@
                     borderLeft: "1px solid #e1e8ed",
                     backgroundColor: '#fff'
                 },
-                disabled: {}
+                disabled: {
+                    color: '#666',
+                    backgroundColor: 'none'
+                }
             }
         },
         computed: {

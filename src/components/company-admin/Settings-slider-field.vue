@@ -1,10 +1,13 @@
 <template>
     <div class="slider-field">
-        <h5>Slider նկար/տեքստ</h5>
+        <h5>Slider նկար</h5>
         <template v-if="disabled">
             <div class="product-box-img">
-                <template v-for="img in slider.slider_img">
-                    <img :src="img" alt="" class="product-img responsive-img" :key="img">
+                <template v-for="img in slider">
+                    <div class="img-box" :key="img">
+                        <img :src="img" alt="" class="product-img responsive-img">
+                        <i class="material-icons delete_icon" @click="DELETE_SLIDER(img)">delete_forever</i>
+                    </div>
                 </template>
             </div>
         </template>
@@ -22,26 +25,16 @@
             <div class="show-img-box">
                 <div v-for="image in images" :key="image.name" class="preview-box">
                     <img class="preview" :ref="'image'"/>
-                    <!--                    <div class="delete">-->
-                    <!--                        <button class="waves-effect waves-light"><i class="material-icons">delete</i></button>-->
-                    <!--                    </div>-->
                 </div>
             </div>
         </template>
-        <div class="col s12">
-            <input id="slider-text"
-                   :disabled="disabled"
-                   v-model="slider.slider_text"
-            />
-            <label for="slider-text">Տեքստ</label>
-        </div>
         <template v-if="disabled === true">
             <button class="waves-effect waves-light btn" @click="disabled = false">
                 <i class="material-icons">create</i>
             </button>
         </template>
         <template v-else>
-            <button class="waves-effect waves-light btn" @click="SLIDER">
+            <button class="waves-effect waves-light btn" @click="SLIDER(files), disabled = true">
                 <i class="material-icons">check</i>
             </button>
         </template>
@@ -49,8 +42,7 @@
 </template>
 
 <script>
-    import axios from 'axios'
-    import keys from '../../keys'
+    import {mapActions} from 'vuex'
 
     export default {
         props: ['slider'],
@@ -79,30 +71,7 @@
                     reader.readAsDataURL(this.images[i]);
                 }
             },
-            SLIDER() {
-                let url = keys.baseURI;
-                let token = localStorage.getItem(keys.API_TOKEN);
-
-                let files = this.files;
-
-                let slider_field = {
-                    slider_img: files,
-                    slider_text: this.slider.slider_text
-                };
-
-                // console.log(JSON.stringify({slider_field}))
-
-                axios.patch(`${url}/api/store`, {slider_field}, {
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-                })
-                    .then(() => {
-                        this.disabled = true;
-                        // console.log(res.data)
-                    })
-                    .catch(e => console.log(e))
-            }
+            ...mapActions(['SLIDER', 'DELETE_SLIDER'])
         }
     }
 </script>
@@ -156,5 +125,21 @@
     .delete button i {
         color: #fff;
         padding: 2px;
+    }
+
+    .img-box {
+        position: relative;
+        margin: 3px;
+    }
+    .img-box img {
+        border-radius: 30px;
+    }
+    .delete_icon {
+        position: absolute;
+        top: 5px;
+        right: 10px;
+        cursor: pointer;
+        color: red;
+        font-size: 30px;
     }
 </style>

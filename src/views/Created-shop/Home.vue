@@ -1,4 +1,5 @@
 <!--CREATED SHOP HOME PAGE-->
+
 <template>
     <div>
         <!--        HOME PAGE EXAMPLE 1 START-->
@@ -12,11 +13,11 @@
                 <template v-for="id in home_page_ids">
                     <template v-if="id === 'slider-component'">
                         <!--        slider-->
-                        <Slider v-if="slider_computed.slider_img.length > 0" :key="id" :slider="slider_computed"/>
+                        <Slider v-if="slider_computed.length > 0" :key="id" :slider="slider_computed"/>
                     </template>
                     <template v-else-if="id === 'banner-component'">
                         <!--        banner-->
-                        <Banner :key="id"/>
+                        <Banner :key="id" :advertising="company_admin_settings.advertising"/>
                     </template>
                     <template v-else-if="id === 'product-component'">
                         <!--        products-->

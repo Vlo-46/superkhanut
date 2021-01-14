@@ -1,18 +1,27 @@
 <template>
     <div class="banner-item">
-        <img src="../../../assets/no-img.jpg" alt="">
+        <img :src="ad_file" alt="" v-if="ad_file">
+        <img src="../../../assets/no-img.jpg" alt="" v-else>
         <div class="info-box">
-            <div><p class="title" :style="title">title</p></div>
-            <div class="category"><p :style="category">category</p></div>
-            <div class="price"><p :style="price">price&nbsp;Դ</p></div>
+            <div>
+                <p class="title" :style="title" v-if="ad_title">{{ad_title}}</p>
+                <p class="title" :style="title" v-else>title</p>
+            </div>
+            <div class="category">
+                <p :style="category" v-if="ad_category">{{ad_category}}</p>
+                <p :style="category" v-else>category</p>
+            </div>
+            <div class="price">
+                <p :style="price" v-if="ad_price">{{ad_price}}&nbsp;Դ</p>
+                <p :style="price" v-else>price&nbsp;Դ</p>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
-
     export default {
-        props: ['title', 'price', 'category']
+        props: ['title', 'price', 'category', 'ad_title', 'ad_id', 'ad_category', 'ad_price', 'ad_file']
     }
 </script>
 
@@ -26,6 +35,7 @@
     img {
         width: 100%;
         height: 100%;
+        max-height: 300px;
         display: block;
     }
 

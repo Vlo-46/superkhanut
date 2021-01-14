@@ -131,7 +131,11 @@
         <Footer/>
         <div class="nextOrPrevPage">
             <button class="btn" @click="NEXT_PAGE('home')">Prev</button>
-            <button class="btn" @click="CREATE_SHOP">Save</button>
+            <button class="btn" @click="CREATE_SHOP"
+                    v-if="categories.category.length > 0 && price_filters.price_filter.length > 0 && tag_filters.tag_filter.length > 0">
+                Save
+            </button>
+            <button class="btn" disabled v-else>Save</button>
         </div>
     </div>
 </template>
@@ -215,7 +219,7 @@
             },
         },
         computed: {
-            ...mapState(['product_boxs']),
+            ...mapState(['product_boxs', 'categories', 'price_filters', 'tag_filters']),
             ...mapGetters(['FETCH_SHOP_COMPONENT_IDS', 'FETCH_SHOP_RIGHT_COMPONENT_IDS'])
         },
         created() {

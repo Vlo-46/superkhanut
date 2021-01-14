@@ -79,8 +79,8 @@
         </div>
         <div class="best" v-else-if="currentTab === 'best'">
             <div class="row">
-                <template v-if="company_products_computed !== undefined && company_products_computed.length > 0">
-                    <div class="col s12 m6 l3" v-for="product in company_products.products" :key="product.id">
+                <template v-if="company_best_products !== undefined && company_best_products.length > 0">
+                    <div class="col s12 m6 l3" v-for="product in company_best_products" :key="product.id">
                         <component :is="currentProductComponents"
                                    :name="home_page_info[currentProductBox].product_name_style"
                                    :price="home_page_info[currentProductBox].product_price_style"
@@ -147,8 +147,8 @@
         </div>
         <div class="best" v-else>
             <div class="row">
-                <template v-if="company_products_computed !== undefined && company_products_computed.length > 0">
-                    <div class="col s12 m6 l3" v-for="product in company_products.products" :key="product.id">
+                <template v-if="company_top_products !== undefined && company_top_products.length > 0">
+                    <div class="col s12 m6 l3" v-for="product in company_top_products" :key="product.id">
                         <component :is="currentProductComponents"
                                    :name="home_page_info[currentProductBox].product_name_style"
                                    :price="home_page_info[currentProductBox].product_price_style"
@@ -271,6 +271,18 @@
             },
             company_products_computed() {
                 return this.company_products.products
+            },
+            company_top_products() {
+                const top_products = this.company_products.products.filter(i => {
+                    return i.top === true
+                })
+                return top_products
+            },
+            company_best_products() {
+                const best_products = this.company_products.products.filter(i => {
+                    return i.best === true
+                })
+                return best_products
             }
         },
         methods: {

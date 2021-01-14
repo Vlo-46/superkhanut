@@ -12,7 +12,7 @@
                         <div><i class="material-icons">assignment</i><span>{{blog.time}}</span></div>
                         <div><i class="material-icons">format_list_bulleted</i><span>{{blog.type}}</span></div>
                     </div>
-<!--                    <p class="description">{{blog.description}}</p>-->
+                    <!--                    <p class="description">{{blog.description}}</p>-->
                     <router-link :to="{path: '/blog/'+ blog.id, params: {id: blog.id}}" class="more">Read more
                     </router-link>
                 </div>
@@ -25,7 +25,9 @@
     import {mapState} from 'vuex'
 
     export default {
-        computed: {...mapState(['blog_item'])},
+        computed: {
+            ...mapState(['blog_item'])
+        },
     }
 </script>
 
@@ -97,6 +99,7 @@
     .more:hover {
         background-color: #6ba229;
         color: #fff;
+        transition: 0.5s;
     }
 
     i {

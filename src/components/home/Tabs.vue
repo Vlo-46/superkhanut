@@ -41,16 +41,15 @@
                                           :encoded_name="product['store'].url_encoded_name"
                                 />
                             </div>
-
                         </div>
                     </div>
                 </div>
                 <div class="col s12 m4 l3" style="padding: 0 30px;">
-                    <div class="top-company-box">
+                    <div class="top-company-box" v-if="topCompanies.length > 0">
                         <p class="top">TOP COMPANIES</p>
-                        <top-companies v-for="top in topCompany.top_company_item"
+                        <top-companies v-for="top in topCompanies"
                                        :key="top.id"
-                                       :company_name="top.company_name"
+                                       :company_name="top.name"
                         />
                     </div>
                 </div>
@@ -76,7 +75,7 @@
     // });
 
     export default {
-        props: ['companies', 'products'],
+        props: ['companies', 'products', 'topCompanies'],
         components: {
             companies2,
             products,
@@ -117,11 +116,11 @@
         margin-top: 25px;
     }
 
-    .company-content {
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-    }
+    /*.company-content {*/
+    /*    display: flex;*/
+    /*    justify-content: space-between;*/
+    /*    flex-wrap: wrap;*/
+    /*}*/
 
     .top-company-box {
         padding: 20px;

@@ -31,7 +31,9 @@
     import {mapState} from 'vuex'
 
     export default {
-        computed: {...mapState(['blog_item'])},
+        computed: {
+            ...mapState(['blog_item'])
+        },
     }
 </script>
 
@@ -82,6 +84,7 @@
     .more a:hover {
         color: #fff;
         background-color: #6ba229;
+        transition: 0.5s;
     }
 
     .more {

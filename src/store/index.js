@@ -269,6 +269,7 @@ export default new Vuex.Store({
                     let shop_page_rightBox_ids = res.data.mains.shop.rightBox_ids;
                     let footer_ids = res.data.footer.ids;
 
+
                     ctx.commit('COMPANY_NAME', company_name);
 
                     ctx.commit('GET_HEADER_INFO', header);

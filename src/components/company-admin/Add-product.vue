@@ -15,13 +15,18 @@
                             </div>
                         </div>
                     </div>
-                    <div class="input-field">
+                    <div class="input-field col s12">
                         <label for="product_name">PRODUCT NAME</label>
                         <input type="text" id="product_name" v-model="product.product_name">
                     </div>
-                    <div class="input-field">
-                        <label for="category">CATEGORY</label>
-                        <input type="text" id="category" v-model="product.category">
+                    <div>
+                        <label>Categories</label>
+                        <select class="browser-default" v-model="product.category">
+                            <option value="" disabled selected>Choose product category</option>
+                            <option v-for="category in company_categories" :key="category" :value="category">
+                                {{category}}
+                            </option>
+                        </select>
                     </div>
                     <div class="input-field">
                         <label for="description">DESCRIPTION</label>
@@ -69,6 +74,7 @@
     import axios from 'axios'
     import keys from '../../keys'
     import left_panel from './Left-panel'
+    import {mapActions, mapState} from 'vuex'
 
     export default {
         components: {
@@ -90,7 +96,14 @@
                 company_name: ''
             }
         },
+        computed: {
+            ...mapState(['company_admin_settings']),
+            company_categories() {
+                return this.company_admin_settings.categories
+            }
+        },
         methods: {
+            ...mapActions(['GET_COMPANY_SETTINGS']),
             onSelect() {
                 const file = this.$refs.file.files[0];
                 let reader = new FileReader();
@@ -101,6 +114,7 @@
             },
 
             ADD_PRODUCT(product) {
+                // console.log(product)
                 let url = keys.baseURI;
                 let API_TOKEN = keys.API_TOKEN;
 
@@ -124,6 +138,7 @@
         },
         created() {
             this.company_name = this.$route.params.pathMatch;
+            this.GET_COMPANY_SETTINGS(this.$route.params.pathMatch)
         }
     }
 </script>

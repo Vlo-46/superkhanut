@@ -1,13 +1,23 @@
 <template>
     <div class="banner-item">
         <div class="img-box">
-            <img src="../../../assets/no-img.jpg" alt="">
+            <img :src="ad_file" alt="" v-if="ad_file">
+            <img src="../../../assets/no-img.jpg" alt="" v-else>
         </div>
         <div class="info-box">
-            <div class="title"><span :style="title">title</span></div>
+            <div class="title">
+                <span :style="title" v-if="ad_title">{{ad_title}}</span>
+                <span :style="title" v-else>title</span>
+            </div>
             <div class="info-inner-box">
-                <div class="category"><span :style="category">category</span></div>
-                <div class="price"><span :style="price">price&nbsp;Դ</span></div>
+                <div class="category">
+                    <span :style="category" v-if="ad_category">{{ad_category}}</span>
+                    <span :style="category" v-else>category</span>
+                </div>
+                <div class="price">
+                    <span :style="price" v-if="ad_price">{{ad_price}}&nbsp;Դ</span>
+                    <span :style="price" v-else>price&nbsp;Դ</span>
+                </div>
             </div>
         </div>
     </div>
@@ -15,7 +25,7 @@
 
 <script>
     export default {
-        props: ['title', 'price', 'category']
+        props: ['title', 'price', 'category', 'ad_title', 'ad_id', 'ad_category', 'ad_price', 'ad_file']
     }
 </script>
 
@@ -32,6 +42,7 @@
     img {
         width: 100%;
         height: 100%;
+        max-height: 300px;
         display: block;
     }
 

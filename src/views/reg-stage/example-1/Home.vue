@@ -22,7 +22,11 @@
         <!--        footer-->
         <Footer/>
         <div class="next-page">
-            <button class="btn" @click="NEXT_PAGE('shop')">NEXT</button>
+            <button class="btn" @click="NEXT_PAGE('shop')"
+                    v-if="product_boxs.product_box.length > 0 && inputs.input.length > 0 && banners.banner.length > 0">
+                NEXT
+            </button>
+            <button class="btn" disabled v-else>NEXT</button>
         </div>
     </div>
 </template>
@@ -34,7 +38,7 @@
     import Banner from '../../../components/reg-stage/example-1/Banner'
     import Product from '../../../components/reg-stage/example-1/Product'
     import Footer from '../../../components/reg-stage/example-1/Footer'
-    import {mapActions, mapGetters} from 'vuex'
+    import {mapActions, mapGetters, mapState} from 'vuex'
     import Vue from "vue";
 
     // import FIND_PAGES_BY_COVER from '../../../utils'
@@ -88,7 +92,8 @@
             ...mapActions(['HEADER_COMPONENTS', 'PRODUCT_COMPONENTS', 'SLIDER_COMPONENTS', 'BANNER_COMPONENTS', 'FOOTER_COMPONENTS', 'NEXT_PAGE', 'GET_HOME_COMPONENTS_IDS'])
         },
         computed: {
-            ...mapGetters(['FETCH_HOME_COMPONENT_IDS'])
+            ...mapGetters(['FETCH_HOME_COMPONENT_IDS']),
+            ...mapState(['product_boxs', 'inputs', 'banners'])
         },
         created() {
             Vue.vueDragula.eventBus.$on('drop', () => {

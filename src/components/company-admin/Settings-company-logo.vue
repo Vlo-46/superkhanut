@@ -21,7 +21,7 @@
             </button>
         </template>
         <template v-else>
-            <button class="waves-effect waves-light btn" @click="COMPANY_LOGO">
+            <button class="waves-effect waves-light btn" @click="COMPANY_LOGO(file), disabled = true">
                 <i class="material-icons">check</i>
             </button>
         </template>
@@ -29,8 +29,7 @@
 </template>
 
 <script>
-    import axios from 'axios'
-    import keys from '../../keys'
+    import {mapActions} from 'vuex'
 
     export default {
         props: ['logo'],
@@ -49,24 +48,7 @@
                 };
                 reader.readAsDataURL(file);
             },
-            COMPANY_LOGO() {
-                let url = keys.baseURI;
-                let token = localStorage.getItem(keys.API_TOKEN)
-
-                let company_logo = this.file
-                // console.log({company_logo})
-
-                axios.patch(`${url}/api/store`, {company_logo}, {
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-                })
-                    .then(() => {
-                        this.disabled = true
-                        // console.log(res.data)
-                    })
-                    .catch(e => console.log(e))
-            }
+            ...mapActions(['COMPANY_LOGO'])
         }
     }
 </script>

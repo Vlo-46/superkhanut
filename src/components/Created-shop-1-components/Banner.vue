@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <div class="banners row">
+        <div class="banners row" v-if="!advertising">
             <div class="col s12 m6 l4">
                 <component :is="currentBannerComponent"
                            :title="home_page_info[currentBanner].product_name_style"
@@ -20,6 +20,20 @@
                            :title="home_page_info[currentBanner].product_name_style"
                            :price="home_page_info[currentBanner].product_price_style"
                            :category="home_page_info[currentBanner].product_category_style"
+                />
+            </div>
+        </div>
+        <div class="banners row" v-else>
+            <div class="col s12 m6 l4" v-for="item in advertising" :key="item.id">
+                <component :is="currentBannerComponent"
+                           :title="home_page_info[currentBanner].product_name_style"
+                           :price="home_page_info[currentBanner].product_price_style"
+                           :category="home_page_info[currentBanner].product_category_style"
+                           :ad_title="item.title"
+                           :ad_category="item.category"
+                           :ad_file="item.file"
+                           :ad_price="item.price"
+                           :ad_id="item.id"
                 />
             </div>
 
@@ -34,6 +48,7 @@
     import {mapActions, mapState} from 'vuex'
 
     export default {
+        props: ['advertising'],
         data() {
             return {
                 currentBanner: '',

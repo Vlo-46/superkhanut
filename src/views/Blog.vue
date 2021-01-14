@@ -43,7 +43,9 @@
             tags,
             'blog-grid': Blog_grid
         },
-        computed: {...mapState(['blog_navigation'])},
+        computed: {
+            ...mapState(['blog_navigation'])
+        },
     }
 </script>
 

@@ -22,7 +22,11 @@
         <!--        footer-->
         <Footer/>
         <div class="next-page">
-            <button class="btn" @click="NEXT_PAGE('shop-2')">NEXT</button>
+            <button class="btn" @click="NEXT_PAGE('shop-2')"
+                    v-if="product_boxs.product_box.length > 0 && inputs.input.length > 0">
+                NEXT
+            </button>
+            <button class="btn" disabled v-else>NEXT</button>
         </div>
     </div>
 </template>
@@ -35,7 +39,7 @@
     import Carousel from '../../../components/reg-stage/example-2/Carousel'
     import Footer from '../../../components/reg-stage/example-2/Footer'
 
-    import {mapActions, mapGetters} from 'vuex'
+    import {mapActions, mapGetters, mapState} from 'vuex'
     import Vue from "vue";
 
     export default {
@@ -75,6 +79,7 @@
         },
         computed: {
             ...mapGetters(['FETCH_HOME_COMPONENT_IDS']),
+            ...mapState(['product_boxs', 'inputs', 'banners'])
         },
         created() {
             Vue.vueDragula.eventBus.$on('drop', () => {

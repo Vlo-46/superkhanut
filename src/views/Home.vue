@@ -4,6 +4,7 @@
         <NavWrapper/>
         <tabs :companies="companies.companies"
               :products="products.products"
+              :topCompanies="topCompany.top_companies"
         />
         <footer-wrapper/>
     </div>
@@ -26,14 +27,15 @@
             NavWrapper,
         },
         methods: {
-            ...mapActions(['GET_ALL_COMPANIES', 'GET_ALL_PRODUCTS_IN_COMPANIES'])
+            ...mapActions(['GET_ALL_COMPANIES', 'GET_ALL_PRODUCTS_IN_COMPANIES', 'GET_TOP_COMPANIES'])
         },
         computed: {
-            ...mapState(['companies', 'products'])
+            ...mapState(['companies', 'products', 'topCompany'])
         },
         async created() {
             await this.GET_ALL_COMPANIES();
             await this.GET_ALL_PRODUCTS_IN_COMPANIES()
+            await this.GET_TOP_COMPANIES()
         }
     }
 </script>

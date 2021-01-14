@@ -2,7 +2,7 @@
     <div class="card">
         <div class="card-image waves-effect waves-block waves-light">
             <router-link :to="`/${company_name}/detail/${id}`">
-                <img class="activator" :src="file">
+                <img class="activator" :src="file" style="width: 100%; height: 200px; max-height: 200px">
             </router-link>
         </div>
         <div class="card-content">

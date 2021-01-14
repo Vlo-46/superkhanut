@@ -262,8 +262,11 @@
     import product_panel from '../components/reg-stage/Right-panel/Product-panel';
     import category_panel from '../components/reg-stage/Right-panel/Category-panel';
 
-    export default {
 
+    import keys from "../keys";
+    import axios from "axios";
+
+    export default {
         components: {
             'example-1': example_1,
             'example-2': example_2,
@@ -281,7 +284,7 @@
         methods: {
             ...mapActions(['example', 'HEADER_COMPONENTS', 'PRODUCT_COMPONENTS', 'SLIDER_COMPONENTS', 'BANNER_COMPONENTS',
                 'FOOTER_COMPONENTS', 'INPUTS', 'PRODUCT_BOXS', 'CHANGE_SLIDER', 'CLOSE_RIGHT_PANEL', 'BANNER',
-                'CATEGORY_FILTER', '$PRICE_FILTER', '$TAG_FILTER', 'CONTACT_INFORMATION', 'CONTACT_SEND_MESSAGE',]),
+                'CATEGORY_FILTER', '$PRICE_FILTER', '$TAG_FILTER', 'CONTACT_INFORMATION', 'CONTACT_SEND_MESSAGE', 'GET_SHOP_INFO']),
             GO_TO_BACK() {
                 this.HEADER_COMPONENTS('component');
                 this.SLIDER_COMPONENTS('component');
@@ -298,6 +301,36 @@
                 'footer_components', 'pages', 'right_panel', 'category_components', 'price_filter_components',
                 'tag_filter_components', 'contact_information_components', 'contact_send_msg_components']),
         },
+        created() {
+            let token = localStorage.getItem(keys.API_TOKEN)
+            if(token) {
+                axios.post(`${keys.baseURI}/api/auth/me`, {}, {
+                    headers: {
+                        'Authorization': `bearer ${token}`
+                    }
+                })
+                    .then(res => {
+                        const user = res.data.user;
+                        if(user.type === 'USER') {
+                            // this.$router.push('/')
+                            window.location.href = '/'
+                        }else {
+                            if(user.in_process === false) {
+                                window.location.href = '/'
+                            }
+                            // let company_name = user['store'].url_encoded_name
+                            // this.GET_SHOP_INFO(company_name)
+                            // console.log(user)
+                        }
+                    })
+                    .catch(e => console.log(e))
+            } else {
+                // this.$router.push('/')
+                window.location.href = '/'
+            }
+
+
+        }
     }
 </script>
 <style scoped>

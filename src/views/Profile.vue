@@ -57,7 +57,6 @@
 
     import {mapActions, mapState} from 'vuex';
     import keys from '../keys';
-    // import axios from 'axios';
 
     export default {
         components: {
@@ -71,16 +70,21 @@
         methods: {
             ...mapActions(['GET_USER', 'GET_USER_ORDERS'])
         },
-        created() {
-            const token = localStorage.getItem(keys.API_TOKEN);
-            this.GET_USER(token);
-            this.GET_USER_ORDERS(token)
-        },
         computed: {
             ...mapState(['profile']),
             orders() {
                 return this.profile.orders
+            },
+        },
+        created() {
+            const token = localStorage.getItem(keys.API_TOKEN);
+            if (token) {
+                this.GET_USER(token);
+                this.GET_USER_ORDERS(token)
+            } else {
+                // this.$router.push('/')
+                window.location.href = '/'
             }
-        }
+        },
     }
 </script>
