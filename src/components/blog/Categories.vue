@@ -3,15 +3,28 @@
         <p class="title center-align">Categories</p>
         <div class="hr"></div>
         <ul>
-            <li><i class="material-icons">check</i><a href="">Category 1</a></li>
-            <li><i class="material-icons">check</i><a href="">Category 2</a></li>
-            <li><i class="material-icons">check</i><a href="">Category 3</a></li>
-            <li><i class="material-icons">check</i><a href="">Category 4</a></li>
-            <li><i class="material-icons">check</i><a href="">Category 5</a></li>
-            <li><i class="material-icons">check</i><a href="">Category 6</a></li>
+            <li>
+                <i class="material-icons">check</i>
+                <a href="" @click.prevent="BLOG_FILTER_BY_CATEGORY('all')">All</a>
+            </li>
+            <li v-for="blog in blogs.items" :key="blog.id">
+                <i class="material-icons">check</i>
+                <a href="" @click.prevent="BLOG_FILTER_BY_CATEGORY(blog.category)">{{blog.category}}</a>
+            </li>
         </ul>
     </div>
 </template>
+
+<script>
+    import {mapActions} from 'vuex'
+
+    export default {
+        props: ['blogs'],
+        methods: {
+            ...mapActions(['BLOG_FILTER_BY_CATEGORY'])
+        }
+    }
+</script>
 
 <style scoped>
     .hr {

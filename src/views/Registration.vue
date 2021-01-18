@@ -3,7 +3,7 @@
         <nav>
             <div class="container">
                 <ul>
-                    <li><a href="/"><img src="../assets/logo.png" alt="" class="responsive-img"></a></li>
+                    <li><a href="/"><img :src="website_logo.value" alt="" class="responsive-img"></a></li>
                     <li><a href="">
                         <router-link to="/signin" class="signin_btn btn">Sign in</router-link>
                     </a></li>
@@ -13,15 +13,8 @@
         <div class="container">
             <div class="row">
                 <div class="col s12 m12 l6">
-                    <h4>Create a new Account</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus ipsam maiores molestiae quos
-                        veniam. Accusantium aliquam animi architecto, asperiores dolores ex expedita facere in libero
-                        nesciunt non saepe velit veritatis. Aut corporis cupiditate deleniti dignissimos doloribus ea,
-                        id laboriosam minima modi molestiae neque, numquam officia omnis possimus quam, quo ullam! Lorem
-                        ipsum dolor sit amet, consectetur adipisicing elit. Ab aperiam cum debitis dicta distinctio
-                        doloremque, ducimus eius incidunt ipsam itaque minus nam nulla obcaecati omnis quisquam tempora
-                        veritatis. Beatae distinctio doloremque doloribus ea eligendi nemo quisquam ratione vero.
-                        Accusantium adipisci aliquam dicta enim est impedit, quidem reprehenderit sit tempore ullam.</p>
+                    <h4 v-if="registration_title">{{registration_title.value}}</h4>
+                    <p v-if="registration_text">{{registration_text.value}}</p>
                 </div>
                 <div class="col s12 m12 l6">
                     <div class="row">
@@ -56,11 +49,40 @@
     import RegCompany from '../components/auth/RegCompany'
     import RegUser from '../components/auth/RegUser'
     import keys from "../keys";
+    import axios from 'axios'
+
+    import {mapActions, mapState} from 'vuex'
 
     export default {
+        data() {
+            return {
+                info: []
+            }
+        },
         components: {
             RegCompany,
             RegUser
+        },
+        methods: {
+            ...mapActions(['GET_SETTINGS'])
+        },
+        computed: {
+            ...mapState(['settings']),
+            website_logo() {
+                return this.settings.website_logo
+            },
+            registration_title() {
+                const reg_title = this.info.filter(i => {
+                    return i.key === 'registration_title'
+                })[0]
+                return reg_title
+            },
+            registration_text() {
+                const reg_text = this.info.filter(i => {
+                    return i.key === 'registration_text'
+                })[0]
+                return reg_text
+            }
         },
         beforeMount() {
             let API_TOKEN = keys.API_TOKEN;
@@ -69,6 +91,14 @@
             if (LOCALSTORAGE_TOKEN) {
                 this.$router.push('/profile')
             }
+        },
+        created() {
+            axios.get(`${keys.baseURI}/api/superstore`)
+                .then(res => {
+                    this.info = res.data
+                })
+                .catch(e => console.log(e))
+            this.GET_SETTINGS()
         }
     }
 
@@ -150,5 +180,9 @@
     .tabs .tab a.active {
         background-color: transparent;
         color: #666;
+    }
+
+    img {
+        width: 110px;
     }
 </style>

@@ -3,7 +3,7 @@
         <nav>
             <div class="container">
                 <ul>
-                    <li><a href="/"><img src="../assets/logo.png" alt="" class="responsive-img"></a></li>
+                    <li><a href="/"><img :src="website_logo.value" alt="" class="responsive-img"></a></li>
                     <li><a href="">
                         <a href="/registration" class="btn">Create Account</a>
                     </a></li>
@@ -14,15 +14,8 @@
         <div class="container">
             <div class="row">
                 <div class="col s12 m6 l6">
-                    <h4>Welcome to the Armcoding</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus ipsam maiores molestiae quos
-                        veniam. Accusantium aliquam animi architecto, asperiores dolores ex expedita facere in libero
-                        nesciunt non saepe velit veritatis. Aut corporis cupiditate deleniti dignissimos doloribus ea,
-                        id laboriosam minima modi molestiae neque, numquam officia omnis possimus quam, quo ullam! Lorem
-                        ipsum dolor sit amet, consectetur adipisicing elit. Ab aperiam cum debitis dicta distinctio
-                        doloremque, ducimus eius incidunt ipsam itaque minus nam nulla obcaecati omnis quisquam tempora
-                        veritatis. Beatae distinctio doloremque doloribus ea eligendi nemo quisquam ratione vero.
-                        Accusantium adipisci aliquam dicta enim est impedit, quidem reprehenderit sit tempore ullam.</p>
+                    <h4 v-if="login_title">{{login_title.value}}</h4>
+                    <p v-if="login_text">{{login_text.value}}</p>
                 </div>
                 <div class="col s12 m6 l6">
                     <div class="signinBox">
@@ -54,8 +47,10 @@
 </template>
 
 <script>
-    import {mapActions} from 'vuex'
     import keys from '../keys'
+    import axios from "axios";
+
+    import {mapActions, mapState} from 'vuex'
 
     export default {
         data() {
@@ -63,11 +58,30 @@
                 user: {
                     email: '',
                     password: ''
-                }
+                },
+                info: []
             }
         },
         methods: {
-            ...mapActions(['LOGIN'])
+            ...mapActions(['LOGIN', 'GET_SETTINGS'])
+        },
+        computed: {
+            ...mapState(['settings']),
+            website_logo() {
+                return this.settings.website_logo
+            },
+            login_title() {
+                const log_title = this.info.filter(i => {
+                    return i.key === 'login_title'
+                })[0]
+                return log_title
+            },
+            login_text() {
+                const log_text = this.info.filter(i => {
+                    return i.key === 'login_text'
+                })[0]
+                return log_text
+            }
         },
         beforeMount() {
             let API_TOKEN = keys.API_TOKEN
@@ -76,6 +90,14 @@
             if (LOCALSTORAGE_TOKEN) {
                 this.$router.push('/profile')
             }
+        },
+        created() {
+            axios.get(`${keys.baseURI}/api/superstore`)
+                .then(res => {
+                    this.info = res.data
+                })
+                .catch(e => console.log(e))
+            this.GET_SETTINGS()
         }
     }
 </script>
@@ -126,5 +148,9 @@
         padding: 5px 22px;
         color: #bababa;
         font-size: 15px;
+    }
+
+    img {
+        width: 110px;
     }
 </style>

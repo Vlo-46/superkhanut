@@ -1,6 +1,6 @@
 <template>
     <div class="profile-page">
-        <NavBar/>
+        <NavBar :website_logo="website_logo"/>
         <div class="row container">
             <div class="col s12" v-if="profile.user.type === 'COMPANY'">
                 <Profile :type="profile.user.type"
@@ -21,29 +21,7 @@
             <Settings v-else-if="this.$route.path === '/profile/settings'"/>
             <profile-content v-else/>
         </div>
-        <!--        <ul v-if="profile.user.type === 'COMPANY'" style="display: flex;flex-direction: column;align-items: center;">-->
-        <!--            <li><b>ID:</b>&nbsp;{{profile.user.id}}</li>-->
-        <!--            <li><b>USERNAME:</b>&nbsp;{{profile.user.name}}</li>-->
-        <!--            <li><b>SURNAME:</b>&nbsp;{{profile.user.surname}}</li>-->
-        <!--            <li><b>EMAIL:</b>&nbsp;{{profile.user.email}}</li>-->
-        <!--            <li><b>CREATED AT:</b>&nbsp;{{profile.user.created_at}}</li>-->
-        <!--            <li><b>COMPANY ID:</b>&nbsp;{{profile.user['store'].id}}</li>-->
-        <!--            <li><b>COMPANY NAME:</b>&nbsp;{{profile.user['store'].name}}</li>-->
-        <!--            <li>-->
-        <!--                <b>COMPANY LOGO:</b>&nbsp;<br>-->
-        <!--                <img :src="profile.user['store'].logo_uri" alt="" style="width: 150px;height: 150px;">-->
-        <!--            </li>-->
-        <!--            <li><b>COMPANY DESCRIPTION:</b>&nbsp;{{profile.user['store'].description}}</li>-->
-        <!--            <li><b>COMPANY CREATED AT:</b>&nbsp;{{profile.user['store'].created_at}}</li>-->
-        <!--        </ul>-->
-        <!--        <ul v-else style="display: flex;flex-direction: column;align-items: center;">-->
-        <!--            <li><b>ID:</b>&nbsp;{{profile.user.id}}</li>-->
-        <!--            <li><b>USERNAME:</b>&nbsp;{{profile.user.name}}</li>-->
-        <!--            <li><b>SURNAME:</b>&nbsp;{{profile.user.surname}}</li>-->
-        <!--            <li><b>EMAIL:</b>&nbsp;{{profile.user.email}}</li>-->
-        <!--            <li><b>CREATED AT:</b>&nbsp;{{profile.user.created_at}}</li>-->
-        <!--        </ul>-->
-        <Footer/>
+        <Footer :footer_title="footer_title" :footer_content="footer_content"/>
     </div>
 </template>
 
@@ -68,13 +46,22 @@
             'profile-content': ProfileContent
         },
         methods: {
-            ...mapActions(['GET_USER', 'GET_USER_ORDERS'])
+            ...mapActions(['GET_USER', 'GET_USER_ORDERS', 'GET_SETTINGS'])
         },
         computed: {
-            ...mapState(['profile']),
+            ...mapState(['profile', 'settings']),
             orders() {
                 return this.profile.orders
             },
+            website_logo() {
+                return this.settings.website_logo
+            },
+            footer_title() {
+                return this.settings.footer_title
+            },
+            footer_content() {
+                return this.settings.footer_content
+            }
         },
         created() {
             const token = localStorage.getItem(keys.API_TOKEN);
@@ -85,6 +72,7 @@
                 // this.$router.push('/')
                 window.location.href = '/'
             }
+            this.GET_SETTINGS()
         },
     }
 </script>

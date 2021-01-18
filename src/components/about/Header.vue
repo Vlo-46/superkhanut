@@ -1,11 +1,16 @@
 <template>
     <div class="header">
         <div class="content">
-            <h3>About Us</h3>
+            <h3 v-if="about_us_header">{{about_us_header.value}}</h3>
         </div>
     </div>
 </template>
 
+<script>
+    export default {
+        props: ['about_us_header']
+    }
+</script>
 
 <style scoped>
     .header {

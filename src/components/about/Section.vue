@@ -3,28 +3,34 @@
         <div class="row container">
             <div class="col s12 m12 l6">
                 <div class="box-1">
-                    <h3>Lorem ipsum dolor.</h3>
+                    <h3 v-if="about_us_title">{{about_us_title.value}}</h3>
                     <div class="hr"></div>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                        laboris nisi ut aliquip ex ea commodo consequat.
-                    </p>
+                    <p v-if="about_us_description">{{about_us_description.value}}</p>
                     <ul>
-                        <li><i class="material-icons">check</i>&nbsp;<small>Lorem ipsum dolor.</small></li>
-                        <li><i class="material-icons">check</i>&nbsp;<small>Lorem ipsum dolor.</small></li>
-                        <li><i class="material-icons">check</i>&nbsp;<small>Lorem ipsum dolor.</small></li>
+                        <li v-if="about_us_option_1"><i class="material-icons">check</i>&nbsp;<small>{{about_us_option_1.value}}</small>
+                        </li>
+                        <li v-if="about_us_option_2"><i class="material-icons">check</i>&nbsp;<small>{{about_us_option_2.value}}</small>
+                        </li>
+                        <li v-if="about_us_option_3"><i class="material-icons">check</i>&nbsp;<small>{{about_us_option_3.value}}</small>
+                        </li>
                     </ul>
                 </div>
             </div>
             <div class="col s12 m12 l6">
                 <div class="box-2">
-                    <img src="../../assets/no-img.jpg" class="responsive-img" alt="">
+                    <img v-if="about_us_image" :src="about_us_image.value" class="responsive-img" alt="">
                 </div>
             </div>
         </div>
     </section>
 </template>
+
+<script>
+    export default {
+        props: ['about_us_title', 'about_us_description', 'about_us_option_1', 'about_us_option_2', 'about_us_option_3', 'about_us_image']
+    }
+</script>
+
 <style scoped>
     section {
         margin-top: 80px;
@@ -63,6 +69,7 @@
     i {
         color: #6ba229;
     }
+
     .hr {
         width: 100px;
         height: 3px;

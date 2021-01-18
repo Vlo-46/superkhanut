@@ -3,7 +3,7 @@
     <div>
         <!--        HOME EXAMPLE 1 START-->
         <div class="shop-example-1" v-if="schema === 'example-1'">
-            <NavWrapper/>
+            <NavWrapper :website_logo="website_logo"/>
             <Header :support="company_admin_settings.support_field" :logo="company_admin_settings.company_logo"
                     :company_name="company_name"/>
             <NavBar :company_name="company_name"/>
@@ -145,7 +145,7 @@
 
         <!--        HOME EXAMPLE 2 START-->
         <div class="shop-example-2" v-else-if="schema === 'example-2'">
-            <NavWrapper/>
+            <NavWrapper :website_logo="website_logo"/>
             <Header_2 :support="company_admin_settings.support_field" :logo="company_admin_settings.company_logo"
                       :company_name="company_name"/>
             <NavBar :company_name="company_name"/>
@@ -288,7 +288,7 @@
 
         <!--        HOME EXAMPLE 3 START-->
         <div class="shop-example-3" v-else>
-            <NavWrapper/>
+            <NavWrapper :website_logo="website_logo"/>
             <Header_3 :support="company_admin_settings.support_field" :logo="company_admin_settings.company_logo"
                       :company_name="company_name"/>
             <NavBar :company_name="company_name"/>
@@ -560,7 +560,7 @@
             pagination
         },
         computed: {
-            ...mapState(['footer_info', 'shop_page_filters_ids', 'shop_page_rightBox_ids', 'shop_page_info', 'company_products', 'company_admin_settings', 'schema', 'Company_filters', 'header_info']),
+            ...mapState(['footer_info', 'shop_page_filters_ids', 'shop_page_rightBox_ids', 'shop_page_info', 'company_products', 'company_admin_settings', 'schema', 'Company_filters', 'header_info', 'settings']),
             currentProductComponent() {
                 return this.currentProductBox
             },
@@ -572,10 +572,13 @@
             },
             company_tags_computed() {
                 return this.all_tags
-            }
+            },
+            website_logo() {
+                return this.settings.website_logo
+            },
         },
         methods: {
-            ...mapActions(['GET_SHOP_INFO', 'GET_COMPANY_PRODUCTS', 'GET_COMPANY_SETTINGS', 'GET_COMPANY_PRODUCTS_FOR_FILTER'])
+            ...mapActions(['GET_SHOP_INFO', 'GET_COMPANY_PRODUCTS', 'GET_COMPANY_SETTINGS', 'GET_COMPANY_PRODUCTS_FOR_FILTER', 'GET_SETTINGS'])
 
         },
         async created() {
@@ -607,6 +610,7 @@
             let set = new Set(tags_arr);
 
             this.all_tags = set;
+            this.GET_SETTINGS()
         },
     }
 </script>

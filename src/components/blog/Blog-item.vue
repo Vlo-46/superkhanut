@@ -1,19 +1,19 @@
 <template>
     <div class="row">
-        <div class="list col s12" v-for="blog in blog_item.items" :key="blog.id">
-            <div class="row">
+        <div class="list col s12" v-for="blog in blogs" :key="blog.id">
+            <div class="row blog-item">
                 <div class="col s5">
-                    <img :src="blog.img" alt="">
+                    <img :src="blog.image" alt="">
                 </div>
                 <div class="col s7">
                     <div>
-                        <p class="type">{{blog.type}}</p>
+                        <p class="type">{{blog.category}}</p>
                         <p class="title">{{blog.title}}</p>
                     </div>
-                    <div class="info">
-                        <p><i class="material-icons">mail</i>&nbsp;<span>{{blog.contact}}</span></p>
-                        <p><i class="material-icons">query_builder</i>&nbsp;<span>{{blog.time}}</span></p>
-                    </div>
+                    <!--                    <div class="info">-->
+                    <!--                        <p><i class="material-icons">mail</i>&nbsp;<span>{{blog.contact}}</span></p>-->
+                    <!--                        <p><i class="material-icons">query_builder</i>&nbsp;<span>{{blog.time}}</span></p>-->
+                    <!--                    </div>-->
                     <div>
                         <p class="description">{{blog.description}}</p>
                     </div>
@@ -28,12 +28,8 @@
 </template>
 
 <script>
-    import {mapState} from 'vuex'
-
     export default {
-        computed: {
-            ...mapState(['blog_item'])
-        },
+        props: ['blogs']
     }
 </script>
 
@@ -43,6 +39,7 @@
         height: 100%;
         border-radius: 10px;
         cursor: pointer;
+        max-height: 200px;
     }
 
     .type {
@@ -102,6 +99,11 @@
     .info p {
         display: flex;
         align-items: center;
+    }
+
+    .blog-item {
+        height: 220px;
+        max-height: 220px;
     }
 
 </style>

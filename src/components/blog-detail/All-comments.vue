@@ -1,17 +1,17 @@
 <template>
     <div class="all-comments row">
-        <div class="col s2 m2 l2">
-            <div class="imgBox">
-                <img src="../../assets/user.png" alt="" class="responsive-img">
-            </div>
-        </div>
-        <div class="col s10 m10 l10">
+        <!--        <div class="col s2 m2 l2">-->
+        <!--            <div class="imgBox">-->
+        <!--                <img src="../../assets/user.png" alt="" class="responsive-img">-->
+        <!--            </div>-->
+        <!--        </div>-->
+        <div class="col s12 m12 l12">
             <div class="comment-box">
                 <div>
-                    <p class="autor">{{name}} <span>{{date}}</span></p>
+                    <p class="autor">{{name}} <span>{{created_at}}</span></p>
                 </div>
                 <div>
-                    <p class="comment">{{comment}}</p>
+                    <p class="comment">{{message}}</p>
                 </div>
             </div>
         </div>
@@ -20,7 +20,7 @@
 
 <script>
     export default {
-        props: ['name', 'date', 'comment'],
+        props: ['name', 'email', 'message', 'created_at', 'updated_at'],
     }
 </script>
 
@@ -40,6 +40,7 @@
         border-radius: 5px;
         border: 1px solid #eee;
         padding: 20px;
+        margin-bottom: 10px;
     }
 
     .autor {

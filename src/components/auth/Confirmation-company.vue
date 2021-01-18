@@ -13,15 +13,8 @@
         <div class="container confirmation">
             <div class="row">
                 <div class="col s12 m12 l6">
-                    <h5>Create your website on our platform</h5>
-                    <div class="information">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate doloremque enim error eum
-                        eveniet, facilis in incidunt laudantium magni quaerat quos ratione sunt suscipit. A accusamus
-                        atque cumque debitis deserunt dicta distinctio dolorem doloremque doloribus earum eius eligendi
-                        exercitationem facilis impedit labore magnam magni maiores necessitatibus nesciunt optio
-                        possimus quae quidem, quos repellat reprehenderit rerum sapiente unde veniam veritatis
-                        voluptatibus.
-                    </div>
+                    <h5 v-if="agreement_title">{{agreement_title.value}}</h5>
+                    <div class="information" v-if="agreement_text">{{agreement_text.value}}</div>
                     <div class="confirm-box">
                         <div>
                             <label @change="CHECK_TERMS">
@@ -37,8 +30,12 @@
 
                 </div>
                 <div class="col s12 m12 l6">
-                    <div class="tutorial">
-                        <h1>VIDEO HERE</h1>
+                    <div class="tutorial" v-if="agreement_video">
+                        <h4>How to prepare a website</h4>
+                        <iframe width="100%" height="100%" :src="agreement_video.value"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
@@ -50,22 +47,52 @@
 
 <script>
     import Footer from '../Footer'
+    import axios from "axios";
+    import keys from "../../keys";
 
     export default {
         components: {Footer},
         data() {
             return {
                 agree: false,
+                info: []
             }
         },
         methods: {
             CHECK_TERMS() {
-                if(this.agree === false) {
+                if (this.agree === false) {
                     this.agree = true
                 } else {
                     this.agree = false
                 }
             },
+        },
+        computed: {
+            agreement_video() {
+                const agree_video = this.info.filter(i => {
+                    return i.key === 'agreement_video'
+                })[0]
+                return agree_video
+            },
+            agreement_text() {
+                const agree_text = this.info.filter(i => {
+                    return i.key === 'agreement_text'
+                })[0]
+                return agree_text
+            },
+            agreement_title() {
+                const agree_title = this.info.filter(i => {
+                    return i.key === 'agreement_title'
+                })[0]
+                return agree_title
+            }
+        },
+        created() {
+            axios.get(`${keys.baseURI}/api/superstore`)
+                .then(res => {
+                    this.info = res.data
+                })
+                .catch(e => console.log(e))
         }
     }
 </script>
@@ -95,6 +122,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        flex-direction: column;
         height: 100%;
     }
 

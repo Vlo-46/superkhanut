@@ -1,6 +1,6 @@
 <template>
     <div class="contact-page">
-        <NavBar/>
+        <NavBar :website_logo="website_logo"/>
         <Header/>
         <div class="contact row container">
             <div class="col s12 m5 l5" style="padding: 30px">
@@ -10,7 +10,7 @@
                     </div>
                     <div class="col s9">
                         <p class="title-contact">Call Us</p>
-                        <p class="content-contact">(+123) 123-456-789</p>
+                        <p class="content-contact" v-if="contact_call_us">{{contact_call_us.value}}</p>
                     </div>
                 </div>
                 <div class="row contact-box">
@@ -19,7 +19,7 @@
                     </div>
                     <div class="col s9">
                         <p class="title-contact">Message</p>
-                        <p class="content-contact">example@gmail.com</p>
+                        <p class="content-contact" v-if="contact_message">{{contact_message.value}}</p>
                     </div>
                 </div>
                 <div class="row contact-box">
@@ -28,7 +28,7 @@
                     </div>
                     <div class="col s9">
                         <p class="title-contact">Our Location</p>
-                        <p class="content-contact">location ArmCoding</p>
+                        <p class="content-contact" v-if="contact_location">{{contact_location.value}}</p>
                     </div>
                 </div>
                 <div class="row contact-box">
@@ -37,7 +37,7 @@
                     </div>
                     <div class="col s9">
                         <p class="title-contact">Working Hours</p>
-                        <p class="content-contact">Mon-Sat 09:00 - 19:00</p>
+                        <p class="content-contact" v-if="contact_working_hours">{{contact_working_hours.value}}</p>
                     </div>
                 </div>
             </div>
@@ -67,7 +67,7 @@
                 </div>
             </div>
         </div>
-        <Footer/>
+        <Footer :footer_title="footer_title" :footer_content="footer_content"/>
     </div>
 </template>
 
@@ -75,12 +75,68 @@
     import NavBar from '../components/Navbar'
     import Footer from '../components/Footer'
     import Header from '../components/contact/header'
+    import axios from "axios";
+    import keys from "../keys";
+
+    import {mapActions, mapState} from 'vuex'
 
     export default {
+        data() {
+            return {
+                info: []
+            }
+        },
         components: {
             NavBar,
             Footer,
             Header
+        },
+        methods: {
+            ...mapActions(['GET_SETTINGS'])
+        },
+        computed: {
+            ...mapState(['settings']),
+            contact_call_us() {
+                const call_us = this.info.filter(i => {
+                    return i.key === 'contact_call_us'
+                })[0]
+                return call_us
+            },
+            contact_message() {
+                const message = this.info.filter(i => {
+                    return i.key === 'contact_message'
+                })[0]
+                return message
+            },
+            contact_location() {
+                const location = this.info.filter(i => {
+                    return i.key === 'contact_location'
+                })[0]
+                return location
+            },
+            contact_working_hours() {
+                const working_hours = this.info.filter(i => {
+                    return i.key === 'contact_working_hours'
+                })[0]
+                return working_hours
+            },
+            website_logo() {
+                return this.settings.website_logo
+            },
+            footer_title() {
+                return this.settings.footer_title
+            },
+            footer_content() {
+                return this.settings.footer_content
+            }
+        },
+        created() {
+            axios.get(`${keys.baseURI}/api/superstore`)
+                .then(res => {
+                    this.info = res.data
+                })
+                .catch(e => console.log(e))
+            this.GET_SETTINGS()
         }
     }
 </script>
@@ -140,6 +196,7 @@
         display: flex;
         align-items: center;
     }
+
     i {
         font-size: 40px;
         color: #6ba229;

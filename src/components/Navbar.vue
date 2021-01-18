@@ -3,7 +3,7 @@
         <div>
             <nav class="row">
                 <ul class="s12 m12 l4">
-                    <li><a href="/"><img src="../assets/logo.png" alt="" class="responsive-img"></a></li>
+                    <li><a href="/"><img :src="website_logo.value" alt="" class="responsive-img website_logo"></a></li>
                 </ul>
                 <ul class="s12 m12 l8">
                     <li><a href="">Forums</a></li>
@@ -47,6 +47,7 @@
     import {mapActions} from 'vuex'
 
     export default {
+        props: ['website_logo'],
         data() {
             return {
                 links: [
@@ -146,5 +147,9 @@
         top: 0;
         right: 0;
         font-size: 11px;
+    }
+
+    .website_logo {
+        width: 110px;
     }
 </style>

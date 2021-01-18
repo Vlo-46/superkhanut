@@ -16,6 +16,8 @@ import favorite_list from './Favorite'
 import basket_list from './Basket'
 import favorite_companies_list from './Favorite-companies'
 
+import settings from './Settings'
+
 import products from './Products/products';
 import filters from './Filters'
 import Company_filters from './Company-filters'
@@ -330,6 +332,7 @@ export default new Vuex.Store({
         registerUser,
         login,
         profile,
+        settings,
 
         home_components,
         shop_components,

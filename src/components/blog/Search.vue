@@ -6,8 +6,9 @@
         </div>
 
         <div class="input-field">
-            <label for="search">Search</label>
-            <input type="text" id="search">
+            <i class="material-icons prefix" @click="BLOG_SEARCH_FILTER(searched_name)">search</i>
+            <label for="icon_prefix">Search</label>
+            <input type="text" id="icon_prefix" v-model="searched_name">
         </div>
     </header>
 
@@ -17,7 +18,14 @@
     import {mapActions} from 'vuex'
 
     export default {
-        methods: {...mapActions(['PAGESWITCH'])}
+        data() {
+          return {
+              searched_name: ''
+          }
+        },
+        methods: {
+            ...mapActions(['PAGESWITCH', 'BLOG_SEARCH_FILTER'])
+        }
     }
 </script>
 
@@ -28,5 +36,8 @@
 
     .material-icons:hover {
         color: #333;
+    }
+    .prefix {
+        cursor: pointer;
     }
 </style>

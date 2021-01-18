@@ -1,6 +1,6 @@
 <template>
     <div class="basket">
-        <NavBar/>
+        <NavBar :website_logo="website_logo"/>
 
         <div class="container basket-box" v-if="basket_list.basket_list.length < 1">
             <h2>The basket is empty</h2>
@@ -72,7 +72,7 @@
                 </div>
             </div>
         </div>
-        <Footer/>
+        <Footer :footer_title="footer_title" :footer_content="footer_content"/>
     </div>
 </template>
 
@@ -95,7 +95,7 @@
             Footer
         },
         methods: {
-            ...mapActions(['DELETE_FROM_BASKET', 'GET_BASKET_LIST_ITEMS', 'DELETE_ALL_ITEMS_FROM_BASKET']),
+            ...mapActions(['DELETE_FROM_BASKET', 'GET_BASKET_LIST_ITEMS', 'DELETE_ALL_ITEMS_FROM_BASKET', 'GET_SETTINGS']),
             BUY(basket_items) {
                 // console.log(basket_items)
                 let token = localStorage.getItem(keys.API_TOKEN);
@@ -139,7 +139,7 @@
             }
         },
         computed: {
-            ...mapState(['basket_list']),
+            ...mapState(['basket_list', 'settings']),
             total_price() {
                 if (this.basket_list.basket_list.length > 0) {
                     let arr = [];
@@ -155,6 +155,15 @@
                     })
                 }
                 return true
+            },
+            website_logo() {
+                return this.settings.website_logo
+            },
+            footer_title() {
+                return this.settings.footer_title
+            },
+            footer_content() {
+                return this.settings.footer_content
             }
         },
         async created() {
@@ -164,6 +173,7 @@
                 });
                 await this.GET_BASKET_LIST_ITEMS(this.basket_items)
             }
+            this.GET_SETTINGS()
 
         }
     }

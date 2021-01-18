@@ -1,6 +1,6 @@
 <template>
     <div class="favorite">
-        <Navbar/>
+        <Navbar :website_logo="website_logo"/>
 
         <div class="container favorite-box" v-if="favorite_list.favorite_list.length < 1">
             <h2>You don't have any preferred products</h2>
@@ -37,7 +37,7 @@
                 </div>
             </div>
         </div>
-        <Footer/>
+        <Footer :footer_title="footer_title" :footer_content="footer_content"/>
     </div>
 
 </template>
@@ -58,10 +58,19 @@
             }
         },
         methods: {
-            ...mapActions(['GET_FAVORITE_LIST_ITEMS', 'DELETE_FAVORITE_ITEM', 'REMOVE_ALL_ITEMS']),
+            ...mapActions(['GET_FAVORITE_LIST_ITEMS', 'DELETE_FAVORITE_ITEM', 'REMOVE_ALL_ITEMS', 'GET_SETTINGS']),
         },
         computed: {
-            ...mapState(['favorite_list'])
+            ...mapState(['favorite_list', 'settings']),
+            website_logo() {
+                return this.settings.website_logo
+            },
+            footer_title() {
+                return this.settings.footer_title
+            },
+            footer_content() {
+                return this.settings.footer_content
+            }
         },
         components: {
             Navbar,
@@ -74,6 +83,7 @@
                 })
                 await this.GET_FAVORITE_LIST_ITEMS(this.favorite_items)
             }
+            this.GET_SETTINGS()
         }
     }
 </script>

@@ -1,17 +1,17 @@
 <template>
     <div class="row">
-        <div class="col s12 m6 l4 wraper" v-for="blog in blog_item.items" :key="blog.id">
+        <div class="col s12 m6 l4 wraper" v-for="blog in blogs" :key="blog.id">
             <div class="blog-item">
                 <div class="imgBox">
-                    <img :src="blog.img" alt="">
+                    <img :src="blog.image" alt="">
                 </div>
                 <div class="info-box">
-                    <p class="type">{{blog.type}}</p>
+                    <p class="type">{{blog.category}}</p>
                     <p class="title">{{blog.title}}</p>
-                    <div class="mini_box">
-                        <div><i class="material-icons">assignment</i><span>{{blog.time}}</span></div>
-                        <div><i class="material-icons">format_list_bulleted</i><span>{{blog.type}}</span></div>
-                    </div>
+                    <!--                    <div class="mini_box">-->
+                    <!--                        <div><i class="material-icons">assignment</i><span>{{blog.time}}</span></div>-->
+                    <!--                        <div><i class="material-icons">format_list_bulleted</i><span>{{blog.type}}</span></div>-->
+                    <!--                    </div>-->
                     <!--                    <p class="description">{{blog.description}}</p>-->
                     <router-link :to="{path: '/blog/'+ blog.id, params: {id: blog.id}}" class="more">Read more
                     </router-link>
@@ -22,12 +22,8 @@
 </template>
 
 <script>
-    import {mapState} from 'vuex'
-
     export default {
-        computed: {
-            ...mapState(['blog_item'])
-        },
+        props: ['blogs']
     }
 </script>
 
@@ -41,6 +37,7 @@
         flex-direction: column;
         /*height: 470px;*/
         position: relative;
+        height: 380px;
     }
 
     .info-box {

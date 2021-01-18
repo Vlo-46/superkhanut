@@ -3,9 +3,8 @@
         <div class="container">
             <div class="row">
                 <div class="col l6 s12">
-                    <h5 class="white-text">Footer Content</h5>
-                    <p class="grey-text text-lighten-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                        Incidunt ipsum optio quisquam quos reiciendis, ullam!.</p>
+                    <h5 class="white-text">{{footer_title.value}}</h5>
+                    <p class="grey-text text-lighten-4">{{footer_content.value}}</p>
                 </div>
                 <div class="col l4 offset-l2 s12">
                     <h5 class="white-text">Links</h5>
@@ -33,6 +32,13 @@
         </div>
     </footer>
 </template>
+
+<script>
+    export default {
+        props: ['footer_title', 'footer_content']
+    }
+</script>
+
 <style scoped>
     footer {
         background-color: #262626;

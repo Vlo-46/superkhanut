@@ -1,6 +1,6 @@
 <template>
     <div class="company-detail">
-        <navbar-wrapper/>
+        <navbar-wrapper :website_logo="website_logo"/>
         <NavBar :company_name="this.$route.params.pathMatch"/>
         <div class="detail-field container">
             <div class="row">
@@ -120,7 +120,7 @@
             VueSlickCarousel
         },
         methods: {
-            ...mapActions(['GET_SHOP_INFO', 'GET_COMPANY_SETTINGS']),
+            ...mapActions(['GET_SHOP_INFO', 'GET_COMPANY_SETTINGS', 'GET_SETTINGS']),
             sub() {
                 if (this.quantity > 1) {
                     this.quantity--
@@ -172,7 +172,10 @@
             },
         },
         computed: {
-            ...mapState(['company_admin_settings'])
+            ...mapState(['company_admin_settings', 'settings']),
+            website_logo() {
+                return this.settings.website_logo
+            },
         },
         async created() {
             let data = {
@@ -190,6 +193,7 @@
                     this.product = res.data
                 })
                 .catch(e => console.log(e))
+            this.GET_SETTINGS()
         }
     }
 </script>

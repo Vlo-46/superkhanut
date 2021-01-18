@@ -1,6 +1,6 @@
 <template>
     <div class="contact-example-1">
-        <NavWrapper/>
+        <NavWrapper :website_logo="website_logo"/>
         <Header :support="company_admin_settings.support_field" :logo="company_admin_settings.company_logo"/>
 
         <template v-if="schema === 'example-1'">
@@ -87,16 +87,20 @@
             'contact-information': contact_information
         },
         computed: {
-            ...mapState(['contact_page_ids', 'company_admin_settings', 'schema', 'header_info', 'footer_info'])
+            ...mapState(['contact_page_ids', 'company_admin_settings', 'schema', 'header_info', 'footer_info', 'settings']),
+            website_logo() {
+                return this.settings.website_logo
+            },
         },
         methods: {
-            ...mapActions(['GET_SHOP_INFO', 'GET_COMPANY_SETTINGS'])
+            ...mapActions(['GET_SHOP_INFO', 'GET_COMPANY_SETTINGS', 'GET_SETTINGS']),
         },
         async created() {
             let company_name = this.$route.params.pathMatch;
             await this.GET_SHOP_INFO(company_name);
             await this.GET_COMPANY_SETTINGS(company_name);
             this.company_name = this.$route.params.pathMatch
+            this.GET_SETTINGS()
         }
     }
 </script>

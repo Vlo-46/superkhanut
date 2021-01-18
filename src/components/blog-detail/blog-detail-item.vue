@@ -6,9 +6,9 @@
         <div class="info-box">
             <div class="title"><p>{{title}}</p></div>
             <div class="info">
-                <p><i class="material-icons">mail</i>&nbsp;<span>{{contact}}</span></p>
-                <p><i class="material-icons">query_builder</i>&nbsp;<span>{{time}}</span></p>
-                <p><i class="material-icons">format_list_bulleted</i>&nbsp;<span>{{type}}</span></p>
+                <!--                <p><i class="material-icons">mail</i>&nbsp;<span>{{contact}}</span></p>-->
+                <!--                <p><i class="material-icons">query_builder</i>&nbsp;<span>{{time}}</span></p>-->
+                <p><i class="material-icons">format_list_bulleted</i>&nbsp;<span>{{category}}</span></p>
             </div>
             <div class="description">
                 <p class="truncate">{{description}}</p>
@@ -19,7 +19,7 @@
 
 <script>
     export default {
-        props: ['title', 'type', 'time', 'contact', 'description', 'img'],
+        props: ['title', 'category', 'description', 'img', 'id'],
     }
 </script>
 
@@ -27,6 +27,7 @@
     img {
         width: 100%;
         height: 100%;
+        max-height: 500px;
     }
 
     .title p {

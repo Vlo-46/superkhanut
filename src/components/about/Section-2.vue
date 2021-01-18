@@ -1,55 +1,57 @@
 <template>
     <section>
         <div class="row wraper">
-<!--            <div class="col s12 m12 l6 box-1">-->
-<!--                &lt;!&ndash;                <div class="box-1">&ndash;&gt;-->
-<!--                &lt;!&ndash;                    <img src="../../assets/armcoding-logo.jpg" alt="">&ndash;&gt;-->
-<!--                &lt;!&ndash;                </div>&ndash;&gt;-->
-<!--            </div>-->
             <div class="col s12 m12 l12">
-                <span>Lorem ipsum dolor.</span>
-                <h3>Lorem ipsum dolor sit amet, consectetur adipisicing.</h3>
+                <!--                <span>Lorem ipsum dolor.</span>-->
+                <h3 v-if="about_us_title_2">{{about_us_title_2.value}}</h3>
                 <div class="hr"></div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aspernatur cumque deleniti deserunt
-                    dolor dolores fugiat necessitatibus nostrum sunt tenetur?</p>
+                <p v-if="about_us_description_2">{{about_us_description_2.value}}</p>
                 <div class="row">
                     <div class="col s12 m12 l6 info-box">
                         <div class="row">
                             <div class="col s2 m3 l4"><i class="material-icons responsive-img">filter</i></div>
                             <div class="col s10 m9 l8">
-                                <a href="">Lorem ipsum.</a>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, velit.</p>
-                                <a href="">learn more <i class="material-icons">keyboard_arrow_right</i></a>
+                                <a :href="about_us_service_1_link.value" target="_blank"
+                                   v-if="about_us_service_1_title">{{about_us_service_1_title.value}}</a>
+                                <p v-if="about_us_service_1_description">{{about_us_service_1_description.value}}</p>
+                                <a :href="about_us_service_1_link.value" target="_blank">learn more <i
+                                        class="material-icons">keyboard_arrow_right</i></a>
                             </div>
                         </div>
                     </div>
                     <div class="col s12 m12 l6 info-box">
                         <div class="row">
-                            <div class="col s2 m3 l4"><i class="material-icons">filter</i></div>
+                            <div class="col s2 m3 l4"><i class="material-icons responsive-img">filter</i></div>
                             <div class="col s10 m9 l8">
-                                <a href="">Lorem ipsum.</a>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, velit.</p>
-                                <a href="">learn more <i class="material-icons">keyboard_arrow_right</i></a>
+                                <a :href="about_us_service_2_link.value" target="_blank"
+                                   v-if="about_us_service_2_title">{{about_us_service_2_title.value}}</a>
+                                <p v-if="about_us_service_2_description">{{about_us_service_2_description.value}}</p>
+                                <a :href="about_us_service_2_link.value" target="_blank">learn more <i
+                                        class="material-icons">keyboard_arrow_right</i></a>
                             </div>
                         </div>
                     </div>
                     <div class="col s12 m12 l6 info-box">
                         <div class="row">
-                            <div class="col s2 m3 l4"><i class="material-icons">filter</i></div>
+                            <div class="col s2 m3 l4"><i class="material-icons responsive-img">filter</i></div>
                             <div class="col s10 m9 l8">
-                                <a href="">Lorem ipsum.</a>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, velit.</p>
-                                <a href="">learn more <i class="material-icons">keyboard_arrow_right</i></a>
+                                <a :href="about_us_service_3_link.value" target="_blank"
+                                   v-if="about_us_service_3_title">{{about_us_service_3_title.value}}</a>
+                                <p v-if="about_us_service_3_description">{{about_us_service_3_description.value}}</p>
+                                <a :href="about_us_service_3_link.value" target="_blank">learn more <i
+                                        class="material-icons">keyboard_arrow_right</i></a>
                             </div>
                         </div>
                     </div>
                     <div class="col s12 m12 l6 info-box">
                         <div class="row">
-                            <div class="col s2 m3 l4"><i class="material-icons">filter</i></div>
+                            <div class="col s2 m3 l4"><i class="material-icons responsive-img">filter</i></div>
                             <div class="col s10 m9 l8">
-                                <a href="">Lorem ipsum.</a>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, velit.</p>
-                                <a href="">learn more <i class="material-icons">keyboard_arrow_right</i></a>
+                                <a :href="about_us_service_4_link.value" target="_blank"
+                                   v-if="about_us_service_4_title">{{about_us_service_4_title.value}}</a>
+                                <p v-if="about_us_service_4_description">{{about_us_service_4_description.value}}</p>
+                                <a :href="about_us_service_4_link.value" target="_blank">learn more <i
+                                        class="material-icons">keyboard_arrow_right</i></a>
                             </div>
                         </div>
                     </div>
@@ -58,6 +60,15 @@
         </div>
     </section>
 </template>
+
+<script>
+    export default {
+        props: ['about_us_title_2', 'about_us_description_2', 'about_us_service_1_title', 'about_us_service_2_title',
+            'about_us_service_3_title', 'about_us_service_4_title', 'about_us_service_1_link', 'about_us_service_2_link',
+            'about_us_service_3_link', 'about_us_service_4_link', 'about_us_service_1_description', 'about_us_service_2_description',
+            'about_us_service_3_description', 'about_us_service_4_description']
+    }
+</script>
 
 <style scoped>
     section {

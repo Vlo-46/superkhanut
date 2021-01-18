@@ -4,7 +4,7 @@
     <div>
         <!--        HOME PAGE EXAMPLE 1 START-->
         <div class="home-example-1" v-if="schema === 'example-1'">
-            <NavWrapper/>
+            <NavWrapper :website_logo="website_logo"/>
             <!--        header-->
             <Header :support="company_admin_settings.support_field" :logo="company_admin_settings.company_logo"
                     :company_name="company_name"/>
@@ -33,7 +33,7 @@
 
         <!--        HOME PAGE EXAMPLE 2 START-->
         <div class="home-example-2" v-else-if="schema === 'example-2'">
-            <NavWrapper/>
+            <NavWrapper :website_logo="website_logo"/>
             <Header_2 :support="company_admin_settings.support_field"
                       :logo="company_admin_settings.company_logo"
                       :company_name="company_name"/>
@@ -61,7 +61,7 @@
 
         <!--        HOME PAGE EXAMPLE 3 START-->
         <div class="home-example-3" v-else>
-            <NavWrapper/>
+            <NavWrapper :website_logo="website_logo"/>
             <Header_3 :support="company_admin_settings.support_field" :logo="company_admin_settings.company_logo"
                       :company_name="company_name"/>
             <NavBar_3 :company_name="company_name"/>
@@ -150,19 +150,23 @@
             Footer_3,
         },
         methods: {
-            ...mapActions(['GET_SHOP_INFO', 'GET_COMPANY_SETTINGS'])
+            ...mapActions(['GET_SHOP_INFO', 'GET_COMPANY_SETTINGS', 'GET_SETTINGS'])
         },
         computed: {
-            ...mapState(['schema', 'home_page_ids', 'company_admin_settings']),
+            ...mapState(['schema', 'home_page_ids', 'company_admin_settings', 'settings']),
             slider_computed() {
                 return this.company_admin_settings.slider_field
-            }
+            },
+            website_logo() {
+                return this.settings.website_logo
+            },
         },
         async created() {
             let company_name = this.$route.params.pathMatch;
             await this.GET_SHOP_INFO(company_name);
             await this.GET_COMPANY_SETTINGS(company_name);
             this.company_name = this.$route.params.pathMatch;
+            this.GET_SETTINGS()
         }
     }
 </script>

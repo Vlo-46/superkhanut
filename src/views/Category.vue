@@ -1,6 +1,6 @@
 <template>
     <div class="wrapper">
-        <navbar/>
+        <navbar :website_logo="website_logo"/>
         <Search/>
         <filters/>
         <div class="row filterBoxs container">
@@ -92,8 +92,7 @@
                 :container-class="'pagination'"
                 :page-class="'page-item'">
         </paginate>
-        <h1>{{WAITING_FOR_DATAS.pagination.skip}}</h1>
-        <footer-wrapper/>
+        <footer-wrapper :footer_title="footer_title" :footer_content="footer_content"/>
     </div>
 </template>
 
@@ -139,14 +138,14 @@
             'paginate': Paginate
         },
         methods: {
-            ...mapActions(['GET_PRODUCTS', '$GET_ALL_PRODUCTS', '$GET_ALL_COMPANIES']),
+            ...mapActions(['GET_PRODUCTS', '$GET_ALL_PRODUCTS', '$GET_ALL_COMPANIES', 'GET_SETTINGS']),
             clickCallback(currentPage) {
                 console.log(currentPage)
             }
         },
         computed: {
             // ...mapGetters(['FILTERED_ITEMS']),
-            ...mapState(['navigation', 'filters']),
+            ...mapState(['navigation', 'filters', 'settings']),
             WAITING_FOR_DATAS() {
                 let category_arr = [];
                 let tag_arr = [];
@@ -176,10 +175,20 @@
                 }
                 return data
             },
+            website_logo() {
+                return this.settings.website_logo
+            },
+            footer_title() {
+                return this.settings.footer_title
+            },
+            footer_content() {
+                return this.settings.footer_content
+            }
         },
         async created() {
             await this.$GET_ALL_PRODUCTS();
             await this.$GET_ALL_COMPANIES();
+            this.GET_SETTINGS();
         }
     }
 

@@ -108,7 +108,7 @@
             },
             right_panel_computed() {
                 return this.right_panel.button
-            }
+            },
         },
         methods: {
             ...mapActions(['GET_SHOP_INFO', 'GET_COMPANY_PRODUCTS'])
@@ -116,7 +116,19 @@
         beforeMount() {
             this.GET_SHOP_INFO()
         },
-        mounted() {
+        async created() {
+            this.company_name = this.$route.params.pathMatch;
+            await this.GET_COMPANY_PRODUCTS(this.$route.params.pathMatch);
+            let x = [];
+            this.product_boxs.filter(i => {
+                x.push(i.name)
+            });
+            const y = Object.keys(this.home_page_info).filter(j => {
+                return x.includes(j)
+            });
+            this.currentProductBox = y.toString()
+
+
             let slider = tns({
                 autoplay: true,
                 slideBy: 1,
@@ -142,18 +154,6 @@
                 "speed": 1000
             });
             slider.play();
-        },
-        async created() {
-            this.company_name = this.$route.params.pathMatch;
-            await this.GET_COMPANY_PRODUCTS(this.$route.params.pathMatch);
-            let x = [];
-            this.product_boxs.filter(i => {
-                x.push(i.name)
-            });
-            const y = Object.keys(this.home_page_info).filter(j => {
-                return x.includes(j)
-            });
-            this.currentProductBox = y.toString()
         },
     }
 </script>
